@@ -162,9 +162,11 @@ footer .sig{margin-top:18px;font-size:.85em;color:var(--muted)}
 .annot .note .hx{display:inline-block;background:var(--blue-50);color:var(--blue-deep);border-radius:6px;padding:0 8px;font-size:.86em;margin-top:6px}
 @media (max-width:640px){.annot{grid-template-columns:1fr}}
 .tech-tags{display:flex;gap:7px;flex-wrap:wrap}
-.lightbox{position:fixed;inset:0;background:rgba(35,48,66,.88);z-index:120;display:none;align-items:center;justify-content:center;padding:20px;cursor:zoom-out}
+.lightbox{position:fixed;inset:0;background:rgba(35,48,66,.9);z-index:120;display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px;cursor:zoom-out;gap:14px}
 .lightbox.open{display:flex}
-.lightbox img{max-width:95vw;max-height:90vh;width:auto;height:auto;border-radius:10px}
+.lightbox img{max-width:95vw;max-height:80vh;width:auto;height:auto;border-radius:10px}
+.lb-cap{max-width:720px;background:rgba(255,255,255,.96);color:var(--ink);border-radius:12px;padding:10px 18px;font-size:.9em;line-height:1.7;text-align:center}
+.lb-cap:empty{display:none}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(90px);background:var(--blue-ink);color:#fff;border-radius:999px;padding:9px 24px;font-size:.9em;transition:transform .3s;z-index:130;box-shadow:0 6px 18px rgba(0,0,0,.25)}
 .toast.show{transform:translateX(-50%) translateY(0)}
 .to-top{position:fixed;right:18px;bottom:20px;background:#fff;border:1.5px solid var(--line);width:46px;height:46px;border-radius:50%;font-size:1.2em;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:60;box-shadow:0 4px 10px rgba(0,0,0,.08)}
@@ -353,7 +355,7 @@ footer .sig{margin-top:18px;font-size:.85em;color:var(--muted)}
 
 <button class="to-top" id="toTop" title="回到頂端">🐾</button>
 <div class="modal-bg" id="modalBg"><div class="modal" id="modal" role="dialog" aria-modal="true"></div></div>
-<div class="lightbox" id="lightbox"><img id="lightImg" alt="放大檢視"></div>
+<div class="lightbox" id="lightbox"><img id="lightImg" alt="放大檢視"><div class="lb-cap" id="lightCap"></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -384,7 +386,11 @@ const PROJECTS = [
   desc:"官方信箱每天湧入數十封信：報名問題、退費申請、學校來文、討論區通知。過去靠人工早晚掃信分派，還曾有學生求助信掉進垃圾信匣。現在系統在雲端自動跑：掃描收件匣與垃圾匣、依團隊分工分類、只在待辦信件貼標籤，讓 Gmail 變成一張會自己劃掉的待辦清單。",
   hi:["每天省下約 1 小時掃信時間，兩週內從零到雲端上線","AI 的邊界設計：不代回信、沒把握就標「請人工判斷」、已處理與否用程式時間戳判定","全員收到同一份報告，即使分類誤判，另一位負責人也看得到"],
   tech:["Python（純標準庫）","Gmail API + OAuth 2.0","雲端排程","Claude AI Agent"],
-  shots:[{s:"assets/mail-architecture.png",c:"系統架構圖：雲端排程喚醒 → Gmail API 掃信 → AI 分類摘要 → 貼標籤＋寄分工報告"},{s:"assets/mail-report.png",c:"每日分流報告：按負責人分區、急件紅標、附處理建議（畫面為虛構示意資料）"}]},
+  annotTitle:"系統兩段式解剖",
+  annotated:[
+   {s:"assets/mail-architecture.png",t:"上半：整條工作流",n:"雲端排程在平日 8:00 與 15:00 喚醒系統 → Gmail API 掃描收件匣與垃圾信匣 → AI 依團隊分工分類、為每封信寫摘要 → 只在待辦信件貼標籤（回信結案自動移除）→ 統一報告寄給每位負責人。人只處理真正需要判斷的個案，寄出鍵永遠在人手上。"},
+   {s:"assets/mail-report.png",t:"下半：信箱摘要與內容分析報告",n:"報告按「人」組織：每位負責人一個完整工作區，新信與待追蹤放在一起。每封信附 AI 摘要與處理建議、急件紅標、討論區回覆追蹤表、垃圾信匣警報；「已處理／待處理」由程式依信件串時間戳計算，不靠 AI 推測。<span class='hx'>畫面為虛構示意資料</span>"}
+  ]},
 
  {id:"course", cat:["ai"], img:"assets/course-beforeafter.png",
   title:"📋 課程異動申請自動化", status:"live", statusTxt:"✅ 營運中・本季自動產出 37 份收執聯",
@@ -435,6 +441,7 @@ const PROJECTS = [
   desc:"主導百萬學習人次平台的首頁改版：淘汰不符品牌調性的方案，確立「品牌藍為主、清晰專業、對成人受眾親切」的原則；把原站七個並列專區重組為「依身分找入口」，讓大學生、社會人士、高中生各自一眼找到自己的路。過程中發現站內可疑外掛，依分際回報技術同事處理，不越權、有留痕。",
   hi:["slogan 以品牌名諧音「一網打盡」，是我自己想出來的","14 條實戰踩雷紀錄沉澱為維運手冊，廠商、技術端、同事三種受眾三種文件","目前階段：E 版主線完成、內部審閱版流通中，待拍板正式上線"],
   tech:["WordPress/Elementor","資訊架構","品牌設計","AI 協作實作"],
+  annotTitle:"完整版首頁・逐區段設計思維",
   annotated:[
    {s:"assets/ewant-s1.png",t:"第一屏：品牌主張＋搜尋先行",n:"slogan「想學的一切，ewant 打盡」開門見山；搜尋框直接放第一屏，因為使用者的目標就是「找課」——用學習者的語言而不是機構視角。右側輪播框保留活動檔期的位置。<span class='hx'>Heuristic：貼近真實世界</span>"},
    {s:"assets/ewant-s2.png",t:"信任數字帶",n:"520+ 課程、40+ 合作大學、100 萬+ 學習人次——先用三個大數字建立「這是全國級平台」的可信度，再邀請往下逛。<span class='hx'>社會證明</span>"},
@@ -462,16 +469,21 @@ const PROJECTS = [
   desc:"行政最大的隱形成本是交接：規則存在承辦人腦中，文件永遠落後現況。我把整年度業務寫成「原始碼」：給會用 AI 的人，是 16 章 Claude Skill，新的 AI 會話能直接回答「現在幾月、該做什麼」；給習慣紙本的人，是腳本自動生成的 Word 手冊；給要排時程的人，是填三個錨點日期、整年時程自動展開的 Excel 主檔。內容更新重跑一次，三種輸出同步。",
   hi:["軟體業的 single source of truth，完全適用於行政","文件不用手排、用生成：交接從「祈禱文件是新的」變成「跑一次腳本」","交接包一鍵打包，附給不熟 AI 的同事的兩分鐘安裝說明","第四種介面是 Notion：六個資料庫鏡像（Skill 目錄、流程卡、待辦與進度…），給習慣 Notion 的接手者看，正本仍在本機"],
   tech:["Markdown/JSON 原始碼","Python 產檔腳本","Claude Skill","知識架構設計"],
-  shots:[{s:"assets/handover-notion.png",c:"Notion「牛寶工作台」實拍：六庫鏡像總覽與同步規則——頁面裡就寫明「規則正本仍在 skill／Obsidian，Notion 只是鏡像」，單一資料來源的原則貫徹到每個出口"}]},
+  shots:[{s:"assets/handover-notion.png",c:"Notion「牛寶工作台」入口：六個資料庫鏡像的總覽，頁面裡就寫明「規則正本仍在 skill／Obsidian，Notion 只是鏡像」——單一資料來源的原則貫徹到每個出口"},{s:"assets/handover-skills.png",c:"Skill 目錄實拍：40+ 本手冊依「工具與技術／本人與業務」分組，每本標註什麼時候用、管哪條業務線、母版放哪——接手的人用這張表就能找到所有規則"},{s:"assets/handover-flowcards.png",c:"流程卡實拍：一卡一流程的索引——何時做、做完會有什麼、先要有什麼、地雷在哪、對應時程月份；全文在手冊，這裡是給人快速翻的卡片層"}]},
 
  {id:"nubao", cat:["ai"], svg:"nubao",
   title:"🐮 AI 助理「牛寶」系統", status:"wip", statusTxt:"🚧 持續進化中（這個網站也是牛寶蓋的）",
-  one:"把 AI 當團隊成員管理：技能手冊、長期記憶、自動排程，任何新的 AI 會話都能立刻接手我的工作。",
-  num:"43 本技能手冊＋跨對話記憶系統",
-  role:"我的角色：AI 的主管。定義它能做什麼、不能做什麼，哪些事永遠要回到人身上。",
-  desc:"我最大的差異化不是會用 AI 聊天，而是把「怎麼把 AI 用好」做成了系統：業務規則寫成技能手冊、踩過的雷寫成防呆紀錄、AI 的權限邊界明文化。發現自動貼標籤會誤判時，我的解法是收回權限改人工，而不是要求 AI 更準。結果是信箱分流自己跑、報告自己生，連這個作品集網站，都是牛寶照著我的視覺風格手冊蓋出來的。",
-  hi:["換電腦、換 AI 都能無痛搬家的交接包設計","權限治理：AI 負責彙整與建議，決策與寫入永遠留給人","自動化路線務實：不需要 AI 的地方，就不用 AI"],
-  tech:["Claude Code","Skill / Memory 架構","雲端排程","AI 治理"], shots:[]},
+  one:"把 AI 當團隊成員管理：43 本技能手冊、長期記憶、自動排程與明文化的權限邊界，任何新的 AI 會話都能立刻接手我的工作。",
+  num:"43 本技能手冊＋長期記憶＋雲端排程",
+  role:"我的角色：AI 的主管。寫它的工作手冊、定它的權限邊界、驗收它的每一次產出——哪些事永遠要回到人身上，由我決定。",
+  desc:"我最大的差異化不是會用 AI 聊天，而是把「怎麼把 AI 用好」做成一套會自己長大的系統。43 本技能手冊涵蓋三條業務線的規則、對學生／窗口／內部同事三種擬信口吻、我的視覺風格品味、檔案歸檔規範，甚至「交付前要用哪些專家視角自我檢查」；跨對話記憶讓每一次踩雷都變成防呆紀錄；雲端排程讓例行工作在我睡覺時也照跑。",
+  hi:["實際扛起來的工作：兩套信箱分流（SOS＋跨校通識）每日自動運轉、提前交成績主控台、報名分析報告、履歷雙視角總體檢、這個作品集網站——全部在手冊規範下產出，而不是每次重新教",
+   "權限治理白紙黑字：AI 只建議不代行、對外信件只建草稿、自動化只「讀＋報告」不寫入我手動管理的空間；發現自動貼標籤會誤判時，解法是收回權限改人工，而不是要求 AI 更準",
+   "踩雷必留紀錄：每次出錯寫成「症狀→原因→解法」存進手冊，新的 AI 會話不再重犯同一個坑",
+   "交付品質制度化：完成前須自行生成該領域專家（主管、HR、美編、UX……）檢閱修正，我看到的第一版就是檢查過的版本",
+   "可攜性：手冊＋記憶一鍵打包成交接包，換電腦、換 AI 模型都能無痛搬家；Notion 上另有六庫鏡像給人看"],
+  tech:["Claude Code","Skill / Memory 架構","雲端排程","AI 治理"],
+  shots:[{s:"assets/handover-skills.png",c:"牛寶的「工作手冊書櫃」：40+ 本 skill 的 Notion 目錄鏡像——業務規則、信件口吻、視覺品味、檔案規範全部成冊，這就是任何新 AI 會話能立刻接手的原因"}]},
 ];
 
 /* ---------- render ---------- */
@@ -523,11 +535,11 @@ function openModal(p){
     <h4>技術與方法</h4>
     <div class="tech-tags">${p.tech.map(t=>`<span class="pill">${t}</span>`).join("")}</div>
     ${p.link?`<h4>傳送門</h4><a class="btn btn-line" style="padding:8px 20px" href="${p.link}" target="_blank" rel="noopener">${p.linkTxt}</a>`:""}
-    ${p.annotated?`<h4>完整版首頁・逐區段設計思維</h4>`+p.annotated.map(a=>`<div class="annot"><img src="${a.s}" alt="${a.t}" loading="lazy"><div class="note"><b>${a.t}</b>${a.n}</div></div>`).join(""):""}
-    ${p.shots&&p.shots.length?`<h4>截圖（示範資料／去識別化）</h4><div class="shots">${p.shots.map(x=>`<figure><img src="${x.s}" alt="${x.c}" loading="lazy"><figcaption>${x.c}</figcaption></figure>`).join("")}</div>`:""}
+    ${p.annotated?`<h4>${p.annotTitle||"逐區段設計思維"}</h4>`+p.annotated.map(a=>`<div class="annot"><img src="${a.s}" alt="${a.t}" loading="lazy" data-cap="${a.t}：${a.n.replace(/<[^>]+>/g,"")}"><div class="note"><b>${a.t}</b>${a.n}</div></div>`).join(""):""}
+    ${p.shots&&p.shots.length?`<h4>截圖（示範資料／去識別化）</h4><div class="shots">${p.shots.map(x=>`<figure><img src="${x.s}" alt="${x.c}" loading="lazy" data-cap="${x.c}"><figcaption>${x.c}</figcaption></figure>`).join("")}</div>`:""}
   `;
   modal.querySelector(".close").addEventListener("click", closeModal);
-  modal.querySelectorAll(".shots img, .annot img").forEach(im=>im.addEventListener("click", ()=>openLight(im.src)));
+  modal.querySelectorAll(".shots img, .annot img").forEach(im=>im.addEventListener("click", ()=>openLight(im.src, im.dataset.cap)));
   modalBg.classList.add("open");
   document.body.style.overflow = "hidden";
 }
@@ -535,8 +547,8 @@ function closeModal(){ modalBg.classList.remove("open"); document.body.style.ove
 modalBg.addEventListener("click", e=>{ if(e.target===modalBg) closeModal(); });
 
 /* ---------- lightbox / toast / top ---------- */
-const lightbox = document.getElementById("lightbox"), lightImg = document.getElementById("lightImg");
-function openLight(src){ lightImg.src = src; lightbox.classList.add("open"); }
+const lightbox = document.getElementById("lightbox"), lightImg = document.getElementById("lightImg"), lightCap = document.getElementById("lightCap");
+function openLight(src, cap){ lightImg.src = src; lightCap.textContent = cap || ""; lightbox.classList.add("open"); }
 lightbox.addEventListener("click", ()=>lightbox.classList.remove("open"));
 document.addEventListener("keydown", e=>{ if(e.key==="Escape"){ lightbox.classList.remove("open"); closeModal(); }});
 let toastTimer;
