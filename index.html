@@ -150,9 +150,17 @@ footer .sig{margin-top:18px;font-size:.85em;color:var(--muted)}
 .modal h4{color:var(--pink-ink);font-size:.95em;margin:18px 0 8px;font-weight:800}
 .modal ul{padding-left:1.3em}
 .modal li{margin:5px 0;font-size:.94em}
-.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:10px}
-.shots img{border-radius:12px;border:1px solid var(--line);cursor:zoom-in;transition:transform .15s;background:#fff}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:10px}
+.shots figure{margin:0}
+.shots img{border-radius:12px;border:1px solid var(--line);cursor:zoom-in;transition:transform .15s;background:#fff;width:100%}
 .shots img:hover{transform:scale(1.02)}
+.shots figcaption{font-size:.82em;color:var(--muted);margin-top:6px;line-height:1.6}
+.annot{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;align-items:center;margin:16px 0}
+.annot img{width:100%;border-radius:12px;border:1px solid var(--line);cursor:zoom-in;background:#fff}
+.annot .note{background:#fff;border-radius:14px;padding:14px 18px;font-size:.88em;line-height:1.8;border-left:4px solid var(--pink)}
+.annot .note b{color:var(--blue-ink);display:block;margin-bottom:4px}
+.annot .note .hx{display:inline-block;background:var(--blue-50);color:var(--blue-deep);border-radius:6px;padding:0 8px;font-size:.86em;margin-top:6px}
+@media (max-width:640px){.annot{grid-template-columns:1fr}}
 .tech-tags{display:flex;gap:7px;flex-wrap:wrap}
 .lightbox{position:fixed;inset:0;background:rgba(35,48,66,.88);z-index:120;display:none;align-items:center;justify-content:center;padding:20px;cursor:zoom-out}
 .lightbox.open{display:flex}
@@ -366,7 +374,7 @@ const PROJECTS = [
   desc:"起點只是不想再用便條紙記待辦。我用「一次只加一個小改動、每版真檔實測」的節奏，六天內迭代 27 版、第一週長成 11 個模組的完整系統，至今演進到 v63。一個 HTML 檔、雙擊即開、完全離線，資料只存在自己電腦，還有十隻手繪風貓狗吉祥物輪班陪工作。",
   hi:["追案看板「一校一卡、球在誰手上」，21 所學校的交辦進度一眼掌握","經歷資料清空事故後，把備份匯出與自動快照升級為一級功能","可以交接：改版歷程、維運手冊、連「給下一個 AI 的說明書」都寫好了"],
   tech:["HTML/CSS/JS 單檔","localStorage","GAS 雲端同步","AI 結對開發"],
-  shots:["assets/catlendar-home.png","assets/catlendar-board.png","assets/catlendar-theme.png","assets/catlendar-mobile.png"]},
+  shots:[{s:"assets/catlendar-home.png",c:"首頁儀表板：「今天先看這裡」四問——輪到我做什麼、在等誰、幾天內有截止（示範資料）"},{s:"assets/catlendar-board.png",c:"追案看板：一校一卡、「輪到誰」一眼看懂，南風／晴光／山城大學皆為虛構示範"},{s:"assets/catlendar-theme.png",c:"淺色主題與值班吉祥物：工具可以可愛，效率不打折"},{s:"assets/catlendar-mobile.png",c:"手機版：首頁與追案看板，單檔也能響應式"}]},
 
  {id:"mail", cat:["ai"], img:"assets/mail-report.png",
   title:"📬 客服信箱自動分流系統", status:"live", statusTxt:"✅ 雲端排程運行中（SOS 與跨校通識兩套）",
@@ -376,7 +384,7 @@ const PROJECTS = [
   desc:"官方信箱每天湧入數十封信：報名問題、退費申請、學校來文、討論區通知。過去靠人工早晚掃信分派，還曾有學生求助信掉進垃圾信匣。現在系統在雲端自動跑：掃描收件匣與垃圾匣、依團隊分工分類、只在待辦信件貼標籤，讓 Gmail 變成一張會自己劃掉的待辦清單。",
   hi:["每天省下約 1 小時掃信時間，兩週內從零到雲端上線","AI 的邊界設計：不代回信、沒把握就標「請人工判斷」、已處理與否用程式時間戳判定","全員收到同一份報告，即使分類誤判，另一位負責人也看得到"],
   tech:["Python（純標準庫）","Gmail API + OAuth 2.0","雲端排程","Claude AI Agent"],
-  shots:["assets/mail-architecture.png","assets/mail-report.png"]},
+  shots:[{s:"assets/mail-architecture.png",c:"系統架構圖：雲端排程喚醒 → Gmail API 掃信 → AI 分類摘要 → 貼標籤＋寄分工報告"},{s:"assets/mail-report.png",c:"每日分流報告：按負責人分區、急件紅標、附處理建議（畫面為虛構示意資料）"}]},
 
  {id:"course", cat:["ai"], img:"assets/course-beforeafter.png",
   title:"📋 課程異動申請自動化", status:"live", statusTxt:"✅ 營運中・本季自動產出 37 份收執聯",
@@ -386,7 +394,7 @@ const PROJECTS = [
   desc:"學生的換課、停修、退費申請，過去是 Word 下載、Email 回傳、人工逐筆轉錄、手工排版收執聯，每一步都在複製貼上，每一步都可能出錯。重建後：表單條件分流加上帳號格式驗證，把錯誤擋在送出之前；送出瞬間四路同步（確認信、承辦通知、試算表、Notion 看板）；審核狀態改一格，官方收執聯自動生成、自動歸檔。",
   hi:["格式錯誤 100% 攔截於送出前，補件往返大幅減少","隱私設計：身分證與銀行帳號刻意不同步到協作看板","年末一鍵封存加三道防呆，接手的人完全不用碰程式碼"],
   tech:["Google Apps Script","Notion API","表單驗證設計","事件驅動架構"],
-  shots:["assets/course-beforeafter.png","assets/course-validation.png","assets/course-kanban.png","assets/course-receipt.png"]},
+  shots:[{s:"assets/course-beforeafter.png",c:"Before／After 流程對比：紙本七步驟人工轉錄 vs 填表即入庫、審核即出件"},{s:"assets/course-validation.png",c:"把錯誤擋在源頭：銀行帳號碼數不對就送不出去，補件往返大減"},{s:"assets/course-kanban.png",c:"Notion 協作看板：tech／chrissy 分視圖，各角色只看自己的工作區（測試資料）"},{s:"assets/course-receipt.png",c:"審核狀態改一格，官方版型收執聯自動生成歸檔（測試資料）"},{s:"assets/grades-flow.png",c:"同一條學生異動自動化線的延伸：提前交成績案件的現行自動化流程"}]},
 
  {id:"grades", cat:["ai"], img:"assets/grades-flow.png",
   title:"⏰ 提前交成績案件主控台", status:"live", statusTxt:"✅ 營運中・上線首日接管 15 件真實案件",
@@ -396,7 +404,7 @@ const PROJECTS = [
   desc:"學生為了畢業、升學、入伍申請提前取得成績，過去靠一張手工表格加記憶力管理。改造後：申請進來自動建檔（一位學生修兩門課就自動拆成兩條案件線），期限引擎從「學生需要成績的日期」反推教師結算死線，自動跳過週末與全校暑休；我改一格狀態，同事就收到帶齊資料的交棒信，連詢問老師的信都已經寫好放在裡面。",
   hi:["學生回信確認的瞬間：核章文件自動生成、檢送信草稿自動備好","對外信件一律只生成草稿，寄出鍵永遠在人手上","上線一週內依實戰回饋迭代 13 個修補，全程零停機"],
   tech:["Google Apps Script","工作日演算法","狀態機設計","範本引擎"],
-  shots:["assets/grades-flow.png","assets/grades-guide.png"]},
+  shots:[{s:"assets/grades-flow.png",c:"現行自動化流程：申請自動建檔 → 期限反推（跳週末與暑休）→ 狀態驅動交棒 → 核章文件自動生成"},{s:"assets/grades-guide.png",c:"給學校窗口的公版說明圖：無內部分工版本，來信直接套用"}]},
 
  {id:"vba", cat:["ai"], img:"assets/vba-tools.jpg",
   title:"🧰 VBA 小工具箱（62 支）", status:"live", statusTxt:"✅ 交接完成・單檔離線",
@@ -406,7 +414,7 @@ const PROJECTS = [
   desc:"接手業務時最可怕的資產：50 幾頁散落在筆記軟體裡的 Excel 巨集，沒人敢碰。我把繁瑣的行政流程重新整理，封裝成單檔 HTML 工具箱：免安裝、免帳號、完全離線，個資從頭到尾不離開電腦。工具不是按功能羅列，而是照作業流程編排，選一項業務就一步一步帶著做。",
   hi:["重建過程修掉 11 個會毀資料的地雷：永久刪檔、整欄爆填、同課重複匯入……","上傳、處理、下載三步驟，永不修改原始檔案","交接手冊由流程定義檔自動生成，工具更新、文件自動跟上"],
   tech:["HTML/JavaScript","SheetJS/ExcelJS","Python 建置管線","docs-as-code"],
-  shots:["assets/vba-home.jpg","assets/vba-tools.jpg"]},
+  shots:[{s:"assets/vba-home.jpg",c:"工具箱首頁：左側照「作業流程」導引，三步驟使用方式開門見山（空資料態實拍）"},{s:"assets/vba-tools.jpg",c:"62 支工具總覽：依功能屬性分組、卡片附白話說明與「原 VBA 已修正」標記"}]},
 
  {id:"sos-site", cat:["web"], img:"assets/site-sos-mobile.jpg",
   title:"🌐 SOS 學生指南一站式網站", status:"live", statusTxt:"✅ 公開上線中",
@@ -416,7 +424,7 @@ const PROJECTS = [
   desc:"學生不是不看指南，是資訊埋在層層折疊的長頁面裡、手機上讀不下去。我重新設計「學生怎麼找到答案」：首頁六張導覽卡一眼分流、自製課程異動決策圖讓學生回答兩個問題就知道能退選還是停修、每一頁的結尾都找得到人。網站和申請自動化系統無縫銜接，端到端零紙本。",
   hi:["四張自製 HTML 互動決策流程圖，規則不用讀、用「判斷」的","刻意選 Google Sites：零費用、團隊任何人都能維護，不留技術債","「繳費後 1 到 2 天會出現在我的課程」：明確的時間預期，就少一封焦慮的信"],
   tech:["Google Sites","HTML/CSS 流程圖","資訊架構","AI 瀏覽器自動化"],
-  shots:["assets/site-before-notion.jpg","assets/site-sos-mobile.jpg","assets/site-sos-nav.jpg"],
+  shots:[{s:"assets/site-before-notion.jpg",c:"Before：原 Notion 指南的手機畫面——深色長頁＋層層折疊，學生讀不下去"},{s:"assets/site-sos-mobile.jpg",c:"After：新網站手機版首頁——公告置頂＋柯基主題導覽卡，響應式直排"},{s:"assets/site-sos-nav.jpg",c:"手機導覽選單：7 頁架構一目了然，依學生旅程排序"}],
   link:"https://sites.google.com/ewant.org/sos-ewant/", linkTxt:"網站是公開的，點此逛逛"},
 
  {id:"ewant", cat:["web"], img:"assets/ewant-hero-crop.png",
@@ -427,7 +435,15 @@ const PROJECTS = [
   desc:"主導百萬學習人次平台的首頁改版：淘汰不符品牌調性的方案，確立「品牌藍為主、清晰專業、對成人受眾親切」的原則；把原站七個並列專區重組為「依身分找入口」，讓大學生、社會人士、高中生各自一眼找到自己的路。過程中發現站內可疑外掛，依分際回報技術同事處理，不越權、有留痕。",
   hi:["slogan 以品牌名諧音「一網打盡」，是我自己想出來的","14 條實戰踩雷紀錄沉澱為維運手冊，廠商、技術端、同事三種受眾三種文件","目前階段：E 版主線完成、內部審閱版流通中，待拍板正式上線"],
   tech:["WordPress/Elementor","資訊架構","品牌設計","AI 協作實作"],
-  shots:["assets/ewant-compare.png","assets/ewant-e-full.png","assets/ewant-e-mobile.png"]},
+  annotated:[
+   {s:"assets/ewant-s1.png",t:"第一屏：品牌主張＋搜尋先行",n:"slogan「想學的一切，ewant 打盡」開門見山；搜尋框直接放第一屏，因為使用者的目標就是「找課」——用學習者的語言而不是機構視角。右側輪播框保留活動檔期的位置。<span class='hx'>Heuristic：貼近真實世界</span>"},
+   {s:"assets/ewant-s2.png",t:"信任數字帶",n:"520+ 課程、40+ 合作大學、100 萬+ 學習人次——先用三個大數字建立「這是全國級平台」的可信度，再邀請往下逛。<span class='hx'>社會證明</span>"},
+   {s:"assets/ewant-s3.png",t:"課程快報：時效內容前置",n:"即將開課的課程放最前段，卡片統一版型（封面、分類標籤、日期、單一「看課程」按鈕），降低逐卡重新理解的成本。<span class='hx'>Heuristic：一致性與標準</span>"},
+   {s:"assets/ewant-s4.png",t:"依主題探索：給瀏覽型使用者",n:"12 個主題色卡窮盡分類，服務「還不知道要學什麼」的人——選項攤在眼前用認的，不用憑記憶想關鍵字。<span class='hx'>Heuristic：識別優於回憶</span>"},
+   {s:"assets/ewant-s5.png",t:"最新消息＋合作夥伴",n:"公告降級成輕量列表、不佔版面主軸；合作夥伴區回扣上方數字帶的 40+ 校，形成證據閉環。"},
+   {s:"assets/ewant-s6.png",t:"依你的身分，找到起點（本次改版核心）",n:"把原站 7 個並列專區重組為大學生／高中生／社會學習者三個身分入口——使用者不必先懂機構的計畫分類，選「我是誰」就能找到路。這是整次資訊架構重組的主決策。<span class='hx'>IA：依身分分流、降低認知負荷</span>"},
+   {s:"assets/ewant-s7.png",t:"三步驟上手＋收尾 CTA",n:"免費註冊→挑選課程→開始上課，把行動門檻拆成三小步；頁尾大字 EDUCATION YOU WANT 回扣品牌原意，CTA 與第一屏首尾呼應。<span class='hx'>行動召喚：首尾一致</span>"}
+  ]},
 
  {id:"analysis", cat:["doc"], svg:"analysis",
   title:"📊 報名數據分析報告", status:"live", statusTxt:"✅ 完成・關鍵數字經人工驗算",
@@ -444,9 +460,9 @@ const PROJECTS = [
   num:"16 章手冊，驗收標準是「新人照著做就能跑完一年」",
   role:"我的角色：知識架構的設計者。決定「單一資料來源」長什麼樣、三種輸出各給誰用。",
   desc:"行政最大的隱形成本是交接：規則存在承辦人腦中，文件永遠落後現況。我把整年度業務寫成「原始碼」：給會用 AI 的人，是 16 章 Claude Skill，新的 AI 會話能直接回答「現在幾月、該做什麼」；給習慣紙本的人，是腳本自動生成的 Word 手冊；給要排時程的人，是填三個錨點日期、整年時程自動展開的 Excel 主檔。內容更新重跑一次，三種輸出同步。",
-  hi:["軟體業的 single source of truth，完全適用於行政","文件不用手排、用生成：交接從「祈禱文件是新的」變成「跑一次腳本」","交接包一鍵打包，附給不熟 AI 的同事的兩分鐘安裝說明","Notion 端也在交接生態裡：協作看板分 tech／chrissy 視圖，接手的人各看各的工作區（下圖，示範資料）"],
+  hi:["軟體業的 single source of truth，完全適用於行政","文件不用手排、用生成：交接從「祈禱文件是新的」變成「跑一次腳本」","交接包一鍵打包，附給不熟 AI 的同事的兩分鐘安裝說明","第四種介面是 Notion：六個資料庫鏡像（Skill 目錄、流程卡、待辦與進度…），給習慣 Notion 的接手者看，正本仍在本機"],
   tech:["Markdown/JSON 原始碼","Python 產檔腳本","Claude Skill","知識架構設計"],
-  shots:["assets/course-kanban.png"]},
+  shots:[{s:"assets/handover-notion.png",c:"Notion「牛寶工作台」實拍：六庫鏡像總覽與同步規則——頁面裡就寫明「規則正本仍在 skill／Obsidian，Notion 只是鏡像」，單一資料來源的原則貫徹到每個出口"}]},
 
  {id:"nubao", cat:["ai"], svg:"nubao",
   title:"🐮 AI 助理「牛寶」系統", status:"wip", statusTxt:"🚧 持續進化中（這個網站也是牛寶蓋的）",
@@ -507,10 +523,11 @@ function openModal(p){
     <h4>技術與方法</h4>
     <div class="tech-tags">${p.tech.map(t=>`<span class="pill">${t}</span>`).join("")}</div>
     ${p.link?`<h4>傳送門</h4><a class="btn btn-line" style="padding:8px 20px" href="${p.link}" target="_blank" rel="noopener">${p.linkTxt}</a>`:""}
-    ${p.shots.length?`<h4>截圖（示範資料／去識別化）</h4><div class="shots">${p.shots.map(s=>`<img src="${s}" alt="${p.title} 截圖" loading="lazy">`).join("")}</div>`:""}
+    ${p.annotated?`<h4>完整版首頁・逐區段設計思維</h4>`+p.annotated.map(a=>`<div class="annot"><img src="${a.s}" alt="${a.t}" loading="lazy"><div class="note"><b>${a.t}</b>${a.n}</div></div>`).join(""):""}
+    ${p.shots&&p.shots.length?`<h4>截圖（示範資料／去識別化）</h4><div class="shots">${p.shots.map(x=>`<figure><img src="${x.s}" alt="${x.c}" loading="lazy"><figcaption>${x.c}</figcaption></figure>`).join("")}</div>`:""}
   `;
   modal.querySelector(".close").addEventListener("click", closeModal);
-  modal.querySelectorAll(".shots img").forEach(im=>im.addEventListener("click", ()=>openLight(im.src)));
+  modal.querySelectorAll(".shots img, .annot img").forEach(im=>im.addEventListener("click", ()=>openLight(im.src)));
   modalBg.classList.add("open");
   document.body.style.overflow = "hidden";
 }
