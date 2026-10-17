@@ -48,6 +48,9 @@ section{padding:40px 0 8px}
 .tile figcaption{font-size:.84em;color:var(--muted);margin-top:10px;line-height:1.7}
 .tile.wide{grid-column:1 / -1}
 .tile.wide img{max-height:520px}
+.tile.cols2{grid-column:span 2}
+.tile.cols2 img{max-height:520px;width:100%;object-fit:contain}
+@media (max-width:640px){.tile.cols2{grid-column:auto}}
 .soon-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
 .soon{background:var(--card);border:1.5px dashed var(--pink);border-radius:16px;padding:18px 20px}
 .soon b{color:var(--pink-ink)}
@@ -88,7 +91,7 @@ footer{margin-top:50px;background:var(--blue-50);padding:34px 20px;text-align:ce
   <div class="tiles">
     <figure class="tile wide"><div class="ph"><img src="assets/mkt-banner-16x9.jpg" alt="開始報名橫幅" data-cap="開始報名主視覺（16:9 寬版）：五層資訊架構的完整示範——大標、日期帶、三張 icon 賣點卡、細項、行動資訊一層不缺"></div><figcaption>開始報名主視覺（16:9 寬版）——資訊五層架構的完整示範</figcaption></figure>
     <figure class="tile"><div class="ph"><img src="assets/mkt-banner-9x16.jpg" alt="直式合作夥伴版" data-cap="同一主視覺的 9:16 直式變體（合作夥伴版）：同一套視覺語言跨比例延展，渠道寫在檔名、圖只留一份"></div><figcaption>9:16 直式變體（合作夥伴版）——同一視覺跨比例延展</figcaption></figure>
-    <figure class="tile"><div class="ph"><img src="assets/mkt-timeline.jpg" alt="重要時程圖" data-cap="年度重要時程圖：橫向時間軸＋分期色帶＋節點卡上下交錯，例外用虛線標註——把整季規則變成一張圖"></div><figcaption>年度重要時程圖——把整季規則變成一張圖</figcaption></figure>
+    <figure class="tile cols2"><div class="ph"><img src="assets/mkt-timeline.jpg" alt="重要時程圖" data-cap="年度重要時程圖：橫向時間軸＋分期色帶＋節點卡上下交錯，例外用虛線標註——把整季規則變成一張圖"></div><figcaption>年度重要時程圖——把整季規則變成一張圖</figcaption></figure>
   </div>
 </section>
 
