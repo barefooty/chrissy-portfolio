@@ -198,7 +198,7 @@ footer .sig{margin-top:18px;font-size:.85em;color:var(--muted)}
       <p class="sub">我是課程規劃師，獨立營運一個橫跨 59 所大學的全國性線上學習計畫。這座小鎮裡的每一棟房子，都是我和 AI 一起蓋出來、真的每天在運轉的作品。</p>
       <div class="cta-row">
         <a class="btn btn-pink" href="#featured">逛逛小鎮</a>
-        <a class="btn btn-line" href="mailto:happinesswhatever1030@gmail.com">寫信給我</a>
+        <a class="btn btn-line mail-btn" href="mailto:happinesswhatever1030@gmail.com" data-addr="happinesswhatever1030@gmail.com">寫信給我</a>
       </div>
     </div>
     <div class="hero-art" aria-hidden="true">
@@ -347,8 +347,8 @@ footer .sig{margin-top:18px;font-size:.85em;color:var(--muted)}
   <h2>想聊聊這些系統怎麼蓋的嗎？</h2>
   <p class="sub">歡迎來信，或到 LinkedIn 找我。</p>
   <div class="f-links">
-    <a class="btn btn-pink" href="mailto:happinesswhatever1030@gmail.com">📮 happinesswhatever1030@gmail.com</a>
-    <a class="btn btn-line" href="mailto:chrissy.liu.ux@gmail.com">📮 chrissy.liu.ux@gmail.com</a>
+    <a class="btn btn-line mail-btn" href="mailto:happinesswhatever1030@gmail.com" data-addr="happinesswhatever1030@gmail.com">📮 happinesswhatever1030@gmail.com</a>
+    <a class="btn btn-line mail-btn" href="mailto:chrissy.liu.ux@gmail.com" data-addr="chrissy.liu.ux@gmail.com">📮 chrissy.liu.ux@gmail.com</a>
   </div>
   <div class="f-links">
     <a class="btn btn-line" href="https://linkedin.com/in/chrissy-liu-nycu" target="_blank" rel="noopener">LinkedIn</a>
@@ -580,6 +580,17 @@ function toast(msg){
   clearTimeout(toastTimer);
   toastTimer = setTimeout(()=>t.classList.remove("show"), 1500);
 }
+/* 信箱按鈕：點了一定有回饋——複製信箱＋提示；有郵件程式的人 mailto 照常開 */
+document.querySelectorAll(".mail-btn").forEach(b=>b.addEventListener("click", ()=>{
+  const addr = b.dataset.addr;
+  try {
+    navigator.clipboard.writeText(addr).then(
+      ()=>toast(`信箱已複製：${addr} 💌`),
+      ()=>toast(`我的信箱：${addr}`)
+    );
+  } catch(e) { toast(`我的信箱：${addr}`); }
+}));
+
 const toTop = document.getElementById("toTop");
 const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} }),{threshold:.12});
 document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
