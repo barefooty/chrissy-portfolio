@@ -64,7 +64,7 @@ section{padding:56px 0 30px}
 .feat{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);margin-bottom:26px;cursor:pointer;transition:transform .2s}
 .feat:hover{transform:translateY(-3px)}
 .feat .media{min-height:280px;background:var(--blue-50);display:flex;align-items:center;justify-content:center;padding:22px}
-.feat .media img{width:100%;max-height:300px;object-fit:cover;object-position:top left;border:1px solid var(--line);border-radius:12px;box-shadow:0 6px 18px rgba(73,105,143,.16);background:#fff}
+.feat .media svg{width:100%;max-width:400px;height:auto;border-radius:14px;box-shadow:0 6px 18px rgba(73,105,143,.14)}
 .feat .body{padding:34px 36px;display:flex;flex-direction:column;justify-content:center}
 .feat.flip .media{order:2}
 .kpi{display:inline-flex;align-items:baseline;gap:8px;margin-bottom:12px}
@@ -256,7 +256,7 @@ footer .sig{margin-top:18px;font-size:.85em;color:var(--muted)}
   </div>
 
   <article class="feat reveal" data-open="catlendar">
-    <div class="media"><img src="assets/catlendar-home.png" alt="Catlendar 首頁儀表板（示範資料）" loading="lazy"></div>
+    <div class="media" data-svg="catlendar" role="img" aria-label="Catlendar 手繪示意圖"></div>
     <div class="body">
       <div class="kpi"><b>v63</b><span>六天 27 版起家，至今仍在長大</span></div>
       <h3>🐱 Catlendar：可憐上班族的貓貓日曆</h3>
@@ -267,7 +267,7 @@ footer .sig{margin-top:18px;font-size:.85em;color:var(--muted)}
   </article>
 
   <article class="feat flip reveal" data-open="mail">
-    <div class="media"><img src="assets/mail-report.png" alt="信箱分流每日報告示意（去識別化）" loading="lazy"></div>
+    <div class="media" data-svg="mailp" role="img" aria-label="信箱分流手繪示意圖"></div>
     <div class="body">
       <div class="kpi"><b>60+ 封</b><span>高峰單輪自動分類，每天省下約 1 小時</span></div>
       <h3>📬 客服信箱自動分流系統</h3>
@@ -278,7 +278,7 @@ footer .sig{margin-top:18px;font-size:.85em;color:var(--muted)}
   </article>
 
   <article class="feat reveal" data-open="course">
-    <div class="media"><img src="assets/course-beforeafter.png" alt="課程異動流程 Before/After 對比圖" loading="lazy"></div>
+    <div class="media" data-svg="course" role="img" aria-label="課程異動手繪示意圖"></div>
     <div class="body">
       <div class="kpi"><b>-80%</b><span>單件處理時間，從 20 分鐘變 3 到 5 分鐘</span></div>
       <h3>📋 課程異動申請自動化</h3>
@@ -366,6 +366,13 @@ footer .sig{margin-top:18px;font-size:.85em;color:var(--muted)}
 <script>
 /* ---------- 示意圖（無安全截圖的專案用，品牌色手繪風） ---------- */
 const SVGS = {
+catlendar:`<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="240" fill="#FBEFF3"/><ellipse cx="200" cy="218" rx="140" ry="12" fill="#F3D9E1"/><g><rect x="110" y="72" width="180" height="136" rx="14" fill="#fff" stroke="#49698F" stroke-width="3"/><rect x="110" y="72" width="180" height="34" rx="14" fill="#F3BECD" stroke="#49698F" stroke-width="3"/><rect x="110" y="92" width="180" height="14" fill="#F3BECD"/><rect x="138" y="58" width="8" height="26" rx="4" fill="#49698F"/><rect x="254" y="58" width="8" height="26" rx="4" fill="#49698F"/><g fill="#C9D8EC"><circle cx="142" cy="130" r="7"/><circle cx="174" cy="130" r="7"/><circle cx="206" cy="130" r="7"/><circle cx="238" cy="130" r="7"/><circle cx="142" cy="160" r="7"/><circle cx="206" cy="160" r="7"/><circle cx="238" cy="160" r="7"/><circle cx="142" cy="188" r="7"/><circle cx="174" cy="188" r="7"/></g><circle cx="174" cy="160" r="12" fill="none" stroke="#C95D7F" stroke-width="3"/><circle cx="270" cy="160" r="7" fill="#9FBCE0"/><circle cx="270" cy="188" r="7" fill="#9FBCE0"/></g><g><ellipse cx="318" cy="92" rx="26" ry="20" fill="#fff" stroke="#49698F" stroke-width="3"/><path d="M300 82 L296 66 L310 74 Z M330 74 L338 62 L342 78 Z" fill="#F3BECD" stroke="#49698F" stroke-width="2.6" stroke-linejoin="round"/><circle cx="310" cy="90" r="2.4" fill="#3D4756"/><circle cx="324" cy="90" r="2.4" fill="#3D4756"/><path d="M312 97 Q317 101 322 97" stroke="#3D4756" stroke-width="1.8" fill="none" stroke-linecap="round"/></g><text x="64" y="120" font-size="20">🐾</text><text x="330" y="200" font-size="18">✨</text></svg>`,
+mailp:`<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="240" fill="#EEF4FB"/><ellipse cx="200" cy="216" rx="140" ry="12" fill="#D9E6F6"/><g><rect x="96" y="86" width="190" height="120" rx="14" fill="#fff" stroke="#49698F" stroke-width="3"/><path d="M96 100 L191 164 L286 100" fill="none" stroke="#49698F" stroke-width="3" stroke-linejoin="round"/><path d="M191 132 c0-9 13-9 13 0 c0 7-13 14-13 14 s-13-7-13-14 c0-9 13-9 13 0 Z" fill="#F3BECD" stroke="#C95D7F" stroke-width="2.4" transform="translate(0,26)"/></g><g><rect x="282" y="50" width="62" height="54" rx="12" fill="#fff" stroke="#49698F" stroke-width="3"/><line x1="313" y1="38" x2="313" y2="50" stroke="#49698F" stroke-width="3"/><circle cx="313" cy="34" r="5" fill="#F3BECD" stroke="#49698F" stroke-width="2.4"/><circle cx="300" cy="74" r="4" fill="#3D4756"/><circle cx="326" cy="74" r="4" fill="#3D4756"/><path d="M300 90 Q313 96 326 90" stroke="#3D4756" stroke-width="2" fill="none" stroke-linecap="round"/></g><g><rect x="56" y="54" width="44" height="30" rx="7" fill="#fff" stroke="#9FBCE0" stroke-width="2.6" transform="rotate(-8 78 69)"/><path d="M58 60 L78 73 L98 58" fill="none" stroke="#9FBCE0" stroke-width="2.4" transform="rotate(-8 78 69)"/><path d="M40 92 h14 M36 102 h10" stroke="#9FBCE0" stroke-width="2.6" stroke-linecap="round"/></g></svg>`,
+course:`<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="240" fill="#FBEFF3"/><ellipse cx="200" cy="218" rx="140" ry="12" fill="#F3D9E1"/><g><rect x="104" y="44" width="140" height="166" rx="12" fill="#fff" stroke="#49698F" stroke-width="3"/><rect x="122" y="62" width="76" height="11" rx="5.5" fill="#49698F" opacity=".7"/><g stroke="#49698F" stroke-width="2.4"><rect x="122" y="90" width="15" height="15" rx="4" fill="#EEF4FB"/><rect x="122" y="120" width="15" height="15" rx="4" fill="#EEF4FB"/><rect x="122" y="150" width="15" height="15" rx="4" fill="#EEF4FB"/></g><path d="M124 96 l5 6 l8 -10 M124 126 l5 6 l8 -10" stroke="#C95D7F" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="146" y="92" width="76" height="8" rx="4" fill="#C9D8EC"/><rect x="146" y="122" width="62" height="8" rx="4" fill="#C9D8EC"/><rect x="146" y="152" width="70" height="8" rx="4" fill="#C9D8EC"/></g><path d="M252 128 h36 M280 119 L290 128 L280 137" stroke="#C95D7F" stroke-width="3.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><g><rect x="296" y="92" width="74" height="92" rx="10" fill="#fff" stroke="#49698F" stroke-width="3"/><rect x="308" y="106" width="50" height="7" rx="3.5" fill="#C9D8EC"/><rect x="308" y="120" width="38" height="7" rx="3.5" fill="#C9D8EC"/><circle cx="333" cy="156" r="16" fill="#FBEFF3" stroke="#C95D7F" stroke-width="3"/><path d="M326 156 l5 6 l9 -11" stroke="#C95D7F" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><text x="56" y="80" font-size="18">✨</text></svg>`,
+grades:`<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="240" fill="#EEF4FB"/><ellipse cx="200" cy="218" rx="140" ry="12" fill="#D9E6F6"/><g><circle cx="150" cy="130" r="56" fill="#fff" stroke="#49698F" stroke-width="3"/><circle cx="150" cy="130" r="44" fill="none" stroke="#C9D8EC" stroke-width="2"/><path d="M150 130 L150 100 M150 130 L172 142" stroke="#49698F" stroke-width="4" stroke-linecap="round"/><circle cx="150" cy="130" r="4" fill="#C95D7F"/><path d="M112 86 Q96 74 106 62 M188 86 Q204 74 194 62" stroke="#49698F" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="103" cy="60" r="7" fill="#F3BECD" stroke="#49698F" stroke-width="2.6"/><circle cx="197" cy="60" r="7" fill="#F3BECD" stroke="#49698F" stroke-width="2.6"/></g><g><rect x="240" y="72" width="110" height="118" rx="12" fill="#fff" stroke="#49698F" stroke-width="3"/><rect x="256" y="88" width="62" height="9" rx="4.5" fill="#49698F" opacity=".7"/><path d="M256 116 l5 6 l9 -11 M256 142 l5 6 l9 -11" stroke="#C95D7F" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="278" y="118" width="54" height="7" rx="3.5" fill="#C9D8EC"/><rect x="278" y="144" width="44" height="7" rx="3.5" fill="#C9D8EC"/><rect x="256" y="166" width="20" height="14" rx="4" fill="#FBEFF3" stroke="#C95D7F" stroke-width="2.4"/></g><text x="62" y="190" font-size="18">⏰</text></svg>`,
+vba:`<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="240" fill="#FBEFF3"/><ellipse cx="200" cy="216" rx="140" ry="12" fill="#F3D9E1"/><g><rect x="112" y="108" width="176" height="92" rx="14" fill="#fff" stroke="#49698F" stroke-width="3"/><path d="M112 140 h176" stroke="#49698F" stroke-width="3"/><rect x="172" y="92" width="56" height="26" rx="10" fill="#9FBCE0" stroke="#49698F" stroke-width="3"/><rect x="186" y="128" width="28" height="20" rx="6" fill="#F3BECD" stroke="#49698F" stroke-width="3"/><g stroke="#49698F" stroke-width="2.6"><rect x="130" y="156" width="26" height="26" rx="6" fill="#EEF4FB"/><rect x="166" y="156" width="26" height="26" rx="6" fill="#FBEFF3"/><rect x="202" y="156" width="26" height="26" rx="6" fill="#EEF4FB"/><rect x="238" y="156" width="26" height="26" rx="6" fill="#FBEFF3"/></g></g><g transform="rotate(30 310 84)"><rect x="300" y="60" width="12" height="52" rx="6" fill="#fff" stroke="#49698F" stroke-width="3"/><path d="M294 58 a14 14 0 1 1 24 0 l-6 8 h-12 Z" fill="#9FBCE0" stroke="#49698F" stroke-width="3"/></g><rect x="70" y="70" width="52" height="24" rx="12" fill="#fff" stroke="#C95D7F" stroke-width="2.6"/><text x="80" y="88" font-size="15" font-weight="bold" fill="#C95D7F">62</text><text x="326" y="186" font-size="18">✨</text></svg>`,
+sossite:`<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="240" fill="#EEF4FB"/><ellipse cx="200" cy="218" rx="130" ry="12" fill="#D9E6F6"/><g><rect x="150" y="36" width="100" height="176" rx="18" fill="#fff" stroke="#49698F" stroke-width="3"/><rect x="162" y="52" width="76" height="26" rx="8" fill="#9FBCE0"/><g><ellipse cx="200" cy="118" rx="26" ry="22" fill="#F8DDC0" stroke="#49698F" stroke-width="2.8"/><path d="M180 104 L174 88 L190 96 Z M220 104 L226 88 L210 96 Z" fill="#F8DDC0" stroke="#49698F" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="200" cy="124" rx="13" ry="10" fill="#fff"/><circle cx="192" cy="113" r="2.6" fill="#3D4756"/><circle cx="208" cy="113" r="2.6" fill="#3D4756"/><ellipse cx="200" cy="120" rx="3" ry="2.4" fill="#3D4756"/><path d="M196 126 Q200 129 204 126" stroke="#3D4756" stroke-width="1.6" fill="none" stroke-linecap="round"/></g><rect x="164" y="150" width="72" height="9" rx="4.5" fill="#C9D8EC"/><rect x="164" y="166" width="56" height="9" rx="4.5" fill="#C9D8EC"/><rect x="164" y="184" width="44" height="14" rx="7" fill="#F3BECD"/></g><g><rect x="262" y="84" width="58" height="34" rx="10" fill="#fff" stroke="#C95D7F" stroke-width="2.6"/><path d="M272 118 l6 10 l4 -10" fill="#fff" stroke="#C95D7F" stroke-width="2.6" stroke-linejoin="round"/><path d="M291 96 c0-5 7-5 7 0 c0 4-7 8-7 8 s-7-4-7-8 c0-5 7-5 7 0 Z" fill="#F3BECD"/></g><text x="92" y="100" font-size="18">💬</text></svg>`,
+ewant:`<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="240" fill="#EEF4FB"/><ellipse cx="200" cy="218" rx="140" ry="12" fill="#D9E6F6"/><g><rect x="76" y="54" width="200" height="140" rx="14" fill="#fff" stroke="#49698F" stroke-width="3"/><rect x="76" y="54" width="200" height="28" rx="14" fill="#D9E6F6" stroke="#49698F" stroke-width="3"/><rect x="76" y="70" width="200" height="12" fill="#D9E6F6"/><circle cx="94" cy="68" r="4" fill="#C95D7F"/><circle cx="108" cy="68" r="4" fill="#F3BECD"/><circle cx="122" cy="68" r="4" fill="#9FBCE0"/><rect x="92" y="96" width="104" height="12" rx="6" fill="#49698F" opacity=".75"/><rect x="92" y="118" width="168" height="8" rx="4" fill="#C9D8EC"/><g stroke-width="2.6"><rect x="92" y="140" width="52" height="38" rx="9" fill="#FBEFF3" stroke="#C95D7F"/><rect x="152" y="140" width="52" height="38" rx="9" fill="#EEF4FB" stroke="#49698F"/><rect x="212" y="140" width="52" height="38" rx="9" fill="#FADCE5" stroke="#C95D7F"/></g></g><g transform="rotate(6 318 130)"><rect x="296" y="88" width="64" height="84" rx="10" fill="#fff" stroke="#49698F" stroke-width="3"/><rect x="306" y="100" width="44" height="8" rx="4" fill="#F3BECD"/><rect x="306" y="114" width="34" height="7" rx="3.5" fill="#C9D8EC"/><text x="314" y="156" font-size="24">🎨</text></g><text x="52" y="120" font-size="18">✏️</text></svg>`,
 analysis:`<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="240" fill="#FBEFF3"/><rect x="60" y="30" width="200" height="180" rx="14" fill="#fff" stroke="#49698F" stroke-width="3"/><rect x="80" y="50" width="110" height="12" rx="6" fill="#49698F" opacity=".75"/><rect x="80" y="150" width="26" height="40" rx="6" fill="#9FBCE0"/><rect x="114" y="120" width="26" height="70" rx="6" fill="#9FBCE0"/><rect x="148" y="95" width="26" height="95" rx="6" fill="#C95D7F"/><rect x="182" y="130" width="26" height="60" rx="6" fill="#9FBCE0"/><path d="M80 112 L116 92 L150 76 L208 62" stroke="#C95D7F" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="1 7"/><circle cx="286" cy="150" r="38" fill="#EEF4FB" stroke="#49698F" stroke-width="3"/><path d="M312 178 L338 204" stroke="#49698F" stroke-width="8" stroke-linecap="round"/><text x="268" y="162" font-size="30">✅</text></svg>`,
 handover:`<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="240" fill="#EEF4FB"/><rect x="40" y="80" width="90" height="110" rx="10" fill="#fff" stroke="#49698F" stroke-width="3"/><rect x="52" y="96" width="66" height="9" rx="4.5" fill="#49698F" opacity=".7"/><rect x="52" y="112" width="50" height="7" rx="3.5" fill="#C9D8EC"/><rect x="52" y="126" width="58" height="7" rx="3.5" fill="#C9D8EC"/><rect x="52" y="140" width="44" height="7" rx="3.5" fill="#C9D8EC"/><text x="58" y="180" font-size="22">📖</text><path d="M140 135 H180 M172 127 L182 135 L172 143" stroke="#C95D7F" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><g><rect x="196" y="36" width="160" height="50" rx="12" fill="#fff" stroke="#49698F" stroke-width="3"/><text x="210" y="69" font-size="22">🤖</text><rect x="246" y="52" width="88" height="9" rx="4.5" fill="#9FBCE0"/><rect x="246" y="66" width="60" height="7" rx="3.5" fill="#C9D8EC"/></g><g><rect x="196" y="96" width="160" height="50" rx="12" fill="#FADCE5" stroke="#C95D7F" stroke-width="3"/><text x="210" y="129" font-size="22">📄</text><rect x="246" y="112" width="88" height="9" rx="4.5" fill="#C95D7F" opacity=".6"/><rect x="246" y="126" width="70" height="7" rx="3.5" fill="#F3BECD"/></g><g><rect x="196" y="156" width="160" height="50" rx="12" fill="#fff" stroke="#49698F" stroke-width="3"/><text x="210" y="189" font-size="22">📊</text><rect x="246" y="172" width="88" height="9" rx="4.5" fill="#9FBCE0"/><rect x="246" y="186" width="50" height="7" rx="3.5" fill="#C9D8EC"/></g></svg>`,
 mkt:`<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="240" fill="#FBEFF3"/><g><rect x="70" y="60" width="130" height="150" rx="12" fill="#fff" stroke="#49698F" stroke-width="3" transform="rotate(-4 135 135)"/><rect x="88" y="80" width="94" height="66" rx="8" fill="#D9E6F6" transform="rotate(-4 135 135)"/><rect x="88" y="156" width="94" height="10" rx="5" fill="#F3BECD" transform="rotate(-4 135 135)"/><rect x="88" y="172" width="64" height="8" rx="4" fill="#C9D8EC" transform="rotate(-4 135 135)"/></g><g><rect x="190" y="52" width="130" height="150" rx="12" fill="#fff" stroke="#C95D7F" stroke-width="3" transform="rotate(5 255 127)"/><rect x="208" y="72" width="94" height="66" rx="8" fill="#FADCE5" transform="rotate(5 255 127)"/><text x="238" y="118" font-size="30" transform="rotate(5 255 127)">🎨</text><rect x="208" y="148" width="94" height="10" rx="5" fill="#9FBCE0" transform="rotate(5 255 127)"/><rect x="208" y="164" width="60" height="8" rx="4" fill="#F3BECD" transform="rotate(5 255 127)"/></g><path d="M330 56 c0-8 12-8 12 0 c0 6-12 13-12 13 s-12-7-12-13 c0-8 12-8 12 0 Z" fill="#F3BECD" stroke="#C95D7F" stroke-width="2.4"/><text x="52" y="222" font-size="22">✨</text><text x="330" y="212" font-size="22">✨</text></svg>`,
@@ -374,7 +381,7 @@ nubao:`<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"><rect width
 
 /* ---------- 作品資料 ---------- */
 const PROJECTS = [
- {id:"catlendar", cat:["tool","ai"], img:"assets/catlendar-home.png",
+ {id:"catlendar", cat:["tool","ai"], svg:"catlendar",
   title:"🐱 Catlendar 可憐上班族的貓貓日曆", status:"live", statusTxt:"✅ 營運中・v63・GitHub 開源",
   one:"把任務、追案、月曆、記帳收進一個離線 HTML 檔，每天早上一眼看懂「今天輪到我做什麼」。",
   num:"6 天 27 版起家，迭代至 v63",
@@ -384,7 +391,7 @@ const PROJECTS = [
   tech:["HTML/CSS/JS 單檔","localStorage","GAS 雲端同步","AI 結對開發"],
   shots:[{s:"assets/catlendar-home.png",c:"首頁儀表板：「今天先看這裡」四問——輪到我做什麼、在等誰、幾天內有截止（示範資料）"},{s:"assets/catlendar-board.png",c:"追案看板：一校一卡、「輪到誰」一眼看懂，南風／晴光／山城大學皆為虛構示範"},{s:"assets/catlendar-theme.png",c:"淺色主題與值班吉祥物：工具可以可愛，效率不打折"},{s:"assets/catlendar-mobile.png",c:"手機版：首頁與追案看板，單檔也能響應式"}]},
 
- {id:"mail", cat:["ai"], img:"assets/mail-report.png",
+ {id:"mail", cat:["ai"], svg:"mailp",
   title:"📬 客服信箱自動分流系統", status:"live", statusTxt:"✅ 雲端排程運行中（SOS 與跨校通識兩套）",
   one:"AI 每個平日自動掃信兩次、依分工分類、寄出卡片式報告，團隊從此不漏信。",
   num:"高峰單輪 60+ 封，救回 2 封掉進垃圾匣的求助信",
@@ -402,7 +409,7 @@ const PROJECTS = [
    {s:"assets/mail-r4.png",t:"共通區與垃圾匣警報",n:"全員可見的處理統計與系統信；垃圾信匣裡出現學生求助信時跳紅框警報——這個設計上線兩週就救回 2 封差點漏接的信。頁尾預告下一輪掃描時間，報告自己說明自己。<span class='hx'>防漏信的最後一道網</span>"}
   ]},
 
- {id:"course", cat:["ai"], img:"assets/course-beforeafter.png",
+ {id:"course", cat:["ai"], svg:"course",
   title:"📋 課程異動申請自動化", status:"live", statusTxt:"✅ 營運中・本季自動產出 37 份收執聯",
   one:"紙本申請改造成「填表即入庫、審核即出件」，單件處理時間少了八成。",
   num:"20 分鐘 → 3–5 分鐘，轉錄錯誤歸零",
@@ -412,7 +419,7 @@ const PROJECTS = [
   tech:["Google Apps Script","Notion API","表單驗證設計","事件驅動架構"],
   shots:[{s:"assets/course-beforeafter.png",c:"Before／After 流程對比：紙本七步驟人工轉錄 vs 填表即入庫、審核即出件"},{s:"assets/course-validation.png",c:"把錯誤擋在源頭：銀行帳號碼數不對就送不出去，補件往返大減"},{s:"assets/course-kanban.png",c:"Notion 協作看板：tech／chrissy 分視圖，各角色只看自己的工作區（測試資料）"},{s:"assets/course-receipt.png",c:"審核狀態改一格，官方版型收執聯自動生成歸檔（測試資料）"},{s:"assets/grades-flow.png",c:"同一條學生異動自動化線的延伸：提前交成績案件的現行自動化流程"}]},
 
- {id:"grades", cat:["ai"], img:"assets/grades-flow.png",
+ {id:"grades", cat:["ai"], svg:"grades",
   title:"⏰ 提前交成績案件主控台", status:"live", statusTxt:"✅ 營運中・上線首日接管 15 件真實案件",
   one:"每件案子跨 5 個角色、12 個步驟、死線都不同。現在期限自動算、交棒自動通知、信件自動變草稿。",
   num:"期限追蹤 100% 自動化，人工記死線歸零",
@@ -422,7 +429,7 @@ const PROJECTS = [
   tech:["Google Apps Script","工作日演算法","狀態機設計","範本引擎"],
   shots:[{s:"assets/grades-flow.png",c:"現行自動化流程：申請自動建檔 → 期限反推（跳週末與暑休）→ 狀態驅動交棒 → 核章文件自動生成"},{s:"assets/grades-guide.png",c:"給學校窗口的公版說明圖：無內部分工版本，來信直接套用"}]},
 
- {id:"vba", cat:["ai"], img:"assets/vba-tools.jpg",
+ {id:"vba", cat:["ai"], svg:"vba",
   title:"🧰 VBA 小工具箱（62 支）", status:"live", statusTxt:"✅ 交接完成・單檔離線",
   one:"散落在 51 個筆記頁面、一半跑不動的巨集，重建成一個檔案、62 支照流程導引的工具。",
   num:"51 頁散落巨集 → 1 個檔案，修掉 11 個資料地雷",
@@ -432,7 +439,7 @@ const PROJECTS = [
   tech:["HTML/JavaScript","SheetJS/ExcelJS","Python 建置管線","docs-as-code"],
   shots:[{s:"assets/vba-home.jpg",c:"工具箱首頁：左側照「作業流程」導引，三步驟使用方式開門見山（空資料態實拍）"},{s:"assets/vba-tools.jpg",c:"62 支工具總覽：依功能屬性分組、卡片附白話說明與「原 VBA 已修正」標記"}]},
 
- {id:"sos-site", cat:["web"], img:"assets/site-sos-mobile.jpg",
+ {id:"sos-site", cat:["web"], svg:"sossite",
   title:"🌐 SOS 學生指南一站式網站", status:"live", statusTxt:"✅ 公開上線中",
   one:"「指南有寫，學生還是來信問」的 Notion 長頁，重做成手機優先、會幫學生做判斷的網站。",
   num:"7 主頁＋30 題 FAQ，上線前 14 條待確認紅字全數清零",
@@ -443,7 +450,7 @@ const PROJECTS = [
   shots:[{s:"assets/site-before-notion.jpg",c:"Before：原 Notion 指南的手機畫面——深色長頁＋層層折疊，學生讀不下去"},{s:"assets/site-sos-mobile.jpg",c:"After：新網站手機版首頁——公告置頂＋柯基主題導覽卡，響應式直排"},{s:"assets/site-sos-nav.jpg",c:"手機導覽選單：7 頁架構一目了然，依學生旅程排序"}],
   link:"https://sites.google.com/ewant.org/sos-ewant/", linkTxt:"網站是公開的，點此逛逛"},
 
- {id:"ewant", cat:["web"], img:"assets/ewant-hero-crop.png",
+ {id:"ewant", cat:["web"], svg:"ewant",
   title:"🎨 ewant 平台首頁改版", status:"wip", statusTxt:"🚧 進行中：設計與實作完成，內部審閱中、尚未正式上線",
   one:"兩個工作天交出全國性 MOOC 平台首頁的三套完整設計方案，從資訊架構到 WordPress 實作。",
   num:"2 個工作天 × 3 套完整方案",
@@ -462,7 +469,7 @@ const PROJECTS = [
    {s:"assets/ewant-s7.png",t:"三步驟上手＋收尾 CTA",n:"免費註冊→挑選課程→開始上課，把行動門檻拆成三小步；頁尾大字 EDUCATION YOU WANT 回扣品牌原意，CTA 與第一屏首尾呼應。<span class='hx'>行動召喚：首尾一致</span>"}
   ]},
 
- {id:"analysis", cat:["doc"], img:"assets/analysis-trend.png",
+ {id:"analysis", cat:["doc"], svg:"analysis",
   title:"📊 報名數據分析報告", status:"live", statusTxt:"✅ 完成・關鍵數字經人工驗算",
   one:"把幾千列的系統原始檔，整理成主管在會議上可以直接講的決策報告。",
   num:"2,941 人次、59 校、37 門課完整對帳",
@@ -496,7 +503,7 @@ const PROJECTS = [
   tech:["Claude Code","Skill / Memory 架構","雲端排程","AI 治理"],
   shots:[{s:"assets/handover-skills.png",c:"牛寶的「工作手冊書櫃」：40+ 本 skill 的 Notion 目錄鏡像——業務規則、信件口吻、視覺品味、檔案規範全部成冊，這就是任何新 AI 會話能立刻接手的原因"}]},
 
- {id:"marketing", cat:["mkt"], img:"assets/mkt-banner-16x9.jpg",
+ {id:"marketing", cat:["mkt"], svg:"mkt",
   title:"🎀 行銷 × 內容作品系列", status:"wip", statusTxt:"🛠 已上線：四大系列 13 件作品，持續擴充中",
   one:"手繪溫暖拼貼風的年度宣傳系列、創意敘事企劃、開課指引圖解、GDSC 社群經營案——專屬子頁上線。",
   num:"4 大系列 13 件作品已上架",
@@ -542,6 +549,7 @@ document.getElementById("chips").addEventListener("click", e=>{
   render(b.dataset.f);
 });
 document.querySelectorAll(".feat").forEach(f=>f.addEventListener("click", ()=>openModal(byId[f.dataset.open])));
+document.querySelectorAll(".feat .media[data-svg]").forEach(m=>{ m.innerHTML = SVGS[m.dataset.svg]; });
 
 /* ---------- modal ---------- */
 const modalBg = document.getElementById("modalBg"), modal = document.getElementById("modal");
