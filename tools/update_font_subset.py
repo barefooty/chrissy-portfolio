@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""標題圓體（粉圓 Huninn）只載「標題會用到的字」，網頁才不會變重。
+"""logo 圓體（粉圓 Huninn）只載「logo 用到的字」，網頁才不會變重。
 改了標題、作品名稱、區塊名稱之後跑一次：python tools/update_font_subset.py
 它會掃 index.html 與 marketing.html 裡用圓體顯示的文字，重寫兩頁 <link id="headFont"> 的 text= 參數。
 沒跑也不會壞：缺的字會改用系統黑體顯示，只是那幾個字不是圓體。
@@ -8,11 +8,9 @@ import re, pathlib, urllib.parse
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PAGES = [ROOT / "index.html", ROOT / "marketing.html"]
-# 只收「用圓體顯示」的地方：大標題、字標、大數字、看板字、標語、作品名稱、角色名
-PATTERNS = [r"<h[1-3][^>]*>(.*?)</h[1-3]>", r'<span class="wm"><b>(.*?)</b>', r'<div class="kpi"><b>(.*?)</b>',
-            r"<div><b>([^<]{1,8})</b><small>", r"<text[^>]*>(.*?)</text>", r'class="tagline">(.*?)</p>',
-            r'\b(?:title|annotTitle|name):"([^"]*)"', r'\bn:"([^"]{1,6})"', r'\bu:"([^"]{1,3})"']
-EXTRA = "亮點技術與方法傳送門截圖（示範資料／去識別化）逐區段設計思維動手試試：遮遮怎麼蓋個資0123456789%,.-：｜？！✿"
+# 2026-10-22 起圓體只用在 logo 字標（大標改宋體、內文黑體），所以只收 logo 的字
+PATTERNS = [r'<span class="wm"><b>(.*?)</b>']
+EXTRA = "芷均的自動化小鎮"
 
 chars = set(EXTRA)
 for page in PAGES:
