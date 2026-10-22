@@ -53,15 +53,17 @@ header.shrunk .nav{height:56px;box-shadow:0 10px 28px rgba(60,50,40,.12)}
 .hero{padding:40px 20px 10px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:28px;align-items:center}
 .hero-art{position:relative}
 .hero-art .tile{margin:0}
-.hero-art{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
-.hero-art .tile{width:100%}
-.hero-art .slot{width:150px;aspect-ratio:1/1;font-size:10.5px;padding:8px}
+.hero-art .tile{width:100%;margin:0}
+.hero-guide-row{margin-top:18px}
+.hero-guide-row img{width:110px;height:110px}
+.hero-guide-row{grid-template-columns:110px minmax(0,1fr)}
+.hero-guide-row .bubble{font-size:.88em;padding:12px 16px}
 .proof{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px 0;font-size:13px;color:var(--muted)}
 .proof span{padding:0 14px;border-right:1px solid var(--line);white-space:nowrap}
 .proof span:first-child{padding-left:0}
 .proof span:last-child{border-right:0}
 .proof b{font-weight:600;color:var(--head-ink);font-size:15px;font-variant-numeric:tabular-nums;margin-right:2px}
-@media (max-width:820px){.hero{grid-template-columns:1fr;gap:22px}.hero-art .slot{width:120px}}
+@media (max-width:820px){.hero{grid-template-columns:1fr;gap:22px;padding-top:28px}}
 .kicker{font-size:.8em;font-weight:700;letter-spacing:.14em;color:var(--blue-deep);margin-bottom:4px}
 .hero h1{font-family:var(--head);font-weight:600;color:var(--head-ink)!important;font-size:clamp(1.6rem,3.6vw,2.3rem);color:var(--blue-ink);line-height:1.4}
 .hero h1 .pk{color:var(--pink-deep);background:linear-gradient(transparent 62%,var(--butter) 62%);padding:0 2px}
@@ -79,14 +81,13 @@ section{padding:40px 0 8px}
 .guide{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;align-items:end;margin-top:14px}
 .guide .slot{width:150px;aspect-ratio:1/1;font-size:10.5px;padding:8px}
 .guide img{width:150px;height:150px;object-fit:contain;object-position:center bottom}
-.hero-art .hero-guide{width:150px;height:150px;object-fit:contain;object-position:center bottom}
 .soon-line img{width:150px;height:auto;object-fit:contain}
 .foot-row img{width:130px;height:130px;object-fit:contain}
 .bubble{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 18px;font-size:.92em;color:var(--ink);line-height:1.75}
 .bubble::before{content:"";position:absolute;left:-9px;bottom:22px;width:16px;height:16px;background:var(--card);border-left:1px solid var(--line);border-bottom:1px solid var(--line);transform:rotate(45deg)}
 .bubble b{color:var(--pink-ink)}
 .sec-band.pink .bubble{background:#FFFCF9}
-@media (max-width:640px){.guide{grid-template-columns:110px minmax(0,1fr);gap:12px}.guide .slot,.guide img{width:110px;height:110px}.bubble::before{bottom:14px}.hero-art .hero-guide{width:120px;height:120px}}
+@media (max-width:640px){.guide{grid-template-columns:1fr;gap:6px;justify-items:start}.guide .slot,.guide img{width:92px;height:92px}.hero-guide-row img{width:92px;height:92px}.bubble{width:100%}.bubble::before{left:34px;bottom:auto;top:-9px;border-left:1px solid var(--line);border-bottom:0;border-top:1px solid var(--line)}}
 /* 待放圖規格框：白底＋虛線，寫清楚尺寸、角色、場景、補充；圖到了整個換成 <img> */
 .slot{background:#fff;border:1.5px dashed var(--pink);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--muted);font-size:12px;line-height:1.55;padding:12px;gap:3px}
 .slot i{font-style:normal;display:inline-flex;align-items:center;height:18px;padding:0 8px 1px;border-radius:999px;background:var(--pink-50);color:var(--pink-ink);font-weight:700;font-size:10px;letter-spacing:.08em;margin-bottom:3px}
@@ -94,7 +95,8 @@ section{padding:40px 0 8px}
 .slot small{font-size:.92em}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
 .tiles.four{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-.tile{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--shadow-s)}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--shadow-s);display:flex;flex-direction:column;margin:0}
+.tile .ph{flex:1}
 /* 裱框：別的品牌色（SOS、GDSC）放進奶油紙框裡，像展品、不像網站本身的顏色 */
 .tile .ph{background:var(--bg);border:1px solid #E2D6C6;border-radius:12px;padding:10px;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .tile img{max-height:420px;width:auto;max-width:100%;height:auto;cursor:zoom-in;border-radius:8px;transition:transform .15s}
@@ -175,10 +177,13 @@ footer .sig{margin-top:4px;font-size:.85em}
     <p>我自己發展出的「手繪溫暖拼貼風」：米白紙感底、水彩暈染、吉祥物雙角色敘事。從預告、報名、倒數到開課指引，同一套語言走完一季。以下皆為實際公開發布過的文宣。</p>
     <div class="proof" aria-label="作品規模"><span><b>4</b> 個系列</span><span><b>13</b> 件作品</span><span><b>1</b> 個完整招生季</span><span><b>+124%</b> GDSC 粉專追蹤</span></div>
     <span class="role-line">我的角色：企劃＋視覺＋文案全自產（Canva ＋ AI 生圖）</span>
+    <div class="guide hero-guide-row">
+      <img src="assets/g-bacon-wave.webp" alt="五花舉手介紹" width="290" height="304" decoding="async">
+      <div class="bubble">我是五花，這一季的文宣我帶你逛：四個系列從主視覺到社群小圖，每張圖點了都能放大。</div>
+    </div>
   </div>
   <div class="hero-art">
     <figure class="tile wide"><div class="ph"><img decoding="async" src="assets/mkt-banner-16x9.jpg" alt="開始報名橫幅" data-cap="開始報名主視覺（16:9 寬版）：五層資訊架構的完整示範——大標、日期帶、三張 icon 賣點卡、細項、行動資訊一層不缺"></div><figcaption>開始報名主視覺（16:9）——這一季的門面，點圖可放大</figcaption></figure>
-    <img class="hero-guide" src="assets/g-bacon-wave.webp" alt="五花舉手介紹" width="290" height="304" loading="lazy" decoding="async">
   </div>
 </div>
 
