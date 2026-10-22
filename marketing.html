@@ -36,17 +36,32 @@ a{color:var(--blue-ink);text-decoration:none}
 :focus-visible{outline:3px solid var(--pink-deep);outline-offset:3px;border-radius:6px}
 .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
 .flower{color:var(--pink)}
-header{position:sticky;top:0;z-index:50;background:rgba(251,246,239,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:66px;max-width:1040px;margin:0 auto;padding:0 20px;gap:12px}
+header{position:sticky;top:0;z-index:50;padding:12px 16px 0;pointer-events:none}
+.nav{pointer-events:auto;display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1040px;margin:0 auto;padding:0 10px 0 18px;gap:12px;background:rgba(255,253,250,.9);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:999px;box-shadow:0 6px 24px rgba(60,50,40,.08);transition:height .2s,box-shadow .2s}
+header.shrunk .nav{height:56px;box-shadow:0 10px 28px rgba(60,50,40,.12)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-cta{display:inline-flex;align-items:center;min-height:38px;padding:0 18px 1px;border-radius:999px;background:var(--head-ink);color:#fff;font-weight:600;font-size:13.5px;letter-spacing:.04em;white-space:nowrap;transition:transform .15s}
+.nav-cta:hover{transform:translateY(-1px)}
 .logo{display:flex;align-items:center;gap:9px;color:var(--blue-ink);min-width:0;flex:none}
 .logo .mark{width:30px;height:30px;flex:none}
 .wm{display:flex;flex-direction:column;line-height:1.15}
 .wm b{font-family:var(--round);font-weight:400;font-size:1.12em;letter-spacing:.5px;white-space:nowrap}
 .wm small{font-size:.6em;font-weight:700;letter-spacing:.2em;color:var(--blue-deep)}
-.nav-links{display:flex;gap:2px;font-size:.88em;overflow-x:auto;scrollbar-width:none}
+.nav-links{display:flex;gap:2px;font-size:.88em}
 .nav-links a{color:var(--muted);padding:10px 8px;border-radius:10px;white-space:nowrap}
 .nav-links a:hover{color:var(--pink-ink);background:var(--pink-50)}
-.hero{padding:52px 20px 10px}
+.hero{padding:40px 20px 10px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:28px;align-items:center}
+.hero-art{position:relative}
+.hero-art .tile{margin:0}
+.hero-art{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.hero-art .tile{width:100%}
+.hero-art .slot{width:150px;aspect-ratio:1/1;font-size:10.5px;padding:8px}
+.proof{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px 0;font-size:13px;color:var(--muted)}
+.proof span{padding:0 14px;border-right:1px solid var(--line);white-space:nowrap}
+.proof span:first-child{padding-left:0}
+.proof span:last-child{border-right:0}
+.proof b{font-weight:600;color:var(--head-ink);font-size:15px;font-variant-numeric:tabular-nums;margin-right:2px}
+@media (max-width:820px){.hero{grid-template-columns:1fr;gap:22px}.hero-art .slot{width:120px}}
 .kicker{font-size:.8em;font-weight:700;letter-spacing:.14em;color:var(--blue-deep);margin-bottom:4px}
 .hero h1{font-family:var(--head);font-weight:600;color:var(--head-ink)!important;font-size:clamp(1.6rem,3.6vw,2.3rem);color:var(--blue-ink);line-height:1.4}
 .hero h1 .pk{color:var(--pink-deep);background:linear-gradient(transparent 62%,var(--butter) 62%);padding:0 2px}
@@ -60,6 +75,20 @@ section{padding:40px 0 8px}
 .sec-band .std{display:inline-flex;align-items:center;height:24px;padding:0 10px 2px;margin-left:10px;border-radius:7px;border:1.5px solid var(--cocoa);color:var(--cocoa);font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:.55em;font-weight:700;letter-spacing:.06em;vertical-align:middle;white-space:nowrap}
 .sec-band .meta{margin-top:6px;font-size:.9em;color:var(--muted)}
 .sec-band .meta b{color:var(--pink-ink)}
+/* 導覽員：左邊角色（先放規格框，圖到了換成 img）、右邊對話框＝該系列的設計思維 */
+.guide{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;align-items:end;margin-top:14px}
+.guide .slot{width:150px;aspect-ratio:1/1;font-size:10.5px;padding:8px}
+.guide img{width:150px;height:150px;object-fit:contain}
+.bubble{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 18px;font-size:.92em;color:var(--ink);line-height:1.75}
+.bubble::before{content:"";position:absolute;left:-9px;bottom:22px;width:16px;height:16px;background:var(--card);border-left:1px solid var(--line);border-bottom:1px solid var(--line);transform:rotate(45deg)}
+.bubble b{color:var(--pink-ink)}
+.sec-band.pink .bubble{background:#FFFCF9}
+@media (max-width:640px){.guide{grid-template-columns:110px minmax(0,1fr);gap:12px}.guide .slot,.guide img{width:110px;height:110px}.bubble::before{bottom:14px}}
+/* 待放圖規格框：白底＋虛線，寫清楚尺寸、角色、場景、補充；圖到了整個換成 <img> */
+.slot{background:#fff;border:1.5px dashed var(--pink);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--muted);font-size:12px;line-height:1.55;padding:12px;gap:3px}
+.slot i{font-style:normal;display:inline-flex;align-items:center;height:18px;padding:0 8px 1px;border-radius:999px;background:var(--pink-50);color:var(--pink-ink);font-weight:700;font-size:10px;letter-spacing:.08em;margin-bottom:3px}
+.slot b{color:var(--head-ink);font-weight:600}
+.slot small{font-size:.92em}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
 .tiles.four{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
 .tile{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--shadow-s)}
@@ -72,11 +101,16 @@ section{padding:40px 0 8px}
 .tile.wide img{max-height:520px}
 .tile.cols2{grid-column:span 2}
 .tile.cols2 img{max-height:520px;width:100%;object-fit:contain}
-@media (max-width:640px){.tile.cols2{grid-column:auto}.wm small{display:none}.wm b{font-size:.98em}.nav{padding:0 12px}.nav-links{font-size:.8em}.nav-links a{padding:12px 6px}.sec-band{padding:22px 20px}}
+@media (max-width:640px){.tile.cols2{grid-column:auto}.wm small{display:none}.wm b{font-size:.98em}.sec-band{padding:22px 20px}}
 .soon-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
 .soon{background:var(--card);border:1.5px dashed var(--pink);border-radius:16px;padding:18px 20px}
-.soon b{color:var(--pink-ink)}
-.soon p{font-size:.88em;color:var(--muted);margin-top:4px}
+.soon-line{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px 22px}
+.soon-line .slot{width:150px;aspect-ratio:1/1;font-size:10.5px;padding:8px}
+.soon-line p{font-size:.92em;color:var(--muted)}
+.soon-line b{color:var(--pink-ink)}
+@media (max-width:640px){.soon-line{grid-template-columns:110px minmax(0,1fr);padding:16px}.soon-line .slot{width:110px}}
+.foot-row{display:flex;justify-content:center;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:8px}
+.foot-row .slot{width:130px;aspect-ratio:1/1;font-size:10.5px;padding:8px}
 footer{margin-top:50px;background:#FBF8F3;border-top:1px solid var(--line);padding:38px 20px;text-align:center;color:var(--muted);font-size:.9em}
 .privacy{max-width:620px;margin:0 auto 16px;font-size:.84em;background:var(--card);border-radius:12px;padding:10px 16px}
 .back{display:inline-flex;align-items:center;min-height:44px;padding:0 22px 2px;border-radius:999px;border:2px solid var(--blue);background:var(--card);font-weight:700;color:var(--blue-ink)}
@@ -90,6 +124,16 @@ footer .sig{margin-top:4px;font-size:.85em}
 .lb-close{position:absolute;top:14px;right:14px;width:46px;height:46px;border-radius:50%;border:0;background:var(--card);font-size:1.1em;cursor:pointer;color:var(--ink)}
 .lb-cap{max-width:720px;background:rgba(255,253,248,.96);color:var(--ink);border-radius:12px;padding:10px 18px;font-size:.9em;line-height:1.7;text-align:center}
 .lb-cap:empty{display:none}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:0;background:var(--card);color:var(--ink);font-size:1.3em;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-nav.prev{left:14px}.lb-nav.next{right:14px}
+.lb-idx{position:absolute;top:22px;left:50%;transform:translateX(-50%);background:rgba(255,253,248,.9);color:var(--ink);border-radius:999px;padding:3px 12px;font-size:.82em}
+.to-top{position:fixed;right:18px;bottom:20px;background:var(--card);border:1.5px solid var(--line);width:46px;height:46px;border-radius:50%;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:40}
+.to-top svg{width:26px;height:26px}
+.to-top:hover{border-color:var(--pink)}
+@media (max-width:640px){
+  .nav-links{display:none}.nav{padding:0 6px 0 12px;height:56px}header{padding:8px 8px 0}.nav-cta{min-height:34px;padding:0 12px 1px;font-size:12.5px}
+  .to-top{width:40px;height:40px;right:12px;bottom:14px}
+}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -110,27 +154,39 @@ footer .sig{margin-top:4px;font-size:.85em}
       <svg class="mark" aria-hidden="true"><use href="#mk"/></svg>
       <span class="wm"><b>芷均的自動化小鎮</b><small>CHRISSY'S AUTOMATION TOWN</small></span>
     </a>
-    <nav class="nav-links" aria-label="頁面導覽">
-      <a href="#visual">年度主視覺</a><a href="#story">創意敘事</a><a href="#guide">開課指引</a><a href="#gdsc">GDSC</a><a href="#soon">即將上架</a>
-    </nav>
+    <div class="nav-right">
+      <nav class="nav-links" aria-label="頁面導覽">
+        <a href="#visual">年度主視覺</a><a href="#story">創意敘事</a><a href="#guide">開課指引</a><a href="#gdsc">GDSC</a>
+      </nav>
+      <a class="nav-cta" href="index.html#contact">寫信給我</a>
+    </div>
   </div>
 </header>
 
 <main>
 <div class="hero wrap">
-  <p class="kicker">MARKETING × CONTENT｜行銷與內容</p>
-  <h1>行銷 × 內容<span class="pk">作品</span><span class="flower" aria-hidden="true"> ✿</span></h1>
-  <p>我自己發展出的「手繪溫暖拼貼風」：米白紙感底、水彩暈染、吉祥物雙角色敘事——一套視覺語言，跑完整個招生檔期。以下皆為實際公開發布過的文宣。</p>
-  <span class="role-line">我的角色：企劃＋視覺＋文案全自產（Canva ＋ AI 生圖）</span>
+  <div>
+    <p class="kicker">MARKETING × CONTENT｜行銷與內容</p>
+    <h1>一套視覺語言，<br>跑完整個<span class="pk">招生檔期</span><span class="flower" aria-hidden="true"> ✿</span></h1>
+    <p>我自己發展出的「手繪溫暖拼貼風」：米白紙感底、水彩暈染、吉祥物雙角色敘事。從預告、報名、倒數到開課指引，同一套語言走完一季。以下皆為實際公開發布過的文宣。</p>
+    <div class="proof" aria-label="作品規模"><span><b>4</b> 個系列</span><span><b>13</b> 件作品</span><span><b>1</b> 個完整招生季</span><span><b>+124%</b> GDSC 粉專追蹤</span></div>
+    <span class="role-line">我的角色：企劃＋視覺＋文案全自產（Canva ＋ AI 生圖）</span>
+  </div>
+  <div class="hero-art">
+    <figure class="tile wide"><div class="ph"><img decoding="async" src="assets/mkt-banner-16x9.jpg" alt="開始報名橫幅" data-cap="開始報名主視覺（16:9 寬版）：五層資訊架構的完整示範——大標、日期帶、三張 icon 賣點卡、細項、行動資訊一層不缺"></div><figcaption>開始報名主視覺（16:9）——這一季的門面，點圖可放大</figcaption></figure>
+    <div class="slot" data-slot="hero-guide" role="note"><i>待放圖</i><b>五花 Bacon・舉手介紹</b><small>1024×1024・1:1・純白底</small><small>場景：站在門面旁當導覽員，一手舉起指向海報</small><small>補充：貼紙表第 1 排第 2 格可直接裁用</small></div>
+  </div>
 </div>
 
 <section id="visual" class="wrap">
   <div class="sec-band blue">
     <h2>① 年度主視覺與時程圖<span class="std">SOS 專案標準色</span></h2>
-    <div class="meta">設計思維：<b>資訊五層架構</b>——標題區 → 日期帶 → 三張賣點卡 → 細項資訊 → QR 頁腳，資訊再多也有秩序；柯基（主角／解方）與雪納瑞（配角／痛點）的雙角色對戲是系列的敘事引擎。</div>
+    <div class="guide">
+      <div class="slot" data-slot="guide-1" role="note"><i>待放圖</i><b>五花・正面坐好</b><small>1024×1024・1:1・純白底</small><small>場景：導覽員站在系列①旁解說</small><small>補充：貼紙表第 1 排第 1 格</small></div>
+      <div class="bubble">設計思維：<b>資訊五層架構</b>——標題區 → 日期帶 → 三張賣點卡 → 細項資訊 → QR 頁腳，資訊再多也有秩序；柯基（主角／解方）與雪納瑞（配角／痛點）的雙角色對戲是系列的敘事引擎。</div>
+    </div>
   </div>
   <div class="tiles">
-    <figure class="tile wide"><div class="ph"><img loading="lazy" decoding="async" src="assets/mkt-banner-16x9.jpg" alt="開始報名橫幅" data-cap="開始報名主視覺（16:9 寬版）：五層資訊架構的完整示範——大標、日期帶、三張 icon 賣點卡、細項、行動資訊一層不缺"></div><figcaption>開始報名主視覺（16:9 寬版）——資訊五層架構的完整示範</figcaption></figure>
     <figure class="tile"><div class="ph"><img loading="lazy" decoding="async" src="assets/mkt-banner-9x16.jpg" alt="直式合作夥伴版" data-cap="同一主視覺的 9:16 直式變體（合作夥伴版）：同一套視覺語言跨比例延展，渠道寫在檔名、圖只留一份"></div><figcaption>9:16 直式變體（合作夥伴版）——同一視覺跨比例延展</figcaption></figure>
     <figure class="tile cols2"><div class="ph"><img loading="lazy" decoding="async" src="assets/mkt-timeline.jpg" alt="重要時程圖" data-cap="年度重要時程圖：橫向時間軸＋分期色帶＋節點卡上下交錯，例外用虛線標註——把整季規則變成一張圖"></div><figcaption>年度重要時程圖——把整季規則變成一張圖</figcaption></figure>
   </div>
@@ -139,7 +195,10 @@ footer .sig{margin-top:4px;font-size:.85em}
 <section id="story" class="wrap">
   <div class="sec-band pink">
     <h2>② 創意敘事企劃<span class="std">SOS 專案標準色</span></h2>
-    <div class="meta">設計思維：形式多變、<b>風格一致</b>——故事型（四格漫畫）、資訊變奏型（倒數連發）、互動型輪著用，但鐵則不變：日期、QR、平台名這些行動資訊永遠在。</div>
+    <div class="guide">
+      <div class="slot" data-slot="guide-2" role="note"><i>待放圖</i><b>五花・指向旁邊</b><small>1024×1024・1:1・純白底</small><small>場景：指著倒數圖，像在催「快報名」</small><small>補充：貼紙表第 2 排第 3 格（雙手張開）</small></div>
+      <div class="bubble">設計思維：形式多變、<b>風格一致</b>——故事型（四格漫畫）、資訊變奏型（倒數連發）、互動型輪著用，但鐵則不變：日期、QR、平台名這些行動資訊永遠在。</div>
+    </div>
   </div>
   <div class="tiles">
     <figure class="tile"><div class="ph"><img loading="lazy" decoding="async" src="assets/mkt-comic.jpg" alt="報名倒數四格漫畫" data-cap="報名倒數 3 天・四格漫畫：痛點 → 解方 → 驚訝 → 行動的敘事結構，吉祥物當演員，倒數變成有劇情的提醒"></div><figcaption>報名倒數 3 天・四格漫畫——倒數變成有劇情的提醒</figcaption></figure>
@@ -151,7 +210,10 @@ footer .sig{margin-top:4px;font-size:.85em}
 <section id="guide" class="wrap">
   <div class="sec-band blue">
     <h2>③ 開課指引系列<span class="std">SOS 專案標準色</span></h2>
-    <div class="meta">設計思維：<b>系列一致性</b>——四張同版型（封面＋三主題），把「怎麼登入、課程時程、退選換課」的行政 SOP 圖解化；學生先在社群看過圖，客服信就少一封。</div>
+    <div class="guide">
+      <div class="slot" data-slot="guide-3" role="note"><i>待放圖</i><b>五花・捧著杯子</b><small>1024×1024・1:1・純白底</small><small>場景：坐著讀指引，像在陪學生看說明</small><small>補充：貼紙表第 2 排第 4 格</small></div>
+      <div class="bubble">設計思維：<b>系列一致性</b>——四張同版型（封面＋三主題），把「怎麼登入、課程時程、退選換課」的行政 SOP 圖解化；學生先在社群看過圖，客服信就少一封。</div>
+    </div>
   </div>
   <div class="tiles four">
     <figure class="tile"><div class="ph"><img loading="lazy" decoding="async" src="assets/mkt-guide1.jpg" alt="開課指引封面" data-cap="開課指引・封面：三大重點先講，系列目錄一眼看完"></div><figcaption>指引封面——三大重點先講</figcaption></figure>
@@ -164,7 +226,10 @@ footer .sig{margin-top:4px;font-size:.85em}
 <section id="gdsc" class="wrap">
   <div class="sec-band blue">
     <h2>④ GDSC 社群經營案<span class="std">GDSC 品牌色</span></h2>
-    <div class="meta">擔任交大 Google Developer Student Clubs <b>行銷組組長</b>：粉專追蹤成長 <b>124%</b>（351 → 789）、42 則貼文、7 支短影音。設計思維：<b>互動優先</b>——讓粉絲「做一件事」而不是「看一張圖」，集點、抽籤、限動模板都是參與的入口。</div>
+    <div class="guide">
+      <div class="slot" data-slot="guide-4" role="note"><i>待放圖</i><b>五花・跳舞</b><small>1024×1024・1:1・純白底</small><small>場景：社群活動最熱鬧的一段，角色在旁邊跟著音符跳</small><small>補充：貼紙表第 3 排第 4 格</small></div>
+      <div class="bubble">擔任交大 Google Developer Student Clubs <b>行銷組組長</b>：粉專追蹤成長 <b>124%</b>（351 → 789）、42 則貼文、7 支短影音。設計思維：<b>互動優先</b>——讓粉絲「做一件事」而不是「看一張圖」，集點、抽籤、限動模板都是參與的入口。</div>
+    </div>
   </div>
   <div class="tiles">
     <figure class="tile"><div class="ph"><img loading="lazy" decoding="async" src="assets/mkt-gdsc-poster.jpg" alt="GDSC 社博宣傳海報" data-cap="社博宣傳海報：3D 字母主視覺＋社團價值主張＋QR 雙入口（Line 社群／IG 粉專）——招新的第一張門面"></div><figcaption>社博宣傳海報——招新的第一張門面</figcaption></figure>
@@ -174,14 +239,9 @@ footer .sig{margin-top:4px;font-size:.85em}
 </section>
 
 <section id="soon" class="wrap">
-  <div class="sec-band pink">
-    <h2>⑤ 即將上架</h2>
-    <div class="meta">素材去識別化整理中，陸續補上。</div>
-  </div>
-  <div class="soon-list">
-    <div class="soon"><b>HTML 信件模板集</b><p>依信箱與對象分色系的 6 套 table 版模板——把每一封重要通知都變成品牌化溝通。</p></div>
-    <div class="soon"><b>更多檔期系列</b><p>預告期、心得徵稿等其他階段的宣傳系列，整理中。</p></div>
-    <div class="soon"><b>短影音與粉專內容</b><p>GDSC 7 支短影音與編採學程粉專經營，挑選代表作中。</p></div>
+  <div class="soon-line">
+    <div class="slot" data-slot="soon-mochi" role="note"><i>待放圖</i><b>糰糰 Mochi・趴著睡</b><small>1024×1024・1:1・純白底</small><small>場景：整理中的素材旁邊打盹</small><small>補充：貼紙表第 3 排第 1 格（趴平）</small></div>
+    <p><b>整理中，先讓糰糰睡一下：</b>HTML 信件模板集（依信箱與對象分色系的 6 套）、預告期與心得徵稿等更多檔期系列、GDSC 短影音與編採學程粉專內容。素材去識別化後陸續補上。</p>
   </div>
 </section>
 
@@ -189,18 +249,33 @@ footer .sig{margin-top:4px;font-size:.85em}
 
 <footer>
   <div class="privacy">🔒 本頁作品皆為實際公開發布過的文宣，不含任何學生個資與內部資訊。</div>
-  <a class="back" href="index.html">← 回自動化小鎮</a>
+  <div class="foot-row">
+    <div class="slot" data-slot="foot-niubao" role="note"><i>待放圖</i><b>大牛 Niubao・捧杯閉眼</b><small>1024×1024・1:1・純白底</small><small>場景：店長在頁尾請你回店裡喝一杯</small><small>補充：貼紙表第 3 排第 4 格</small></div>
+    <a class="back" href="index.html">← 回首頁，看看其他作品</a>
+  </div>
   <p class="tagline">重複的工作，蓋成會自己跑的小房子 <span class="flower" aria-hidden="true">✿</span></p>
   <div class="sig">© 2026 Chrissy Liu，與 AI 助理牛寶一起蓋的 🐮</div>
 </footer>
 
-<dialog id="lightbox" aria-label="圖片放大檢視"><button type="button" class="lb-close" aria-label="關閉放大圖">✕</button><img id="lightImg" alt=""><div class="lb-cap" id="lightCap"></div></dialog>
+<button class="to-top" id="toTop" aria-label="回到頂端"><svg aria-hidden="true"><use href="#mk"/></svg></button>
+<dialog id="lightbox" aria-label="圖片放大檢視"><button type="button" class="lb-close" aria-label="關閉放大圖">✕</button><span class="lb-idx" id="lbIdx"></span><button type="button" class="lb-nav prev" data-step="-1" aria-label="上一張">‹</button><button type="button" class="lb-nav next" data-step="1" aria-label="下一張">›</button><img id="lightImg" alt=""><div class="lb-cap" id="lightCap"></div></dialog>
 <script>
-const lightbox = document.getElementById("lightbox"), lightImg = document.getElementById("lightImg"), lightCap = document.getElementById("lightCap");
-document.querySelectorAll(".tile img").forEach(im => im.addEventListener("click", () => {
-  lightImg.src = im.src; lightImg.alt = im.alt; lightCap.textContent = im.dataset.cap || ""; lightbox.showModal();
-}));
-lightbox.addEventListener("click", () => lightbox.close());
+const lightbox = document.getElementById("lightbox"), lightImg = document.getElementById("lightImg"), lightCap = document.getElementById("lightCap"), lbIdx = document.getElementById("lbIdx");
+const IMGS = [...document.querySelectorAll(".tile img")];
+let cur = 0;
+function show(i) {
+  cur = (i + IMGS.length) % IMGS.length;
+  const im = IMGS[cur];
+  lightImg.src = im.src; lightImg.alt = im.alt; lightCap.textContent = im.dataset.cap || "";
+  lbIdx.textContent = `${cur + 1} / ${IMGS.length}`;
+}
+IMGS.forEach((im, i) => im.addEventListener("click", () => { show(i); lightbox.showModal(); }));
+lightbox.addEventListener("click", e => { if (e.target === lightbox || e.target === lightImg || e.target.classList.contains("lb-close")) lightbox.close(); });
+lightbox.querySelectorAll("[data-step]").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); show(cur + +b.dataset.step); }));
+addEventListener("keydown", e => { if (!lightbox.open) return; if (e.key === "ArrowRight") show(cur + 1); if (e.key === "ArrowLeft") show(cur - 1); });
+const toTop = document.getElementById("toTop"), hdr = document.querySelector("header");
+addEventListener("scroll", () => { toTop.style.display = scrollY > 600 ? "flex" : "none"; hdr.classList.toggle("shrunk", scrollY > 40); }, { passive: true });
+toTop.addEventListener("click", () => scrollTo({ top: 0, behavior: "smooth" }));
 </script>
 </body>
 </html>
