@@ -6,7 +6,7 @@
 <title>行銷 × 內容作品｜大牛咖啡廳</title>
 <meta name="description" content="劉芷均的行銷與內容作品：SOS 年度宣傳系列、創意敘事企劃、開課指引系列">
 <meta name="theme-color" content="#FBF6EF">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="行銷 × 內容作品｜大牛咖啡廳">
@@ -43,7 +43,7 @@ header.shrunk .nav{height:56px;box-shadow:0 10px 28px rgba(60,50,40,.12)}
 .nav-cta{display:inline-flex;align-items:center;min-height:38px;padding:0 18px 1px;border-radius:999px;background:var(--head-ink);color:#fff;font-weight:600;font-size:13.5px;letter-spacing:.04em;white-space:nowrap;transition:transform .15s}
 .nav-cta:hover{transform:translateY(-1px)}
 .logo{display:flex;align-items:center;gap:9px;color:var(--blue-ink);min-width:0;flex:none}
-.logo .mark{width:30px;height:30px;flex:none}
+.logo .mark{width:34px;height:30px;flex:none;object-fit:contain}
 .wm{display:flex;flex-direction:column;line-height:1.15}
 .wm b{font-family:var(--round);font-weight:400;font-size:1.12em;letter-spacing:.5px;white-space:nowrap}
 .wm small{font-size:.6em;font-weight:700;letter-spacing:.2em;color:var(--blue-deep)}
@@ -131,7 +131,7 @@ footer .sig{margin-top:4px;font-size:.85em}
 .lb-nav.prev{left:14px}.lb-nav.next{right:14px}
 .lb-idx{position:absolute;top:22px;left:50%;transform:translateX(-50%);background:rgba(255,253,248,.9);color:var(--ink);border-radius:999px;padding:3px 12px;font-size:.82em}
 .to-top{position:fixed;right:18px;bottom:20px;background:var(--card);border:1.5px solid var(--line);width:46px;height:46px;border-radius:50%;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:40}
-.to-top svg{width:26px;height:26px}
+.to-top svg,.to-top img{width:28px;height:25px;object-fit:contain}
 .to-top:hover{border-color:var(--pink)}
 @media (max-width:640px){
   .nav-links{display:none}.nav{padding:0 6px 0 12px;height:56px}header{padding:8px 8px 0}.nav-cta{min-height:34px;padding:0 12px 1px;font-size:12.5px}
@@ -155,7 +155,7 @@ footer .sig{margin-top:4px;font-size:.85em}
 <header>
   <div class="nav">
     <a class="logo" href="index.html" aria-label="回大牛咖啡廳首頁">
-      <svg class="mark" aria-hidden="true"><use href="#mk"/></svg>
+      <img class="mark" src="assets/logo-niubao.webp" alt="" width="256" height="226" decoding="async">
       <span class="wm"><b>大牛咖啡廳</b><small>NIUBAO CAFÉ · CHRISSY LIU</small></span>
     </a>
     <div class="nav-right">
@@ -261,7 +261,7 @@ footer .sig{margin-top:4px;font-size:.85em}
   <div class="sig">© 2026 Chrissy Liu，與店長大牛一起煮的 🐮</div>
 </footer>
 
-<button class="to-top" id="toTop" aria-label="回到頂端"><svg aria-hidden="true"><use href="#mk"/></svg></button>
+<button class="to-top" id="toTop" aria-label="回到頂端"><img src="assets/logo-niubao.webp" alt="" width="256" height="226" loading="lazy"></button>
 <dialog id="lightbox" aria-label="圖片放大檢視"><button type="button" class="lb-close" aria-label="關閉放大圖">✕</button><span class="lb-idx" id="lbIdx"></span><button type="button" class="lb-nav prev" data-step="-1" aria-label="上一張">‹</button><button type="button" class="lb-nav next" data-step="1" aria-label="下一張">›</button><img id="lightImg" alt=""><div class="lb-cap" id="lightCap"></div></dialog>
 <script>
 const lightbox = document.getElementById("lightbox"), lightImg = document.getElementById("lightImg"), lightCap = document.getElementById("lightCap"), lbIdx = document.getElementById("lbIdx");
