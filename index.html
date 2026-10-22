@@ -86,6 +86,19 @@ header.shrunk .nav{height:56px;box-shadow:0 10px 28px rgba(60,50,40,.12)}
 .btn.copied{border-color:var(--pink);color:var(--pink-ink);background:var(--pink-50)}
 .tlink{color:var(--head-ink);font-weight:600;border-bottom:1.5px solid var(--head-ink);padding-bottom:2px;font-size:15px}
 .scene{margin:8px auto 0;border-radius:20px;overflow:hidden;line-height:0;background:#DDEBF5}
+/* 待放圖規格框（她定：只寫規格，內容她自己安排；圖到了整個換成 <img> 或場景） */
+.slot{background:#fff;border:1.5px dashed var(--pink);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--muted);font-size:12px;line-height:1.55;padding:12px;gap:3px}
+.slot i{font-style:normal;display:inline-flex;align-items:center;height:18px;padding:0 8px 1px;border-radius:999px;background:var(--pink-50);color:var(--pink-ink);font-weight:700;font-size:10px;letter-spacing:.08em;margin-bottom:3px}
+.slot b{color:var(--head-ink);font-weight:600}
+.scene-slot{margin:8px auto 0;aspect-ratio:16/9;padding:18px;gap:0;justify-content:space-between;line-height:1.55}
+.scene-slot .bgspec{display:flex;flex-direction:column;align-items:center;gap:3px;margin:auto 0}
+.scene-slot .row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;width:100%}
+.scene-slot .row .slot{width:16%;min-width:96px;aspect-ratio:1/1;font-size:10.5px;padding:6px}
+.slot.sq{aspect-ratio:1/1}
+.slot.wide{aspect-ratio:16/9;margin-bottom:22px}
+.feat .media.slot{border-radius:0;min-height:0}
+.contact-slot{width:150px;aspect-ratio:1/1;margin:0 auto 18px;font-size:11px;padding:8px}
+@media (max-width:640px){.scene-slot{aspect-ratio:auto;padding:14px}.scene-slot .row .slot{width:30%;min-width:88px}.scene-slot .row .slot:nth-child(n+4){display:none}.scene-slot .row::after{content:"手機版先放 3 隻";flex-basis:100%;font-size:11px;color:var(--muted)}}
 .scene > svg{width:100%;height:auto;display:block}
 .house{cursor:pointer}.house .hot{fill:#000;fill-opacity:0}
 .house:focus-visible .hot{fill-opacity:.06;stroke:var(--pink-deep);stroke-width:5}
@@ -374,7 +387,16 @@ dialog{color:var(--ink)}
   </div>
   <a class="takeaway" href="https://github.com/barefooty/mail-helper-starter-kit" target="_blank" rel="noopener"><span class="tk-ico" aria-hidden="true">📦</span><span><b>免費帶走</b>信箱小幫手起始包：照 8 題訪談走，約 20 分鐘建好自己的一套</span><span class="tk-arr" aria-hidden="true">↗</span></a>
 </section>
-<div class="scene hero-art"><svg viewBox="0 60 1660 888" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="小鎮場景：點房子或居民看作品" data-mobile-viewbox="250 120 1160 828"><image href="assets/town-bg.webp" x="0" y="0" width="1660" height="948"/><a href="#work/catlendar" class="house" aria-label="No.02 Catlendar 貓貓日曆：看作品"><rect class="glow" x="357" y="462" width="54" height="56"/><rect class="glow" x="577" y="471" width="32" height="56"/><polygon class="hot" points="312,428 440,318 528,288 642,393 636,580 558,604 324,602"/></a><a href="#work/mail" class="house" aria-label="No.01 懂你工作的信箱小幫手：看作品"><rect class="glow" x="709" y="380" width="60" height="60"/><rect class="glow" x="835" y="380" width="61" height="60"/><circle class="glow" cx="806" cy="288" r="17"/><polygon class="hot" points="660,338 805,210 886,178 1028,306 1018,576 942,596 672,594"/></a><a href="#work/course" class="house" aria-label="No.03 課程異動申請自動化：看作品"><rect class="glow" x="1307" y="480" width="29" height="50"/><polygon class="hot" points="1045,444 1166,338 1252,308 1368,412 1358,584 1288,605 1060,602"/></a><a href="#work/mail" class="resident" aria-label="牛寶：懂你工作的信箱小幫手"><g class="res"><ellipse cx="838" cy="902" rx="123" ry="13" fill="#E8DCCB"/><image href="assets/res-cow.webp" x="667" y="568" width="343" height="340"/></g></a><a href="#work/course" class="resident" aria-label="汪汪：課程異動申請自動化"><g class="res"><ellipse cx="1112" cy="896" rx="120" ry="13" fill="#E8DCCB"/><image href="assets/res-dog.webp" x="945" y="640" width="333" height="262"/></g></a><a href="#work/catlendar" class="resident" aria-label="咪咪：Catlendar 貓貓日曆"><g class="res"><ellipse cx="556" cy="904" rx="115" ry="13" fill="#E8DCCB"/><image href="assets/res-cat.webp" x="397" y="606" width="319" height="304"/></g></a></svg></div>
+<div class="slot scene-slot" data-slot="hero-scene" role="note">
+  <div class="bgspec"><i>待放圖・背景</i><b>1792×1024</b>16:9・不含角色・下方約 35% 留空給前景</div>
+  <div class="row">
+    <div class="slot" data-slot="hero-char-1"><i>角色 1</i><b>1024×1024</b>1:1・純白底</div>
+    <div class="slot" data-slot="hero-char-2"><i>角色 2</i><b>1024×1024</b>1:1・純白底</div>
+    <div class="slot" data-slot="hero-char-3"><i>角色 3</i><b>1024×1024</b>1:1・純白底</div>
+    <div class="slot" data-slot="hero-char-4"><i>角色 4</i><b>1024×1024</b>1:1・純白底</div>
+    <div class="slot" data-slot="hero-char-5"><i>角色 5</i><b>1024×1024</b>1:1・純白底</div>
+  </div>
+</div>
 <div class="legend"><em>點房子或居民，直接走進作品</em><a href="#work/mail"><i>No.01</i>懂你工作的信箱小幫手 →</a><a href="#work/catlendar"><i>No.02</i>Catlendar →</a><a href="#work/course"><i>No.03</i>課程異動申請自動化 →</a></div>
 <div class="gloss" role="note" aria-label="名詞小抄"><b>名詞小抄</b><span><i>SOS</i>暑期線上學院：我獨立營運的全國性大學暑期線上課程計畫</span><span><i>跨校通識</i>多所大學共享線上通識課的計畫，我負責名單、成績與各校窗口</span><span><i>ewant</i>育網：台灣的開放式線上課程平台（MOOC），兩個計畫都在這上面跑</span></div>
 </div>
@@ -423,7 +445,7 @@ dialog{color:var(--ink)}
   </article>
 
   <article class="feat flip reveal" data-id="nubao">
-    <div class="media pad" data-svg="nubao" role="img" aria-label="牛寶與它的三本工作手冊"><span class="door">No.04</span></div>
+    <div class="media slot" data-slot="feat-nubao" role="note"><i>待放圖</i><b>1024×1024</b>1:1・純白底<span class="door">No.04</span></div>
     <div class="body">
       <div class="kpi"><b>43 本</b><span>AI 工作手冊：業務規則、信件口吻、設計品味，寫成 AI 讀得懂的樣子</span></div>
       <h3><a class="card-link" href="#work/nubao">AI 助理「牛寶」：我怎麼把 AI 當同事管</a></h3>
@@ -483,6 +505,7 @@ dialog{color:var(--ink)}
 
 <section id="about" class="wrap">
   <div class="sec-head"><h2>鎮長是誰<span class="flower" aria-hidden="true">✿</span></h2><span class="kicker">ABOUT</span></div>
+  <div class="slot wide" data-slot="about-banner" role="note"><i>待放圖・橫幅</i><b>1792×1024</b>16:9・我會裁成 1200×630 當分享圖</div>
   <div class="about">
     <div class="ava" aria-hidden="true"><svg viewBox="0 0 60 60"><path d="M15 23 L12 8 L25 16 Z M45 23 L48 8 L35 16 Z" fill="#F2CFD2" stroke="#A99482" stroke-width="2.4" stroke-linejoin="round"/><circle cx="30" cy="32" r="19" fill="#fff" stroke="#A99482" stroke-width="2.4"/><circle cx="23" cy="31" r="2.2" fill="#6E5A4A"/><circle cx="37" cy="31" r="2.2" fill="#6E5A4A"/><path d="M26 38 Q30 41 34 38" stroke="#6E5A4A" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="18" cy="37" r="2.8" fill="#F2CFD2"/><circle cx="42" cy="37" r="2.8" fill="#F2CFD2"/></svg></div>
     <div>
@@ -499,6 +522,7 @@ dialog{color:var(--ink)}
 </main>
 
 <footer id="contact">
+  <div class="slot contact-slot" data-slot="contact" role="note"><i>待放圖</i><b>1024×1024</b>1:1・純白底</div>
   <h2 id="footHead">想聊聊這些系統怎麼蓋的嗎？</h2>
   <p class="sub">歡迎來信，或到 LinkedIn 找我。教育／營運類專案管理、L&amp;D 教育訓練、AI 導入與流程自動化，都是我的主場。</p>
   <div class="f-links">
