@@ -87,11 +87,15 @@ svg:has(.resident[href="#work/course"]:hover) .house[href="#work/course"] .glow{
 svg:has(.house[href="#work/mail"]:is(:hover,:focus-visible)) .resident[href="#work/mail"] .res,
 svg:has(.house[href="#work/catlendar"]:is(:hover,:focus-visible)) .resident[href="#work/catlendar"] .res,
 svg:has(.house[href="#work/course"]:is(:hover,:focus-visible)) .resident[href="#work/course"] .res{transform:translateY(-10px)}
-.legend{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 26px;margin-top:16px;font-size:14px}
-.legend a{color:var(--ink);padding:4px 2px;border-bottom:1px solid transparent}
-.legend a:hover{border-bottom-color:var(--ink)}
+.legend{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 12px;margin-top:16px;font-size:14px}
+.legend a{display:inline-flex;align-items:center;min-height:36px;color:var(--ink);padding:0 14px 1px;border:1px solid var(--line);border-radius:999px;background:var(--card);transition:border-color .15s,transform .15s}
+.legend a:hover{border-color:var(--head-ink);transform:translateY(-1px)}
+.gloss{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:baseline;margin:22px auto 0;max-width:860px;padding:12px 18px;background:var(--card);border:1px dashed var(--line);border-radius:14px;font-size:13px;color:var(--muted);line-height:1.6}
+.gloss b{font:600 11.5px/1 var(--sans);letter-spacing:.2em;color:var(--head-ink);flex-basis:100%}
+.gloss i{font-style:normal;font-weight:700;color:var(--blue-ink);margin-right:6px}
+@media (max-width:640px){.gloss span{flex-basis:100%}}
 .legend i{font:600 11px/1 var(--sans);font-style:normal;letter-spacing:.2em;color:var(--muted);margin-right:8px}
-.legend em{font-style:normal;color:var(--muted);font-size:13px;width:100%;text-align:center}
+.legend em{font-style:normal;color:var(--muted);font-size:13px;width:100%;text-align:center;margin-bottom:2px}
 
 /* ---------- sections ---------- */
 section{padding:72px 0 10px}
@@ -124,6 +128,10 @@ section.wrap{padding:72px 24px 10px}   /* .wrap 的 padding 會蓋掉 section �
 .feat .meta{margin-top:18px;display:flex;gap:8px;flex-wrap:wrap}
 .pill{display:inline-flex;align-items:center;height:26px;padding:0 12px 2px;background:var(--blue-50);color:var(--blue-ink);border-radius:999px;font-size:12.5px;font-weight:600}
 .open-link{display:inline-block;align-self:flex-start;margin-top:18px;color:var(--head-ink);font-weight:600;font-size:14.5px;border-bottom:1.5px solid var(--head-ink);padding-bottom:2px}
+.link-row{display:flex;gap:10px 22px;flex-wrap:wrap;align-items:baseline}
+.link-row .open-link{margin-top:18px}
+.ext-link{position:relative;z-index:2;margin-top:18px;font-size:13.5px;font-weight:600;color:var(--blue-ink);border-bottom:1.5px solid var(--blue-50);padding-bottom:2px}
+.ext-link:hover{border-bottom-color:var(--blue-ink)}
 @media (max-width:820px){.feat{grid-template-columns:minmax(0,1fr)}.feat .media{min-height:240px}.feat.flip .media{order:0}.feat .body{padding:26px 22px}}
 
 /* ---------- grid cards ---------- */
@@ -172,6 +180,7 @@ section.wrap{padding:72px 24px 10px}   /* .wrap 的 padding 會蓋掉 section �
 .ava svg{width:84px;height:84px}
 .about h3{font-family:var(--serif);font-weight:600;font-size:1.35em;color:var(--head-ink);margin-bottom:8px}
 .about p{font-size:.95em}
+.about p.en{margin-top:10px;font-size:.86em;color:var(--muted);line-height:1.65}
 .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .tag{display:inline-flex;align-items:center;height:26px;padding:0 12px 2px;background:var(--pink-50);color:var(--pink-ink);border-radius:999px;font-size:.8em;font-weight:600}
 .tag.b{background:var(--blue-50);color:var(--blue-ink)}
@@ -195,6 +204,7 @@ footer .sub{color:var(--muted);font-size:.93em;margin-bottom:20px}
 .privacy{max-width:600px;margin:0 auto;font-size:.83em;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 18px;color:var(--muted)}
 footer .tagline{margin-top:22px;font-family:var(--serif);font-weight:600;color:var(--head-ink);font-size:1.02em}
 footer .sig{margin-top:6px;font-size:.85em;color:var(--muted)}
+footer .alt-mail{font-size:.9em;opacity:.8}
 
 /* ---------- 作品彈窗（原生 dialog：焦點鎖定、Esc、可分享網址 #work/xxx） ---------- */
 dialog{color:var(--ink)}
@@ -211,6 +221,13 @@ dialog{color:var(--ink)}
 .modal .m-status{display:inline-flex;align-items:center;min-height:26px;padding:2px 12px;border-radius:999px;background:var(--blue-50);color:var(--blue-ink);font-size:.8em;font-weight:700;margin-bottom:10px}
 .modal h3{font-family:var(--serif);font-weight:600;color:var(--blue-ink);font-size:1.6em;line-height:1.4;margin-bottom:12px}
 .modal .role{background:var(--card);border-left:4px solid var(--pink);border-radius:0 12px 12px 0;padding:10px 16px;font-size:.92em;margin:14px 0}
+.modal .learn,.modal .tip{border-radius:14px;padding:14px 18px;margin:14px 0;font-size:.92em;line-height:1.7}
+.modal .learn{background:var(--pink-50)}
+.modal .tip{background:var(--blue-50)}
+.modal .learn b,.modal .tip b{display:block;font:600 11.5px/1 var(--sans);letter-spacing:.2em;margin-bottom:8px}
+.modal .learn b{color:var(--pink-ink)}
+.modal .tip b{color:var(--blue-ink)}
+.modal .learn p,.modal .tip p{margin:0}
 .modal h4{font-family:var(--serif);font-weight:600;color:var(--head-ink);font-size:1.12em;margin:22px 0 8px}
 .modal h4::before{content:"✿";color:var(--pink);margin-right:6px;font-size:.85em}
 .modal ul{padding-left:1.3em}
@@ -278,6 +295,7 @@ dialog{color:var(--ink)}
 .toast.show{visibility:visible;transform:translateX(-50%) translateY(0)}
 .to-top{position:fixed;right:18px;bottom:20px;background:var(--card);border:1.5px solid var(--line);width:48px;height:48px;border-radius:50%;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:60;box-shadow:0 4px 10px rgba(110,90,74,.12)}
 .to-top svg{width:28px;height:28px}
+@media (max-width:640px){.to-top{width:40px;height:40px;right:12px;bottom:14px;opacity:.88}.to-top svg{width:24px;height:24px}}
 .to-top:hover{border-color:var(--pink)}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
@@ -324,15 +342,16 @@ dialog{color:var(--ink)}
     <a class="tlink mail-btn" href="mailto:happinesswhatever1030@gmail.com" data-addr="happinesswhatever1030@gmail.com">寫信給我 →</a>
   </div>
 </section>
-<div class="scene hero-art"><svg viewBox="0 60 1660 888" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="小鎮場景：點房子或居民看作品" data-mobile-viewbox="290 150 1090 798"><image href="assets/town-bg.webp" x="0" y="0" width="1660" height="948"/><a href="#work/catlendar" class="house" aria-label="No.02 Catlendar 貓貓日曆：看作品"><rect class="glow" x="357" y="462" width="54" height="56"/><rect class="glow" x="577" y="471" width="32" height="56"/><polygon class="hot" points="312,428 440,318 528,288 642,393 636,580 558,604 324,602"/></a><a href="#work/mail" class="house" aria-label="No.01 懂你工作的信箱小幫手：看作品"><rect class="glow" x="709" y="380" width="60" height="60"/><rect class="glow" x="835" y="380" width="61" height="60"/><circle class="glow" cx="806" cy="288" r="17"/><polygon class="hot" points="660,338 805,210 886,178 1028,306 1018,576 942,596 672,594"/></a><a href="#work/course" class="house" aria-label="No.03 課程異動申請自動化：看作品"><rect class="glow" x="1307" y="480" width="29" height="50"/><polygon class="hot" points="1045,444 1166,338 1252,308 1368,412 1358,584 1288,605 1060,602"/></a><a href="#work/mail" class="resident" aria-label="牛寶：懂你工作的信箱小幫手"><g class="res"><ellipse cx="838" cy="902" rx="123" ry="13" fill="#E8DCCB"/><image href="assets/res-cow.webp" x="667" y="568" width="343" height="340"/></g></a><a href="#work/course" class="resident" aria-label="汪汪：課程異動申請自動化"><g class="res"><ellipse cx="1112" cy="896" rx="120" ry="13" fill="#E8DCCB"/><image href="assets/res-dog.webp" x="945" y="640" width="333" height="262"/></g></a><a href="#work/catlendar" class="resident" aria-label="咪咪：Catlendar 貓貓日曆"><g class="res"><ellipse cx="556" cy="904" rx="115" ry="13" fill="#E8DCCB"/><image href="assets/res-cat.webp" x="397" y="606" width="319" height="304"/></g></a></svg></div>
-<div class="legend"><a href="#work/catlendar"><i>No.02</i>Catlendar</a><a href="#work/mail"><i>No.01</i>懂你工作的信箱小幫手</a><a href="#work/course"><i>No.03</i>課程異動申請自動化</a><em>點房子或居民，直接走進作品</em></div>
+<div class="scene hero-art"><svg viewBox="0 60 1660 888" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="小鎮場景：點房子或居民看作品" data-mobile-viewbox="250 120 1160 828"><image href="assets/town-bg.webp" x="0" y="0" width="1660" height="948"/><a href="#work/catlendar" class="house" aria-label="No.02 Catlendar 貓貓日曆：看作品"><rect class="glow" x="357" y="462" width="54" height="56"/><rect class="glow" x="577" y="471" width="32" height="56"/><polygon class="hot" points="312,428 440,318 528,288 642,393 636,580 558,604 324,602"/></a><a href="#work/mail" class="house" aria-label="No.01 懂你工作的信箱小幫手：看作品"><rect class="glow" x="709" y="380" width="60" height="60"/><rect class="glow" x="835" y="380" width="61" height="60"/><circle class="glow" cx="806" cy="288" r="17"/><polygon class="hot" points="660,338 805,210 886,178 1028,306 1018,576 942,596 672,594"/></a><a href="#work/course" class="house" aria-label="No.03 課程異動申請自動化：看作品"><rect class="glow" x="1307" y="480" width="29" height="50"/><polygon class="hot" points="1045,444 1166,338 1252,308 1368,412 1358,584 1288,605 1060,602"/></a><a href="#work/mail" class="resident" aria-label="牛寶：懂你工作的信箱小幫手"><g class="res"><ellipse cx="838" cy="902" rx="123" ry="13" fill="#E8DCCB"/><image href="assets/res-cow.webp" x="667" y="568" width="343" height="340"/></g></a><a href="#work/course" class="resident" aria-label="汪汪：課程異動申請自動化"><g class="res"><ellipse cx="1112" cy="896" rx="120" ry="13" fill="#E8DCCB"/><image href="assets/res-dog.webp" x="945" y="640" width="333" height="262"/></g></a><a href="#work/catlendar" class="resident" aria-label="咪咪：Catlendar 貓貓日曆"><g class="res"><ellipse cx="556" cy="904" rx="115" ry="13" fill="#E8DCCB"/><image href="assets/res-cat.webp" x="397" y="606" width="319" height="304"/></g></a></svg></div>
+<div class="legend"><em>點房子或居民，直接走進作品</em><a href="#work/mail"><i>No.01</i>懂你工作的信箱小幫手 →</a><a href="#work/catlendar"><i>No.02</i>Catlendar →</a><a href="#work/course"><i>No.03</i>課程異動申請自動化 →</a></div>
+<div class="gloss" role="note" aria-label="名詞小抄"><b>名詞小抄</b><span><i>SOS</i>暑期線上學院：我獨立營運的全國性大學暑期線上課程計畫</span><span><i>跨校通識</i>多所大學共享線上通識課的計畫，我負責名單、成績與各校窗口</span><span><i>ewant</i>育網：台灣的開放式線上課程平台（MOOC），兩個計畫都在這上面跑</span></div>
 </div>
 
 
 <section id="featured" class="wrap" style="padding-top:46px">
   <div class="sec-head">
-    <h2>鎮上三大地標<span class="flower" aria-hidden="true">✿</span></h2><span class="kicker">FEATURED</span>
-    <p>最能代表我的三件作品。點卡片可以看完整故事與截圖。</p>
+    <h2>鎮上四大地標<span class="flower" aria-hidden="true">✿</span></h2><span class="kicker">FEATURED</span>
+    <p>最能代表我的四件作品：三個每天在跑的系統，加上管理 AI 的方法本身。點卡片可以看完整故事與截圖。</p>
   </div>
 
   <article class="feat reveal" data-id="mail">
@@ -343,9 +362,9 @@ dialog{color:var(--ink)}
     <div class="body">
       <div class="kpi"><b>641 封</b><span>討論區通知不用再點開（統計至 2026-10-19）</span></div>
       <h3><a class="card-link" href="#work/mail">懂你工作的信箱小幫手</a></h3>
-      <p class="txt">兩個計畫的共用信箱，SOS 最忙一週有 333&nbsp;封，真正要回的信常被通知淹沒。現在每個工作日 8:00、15:00，遮遮先把個資蓋起來、信信再讀信分類，整理成一封報告寄給承辦人。我也把它做成公開起始包，作者自測約 20 分鐘就能建好一套。</p>
+      <p class="txt">兩個計畫（SOS、跨校通識）的共用信箱，SOS 最忙一週有 333&nbsp;封，真正要回的信常被通知淹沒。現在每個工作日 8:00、15:00，兩個 AI 小幫手分工上場：遮遮先把個資蓋起來，信信再讀信分類，整理成一封報告寄給承辦人。我也把它做成公開起始包，作者自測約 20 分鐘就能建好一套。</p>
       <div class="meta"><span class="pill">隱私先遮再讀</span><span class="pill">雲端排程</span><span class="pill">公開起始包</span></div>
-      <span class="open-link" aria-hidden="true">看信信怎麼工作 →</span>
+      <div class="link-row"><span class="open-link" aria-hidden="true">看信信怎麼工作 →</span><a class="ext-link" href="https://github.com/barefooty/mail-helper-starter-kit" target="_blank" rel="noopener">GitHub 起始包（20 分鐘自建）↗</a></div>
     </div>
   </article>
 
@@ -370,12 +389,23 @@ dialog{color:var(--ink)}
       <span class="open-link" aria-hidden="true">看完整故事與截圖 →</span>
     </div>
   </article>
+
+  <article class="feat flip reveal" data-id="nubao">
+    <div class="media pad" data-svg="nubao" role="img" aria-label="牛寶與它的三本工作手冊"><span class="door">No.04</span></div>
+    <div class="body">
+      <div class="kpi"><b>43 本</b><span>AI 工作手冊：業務規則、信件口吻、設計品味，寫成 AI 讀得懂的樣子</span></div>
+      <h3><a class="card-link" href="#work/nubao">AI 助理「牛寶」：我怎麼把 AI 當同事管</a></h3>
+      <p class="txt">我沒有把 AI 當聊天工具，而是當一位需要工作手冊、會累積經驗、權限有邊界的同事。手冊寫清楚三條業務線的規則與口吻，長期記憶讓每次踩雷都變成防呆紀錄，雲端排程讓例行工作在我睡覺時照跑。任何新的 AI 會話打開手冊就能立刻接手，這個網站也是這樣蓋出來的。</p>
+      <div class="meta"><span class="pill">技能手冊</span><span class="pill">長期記憶</span><span class="pill">權限邊界</span></div>
+      <span class="open-link" aria-hidden="true">看牛寶怎麼被管理 →</span>
+    </div>
+  </article>
 </section>
 
 <section id="works" class="wrap">
   <div class="sec-head">
     <h2>全鎮地圖<span class="flower" aria-hidden="true">✿</span></h2><span class="kicker">ALL WORKS</span>
-    <p>三大地標在上方，這裡不重複列出。每張截圖都是示範資料或去識別化版本；還在進行中的專案，卡片上會寫明目前走到哪一步。</p>
+    <p>四大地標在上方，這裡不重複列出。每張截圖都是示範資料或去識別化版本；還在進行中的專案，卡片上會寫明目前走到哪一步。</p>
   </div>
   <div class="chips" id="chips" role="group" aria-label="篩選作品">
     <button class="chip on" data-f="all">全部</button>
@@ -393,6 +423,7 @@ dialog{color:var(--ink)}
   <div class="band">
     <div class="sec-head" style="margin-bottom:12px">
       <h2>蓋房子的三個步驟<span class="flower" aria-hidden="true">✿</span></h2><span class="kicker">HOW I WORK</span>
+      <p>我叫它「看見・共建・交棒」。每件作品的彈窗裡，都附上「這件事的通用做法」與「我踩過的坑」，可以直接帶走。</p>
     </div>
     <div class="steps">
       <div class="step"><div class="ico"><svg viewBox="0 0 36 36" fill="none" stroke="#917363" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18c4-7 9-10 14-10s10 3 14 10c-4 7-9 10-14 10S8 25 4 18z" fill="#E4EAF6"/><circle cx="18" cy="18" r="4.6" fill="#fff"/><circle cx="18" cy="18" r="1.7" fill="#6E5A4A" stroke="none"/></svg></div><b>看見重複</b><p>每天都在做一樣的事？那它就不該由人來做。我會先把隱性的業務規則一條一條寫清楚，這本身就是最關鍵的工程。</p></div>
@@ -404,8 +435,8 @@ dialog{color:var(--ink)}
     <div><b>59 所</b><small>合作大學</small></div>
     <div><b>2,941</b><small>人次報名營運</small></div>
     <div><b>62 支</b><small>自製小工具</small></div>
-    <div><b>43 本</b><small>AI 技能手冊</small></div>
-    <div><b>16 章</b><small>年度交接手冊</small></div>
+    <div><b>-80%</b><small>異動申請處理時間</small></div>
+    <div><b>641 封</b><small>通知信免再點開</small></div>
   </div>
 </section>
 
@@ -418,6 +449,7 @@ dialog{color:var(--ink)}
     <div>
       <h3>劉芷均 Chrissy Liu</h3>
       <p>傳播碩士（新媒體與使用者經驗組），現任國立陽明交通大學課程規劃師。到職八個月就獨立接下全國性暑期線上學院的年度執行，一邊營運、一邊把手上的重複業務逐一自動化。我相信好的行政是一種產品設計：使用者不用問第二次，就是最好的服務。</p>
+      <p class="en" lang="en">Chrissy Liu is a Course Planner at National Yang Ming Chiao Tung University, running a nationwide online summer school across 59 partner universities. With a master's degree in communication (new media and UX), she turns repetitive administrative work into self-running systems by managing AI as a teammate, and documents every system so the next person can run it without her.</p>
       <div class="tags">
         <span class="tag b">教育計畫營運</span><span class="tag b">專案協調</span><span class="tag b">L&amp;D 課程營運</span>
         <span class="tag">流程自動化</span><span class="tag">AI 協作</span><span class="tag">UX 研究</span><span class="tag">知識管理</span>
@@ -429,10 +461,10 @@ dialog{color:var(--ink)}
 
 <footer id="contact">
   <h2 id="footHead">想聊聊這些系統怎麼蓋的嗎？</h2>
-  <p class="sub">歡迎來信，或到 LinkedIn 找我。</p>
+  <p class="sub">歡迎來信，或到 LinkedIn 找我。教育／營運類專案管理、L&amp;D 教育訓練、AI 導入與流程自動化，都是我的主場。</p>
   <div class="f-links">
-    <a class="btn btn-line mail-btn" href="mailto:happinesswhatever1030@gmail.com" data-addr="happinesswhatever1030@gmail.com">happinesswhatever1030@gmail.com</a>
-    <a class="btn btn-line mail-btn" href="mailto:chrissy.liu.ux@gmail.com" data-addr="chrissy.liu.ux@gmail.com">備援信箱</a>
+    <a class="btn btn-main mail-btn" href="mailto:happinesswhatever1030@gmail.com" data-addr="happinesswhatever1030@gmail.com">happinesswhatever1030@gmail.com</a>
+    <a class="btn btn-line" href="mailto:happinesswhatever1030@gmail.com?subject=%E6%83%B3%E7%B4%A2%E5%8F%96%E8%8A%B7%E5%9D%87%E7%9A%84%E5%B1%A5%E6%AD%B7">索取履歷 PDF</a>
   </div>
   <div class="f-links">
     <a class="btn btn-line" href="https://linkedin.com/in/chrissy-liu-nycu" target="_blank" rel="noopener">LinkedIn</a>
@@ -440,7 +472,7 @@ dialog{color:var(--ink)}
   </div>
   <div class="privacy">🔒 本站截圖皆為示範資料或去識別化版本，不含任何真實個資。</div>
   <p class="tagline">重複的工作，蓋成會自己跑的小房子 <span class="flower" aria-hidden="true">✿</span></p>
-  <div class="sig">© 2026 Chrissy Liu，與 AI 助理牛寶一起蓋的 🐮</div>
+  <div class="sig">© 2026 Chrissy Liu，與 AI 助理牛寶一起蓋的 🐮<br><span class="alt-mail">主信箱收不到時，備援：chrissy.liu.ux@gmail.com</span></div>
 </footer>
 
 <button class="to-top" id="toTop" aria-label="回到頂端"><svg aria-hidden="true"><use href="#mk"/></svg></button>
@@ -481,7 +513,9 @@ const PROJECTS = [
   stats:[{n:"641",u:"封",t:"討論區通知不用點開"},{n:"433",u:"封",t:"摘要報告寄出"},{n:"95",u:"%",t:"排程寄出（209／220 場）"}],
   statsNote:"統計至 2026-10-19，兩個計畫信箱合計（SOS 7/4 起、跨校通識 9/2 起）。",
   role:"我的角色：從問題定義、分類規則、隱私設計到實作（和 AI 結對開發）都由我負責；一位同事一起發想，並負責兩輪使用者測試與回饋整理。",
-  desc:"<b>一句話結論｜每天兩封報告：該回的排最前，通知一句帶過，個資只寫類型。</b><br>兩個磨課師計畫各有一個多人共用的信箱。SOS 最忙的一週有 333&nbsp;封、最多一天 114&nbsp;封；跨校通識的來信有 66% 是長得都一樣的討論區通知，真正要回的學生信就夾在中間。我把困擾整理成四件事——信太多、分不清、追不到、怕個資外流——再做了一個每個工作日 8:00、15:00 自動跑的小幫手：遮遮先把個資蓋起來，信信再讀信、照分工分類、每封寫一句摘要和建議，最後整理成一封報告寄給承辦人。它只讀、只報告：不回信、不刪信、不標已讀。",
+  learn:"第一版把「不要抄個資」寫成給 AI 的叮嚀，測試時就發現它只能靠自律。後來改成程式讀信當下先遮，AI 從頭到尾只看得到遮過的版本。學到：安全要寫進流程，不能寫在叮嚀裡。",
+  tip:"要讓 AI 讀真實資料的自動化，先回答三個問題：它看得到什麼、它能做什麼、出錯誰收拾。答案是「遮過的」「只讀只報告」「人」，才可以上線。",
+  desc:"<b>一句話結論｜每天兩封報告：該回的排最前，通知一句帶過，個資只寫類型。</b><br>兩個磨課師計畫各有一個多人共用的信箱。SOS 最忙的一週有 333&nbsp;封、最多一天 114&nbsp;封；跨校通識的來信有 66% 是長得都一樣的討論區通知，真正要回的學生信就夾在中間。我把困擾整理成四件事——信太多、分不清、追不到、怕個資外流——再做了一個每個工作日 8:00、15:00 自動跑的小幫手，由兩個 AI 角色分工：遮遮先把個資蓋起來，信信再讀信、照分工分類、每封寫一句摘要和建議，最後整理成一封報告寄給承辦人。它只讀、只報告：不回信、不刪信、不標已讀。",
   cast:[{img:"assets/char-letty.webp",name:"信信",en:"Letty",line:"「信我先看，重要的幫你挑出來。」讀信、分類、寫摘要。"},
         {img:"assets/char-ollie.webp",name:"遮遮",en:"Ollie",line:"「王小明？我貼上去，就是王O明。」AI 讀信前先遮個資。"}],
   demo:"mask",
@@ -508,6 +542,8 @@ const PROJECTS = [
   one:"把任務、追案、月曆、記帳收進一個離線 HTML 檔，每天早上一眼看懂「今天輪到我做什麼」。",
   num:"6 天 27 版起家，迭代至 v63",
   role:"我的角色：唯一使用者兼產品經理。從需求、驗收到改版節奏全程主導，和 AI 結對開發。",
+  learn:"做到 v53 時體檢才發現：功能越加越多，自己反而越來越少打開。問題不是輸入麻煩，是它想做所有事。後來重新定位成「早上第一眼的駕駛艙」，其他功能退到第二層。學到：工具的敵人不是難用，是沒有非打開不可的理由。",
+  tip:"自己當唯一使用者的工具，用「一次只改一件事、每版真檔實測」的節奏迭代，比一次規劃完整需求快得多，也不會做出沒人用的功能。",
   desc:"起點只是不想再用便條紙記待辦。我用「一次只加一個小改動、每版真檔實測」的節奏，六天內迭代 27 版、第一週長成 11 個模組的完整系統，至今演進到 v63。一個 HTML 檔、雙擊即開、完全離線，資料只存在自己電腦，還有十隻手繪風貓狗吉祥物輪班陪工作。",
   hi:["追案看板「一校一卡、球在誰手上」，21 所學校的交辦進度一眼掌握","經歷資料清空事故後，把備份匯出與自動快照升級為一級功能","可以交接：改版歷程、維運手冊、連「給下一個 AI 的說明書」都寫好了"],
   tech:["HTML/CSS/JS 單檔","localStorage","GAS 雲端同步","AI 結對開發"],
@@ -519,6 +555,8 @@ const PROJECTS = [
   one:"紙本申請改造成「填表即入庫、審核即出件」，單件處理時間少了八成。",
   num:"20 分鐘 → 3–5 分鐘，轉錄錯誤歸零",
   role:"我的角色：流程再造的設計者。畫出 Before/After 整條流水線、定義驗證規則與隱私邊界，再指揮 AI 實作。",
+  learn:"最花時間的不是寫程式，是把「什麼情況能退費、什麼情況只能停修」這些原本在承辦人腦中的規則一條一條寫出來。規則寫清楚之後，實作反而是最快的一段。學到：自動化八成的工程是在整理規則。",
+  tip:"紙本流程要自動化，先把每一個「人工轉錄」圈出來。每個轉錄點都是錯誤的來源，也都是可以被表單驗證與自動同步取代的地方。",
   desc:"學生的換課、停修、退費申請，過去是 Word 下載、Email 回傳、人工逐筆轉錄、手工排版收執聯，每一步都在複製貼上，每一步都可能出錯。重建後：表單條件分流加上帳號格式驗證，把錯誤擋在送出之前；送出瞬間四路同步（確認信、承辦通知、試算表、Notion 看板）；審核狀態改一格，官方收執聯自動生成、自動歸檔。",
   hi:["格式錯誤 100% 攔截於送出前，補件往返大幅減少","隱私設計：身分證與銀行帳號刻意不同步到協作看板","年末一鍵封存加三道防呆，接手的人完全不用碰程式碼"],
   tech:["Google Apps Script","Notion API","表單驗證設計","事件驅動架構"],
@@ -529,6 +567,8 @@ const PROJECTS = [
   one:"每件案子跨 5 個角色、12 個步驟、死線都不同。現在期限自動算、交棒自動通知、信件自動變草稿。",
   num:"期限追蹤 100% 自動化，人工記死線歸零",
   role:"我的角色：把「全計畫最怕出錯的流程」翻譯成系統規格。案件模型、期限規則、人機分界都是我定義的。",
+  learn:"上線第一週就依實戰回饋改了 13 次：期限反推要跳過週末與暑休、一位學生修兩門課要拆成兩條案件線，這些都是真案件進來才看到的。學到：流程類系統要用真案子驗收，測試資料永遠太乾淨。",
+  tip:"多角色、多死線的流程，先畫狀態機：每個狀態誰負責、改到下一個狀態會自動發生什麼。狀態定清楚，通知與文件生成就只是接線。",
   desc:"學生為了畢業、升學、入伍申請提前取得成績，過去靠一張手工表格加記憶力管理。改造後：申請進來自動建檔（一位學生修兩門課就自動拆成兩條案件線），期限引擎從「學生需要成績的日期」反推教師結算死線，自動跳過週末與全校暑休；我改一格狀態，同事就收到帶齊資料的交棒信，連詢問老師的信都已經寫好放在裡面。",
   hi:["學生回信確認的瞬間：核章文件自動生成、檢送信草稿自動備好","對外信件一律只生成草稿，寄出鍵永遠在人手上","上線一週內依實戰回饋迭代 13 個修補，全程零停機"],
   tech:["Google Apps Script","工作日演算法","狀態機設計","範本引擎"],
@@ -539,6 +579,8 @@ const PROJECTS = [
   one:"散落在 51 個筆記頁面、一半跑不動的巨集，重建成一個檔案、62 支照流程導引的工具。",
   num:"51 頁散落巨集 → 1 個檔案，修掉 11 個資料地雷",
   role:"我的角色：先把每支巨集「在業務上是做什麼的」弄清楚，再和 AI 一支一支重建成瀏覽器工具，用真實業務檔逐格對答案驗收。",
+  learn:"重建時找出 11 個會毀資料的地雷：永久刪檔、整欄爆填、同課重複匯入。它們之前沒出事，只是因為用的人都知道要避開。學到：接手老工具，先讀它會「做壞什麼」，再談它會做什麼。",
+  tip:"老巨集別直接修。先用白話寫下每一支在業務上是做什麼的，再決定重建、合併或淘汰；用真實業務檔逐格對答案，是唯一可信的驗收。",
   desc:"接手業務時最可怕的資產：50 幾頁散落在筆記軟體裡的 Excel 巨集，沒人敢碰。我把繁瑣的行政流程重新整理，封裝成單檔 HTML 工具箱：免安裝、免帳號、完全離線，個資從頭到尾不離開電腦。工具不是按功能羅列，而是照作業流程編排，選一項業務就一步一步帶著做。",
   hi:["重建過程修掉 11 個會毀資料的地雷：永久刪檔、整欄爆填、同課重複匯入……","上傳、處理、下載三步驟，永不修改原始檔案","交接手冊由流程定義檔自動生成，工具更新、文件自動跟上"],
   tech:["HTML/JavaScript","SheetJS/ExcelJS","Python 建置管線","docs-as-code"],
@@ -549,6 +591,8 @@ const PROJECTS = [
   one:"「指南有寫，學生還是來信問」的 Notion 長頁，重做成手機優先、會幫學生做判斷的網站。",
   num:"7 主頁＋30 題 FAQ，上線前 14 條待確認紅字全數清零",
   role:"我的角色：資訊架構與內容全由我規劃，AI 代理負責瀏覽器自動化施工；我把過程沉澱成明年可複用的維運手冊。",
+  learn:"上線前列了 14 條待確認紅字，每一條都是「規則我以為我懂，寫出來才發現有例外」。學到：對外說明寫不出來的地方，通常就是流程本身還沒定清楚的地方。",
+  tip:"學生指南的核心不是把規則列完整，而是幫學生做判斷：先問「你的情況是哪一種」，再給答案。一張決策圖勝過三頁說明。",
   desc:"學生不是不看指南，是資訊埋在層層折疊的長頁面裡、手機上讀不下去。我重新設計「學生怎麼找到答案」：首頁六張導覽卡一眼分流、自製課程異動決策圖讓學生回答兩個問題就知道能退選還是停修、每一頁的結尾都找得到人。網站和申請自動化系統無縫銜接，端到端零紙本。",
   hi:["四張自製 HTML 互動決策流程圖，規則不用讀、用「判斷」的","刻意選 Google Sites：零費用、團隊任何人都能維護，不留技術債","「繳費後 1 到 2 天會出現在我的課程」：明確的時間預期，就少一封焦慮的信"],
   tech:["Google Sites","HTML/CSS 流程圖","資訊架構","AI 瀏覽器自動化"],
@@ -560,6 +604,8 @@ const PROJECTS = [
   one:"兩個工作天交出全國性 MOOC 平台首頁的三套完整設計方案，從資訊架構到 WordPress 實作。",
   num:"2 個工作天 × 3 套完整方案",
   role:"我的角色：設計決策者。拍板設計原則、親擬 slogan「想學的一切，ewant 打盡」、抓跑版、守住原站 100% 功能。",
+  learn:"做完才發現頁面編輯器的欄寬、背景分頁節流這些細節會讓畫面在不同情況下走樣，14 條踩雷全部記進維運手冊。學到：改版真正的交付物，是讓接手的人不會重踩的紀錄。",
+  tip:"改大型網站首頁，先守住「原站功能 100% 不掉」再談美感；資訊架構用「使用者是誰」分流，比用「機構有哪些計畫」分區更容易被找到。",
   desc:"主導百萬學習人次平台的首頁改版：淘汰不符品牌調性的方案，確立「品牌藍為主、清晰專業、對成人受眾親切」的原則；把原站七個並列專區重組為「依身分找入口」，讓大學生、社會人士、高中生各自一眼找到自己的路。過程中發現站內可疑外掛，依分際回報技術同事處理，不越權、有留痕。",
   hi:["slogan 以品牌名諧音「一網打盡」，是我自己想出來的","14 條實戰踩雷紀錄沉澱為維運手冊，廠商、技術端、同事三種受眾三種文件","目前階段：E 版主線完成、內部審閱版流通中，待拍板正式上線"],
   tech:["WordPress/Elementor","資訊架構","品牌設計","AI 協作實作"],
@@ -579,6 +625,8 @@ const PROJECTS = [
   one:"把幾千列的系統原始檔，整理成主管在會議上可以直接講的決策報告。",
   num:"2,941 人次、59 校、37 門課完整對帳",
   role:"我的角色：分析口徑的定義者與最後把關的人。退款怎麼互抵、手續費怎麼算，動工前全部列出來確認，關鍵數字親手驗算。",
+  learn:"早期版本差點把金額和人次放在同一張圖跨年比較，被自己抓到：學分費調漲過的年度不能直接換算。學到：數字好不好看是其次，口徑錯一次，整份報告就不能再被相信。",
+  tip:"報告做三件套：資料表只放資料、圖表另外放、方法寫成一頁。數字被問到時，能指出它從哪一格算出來，才算做完。",
   desc:"報名季結束，主管要的從來不是下載檔。我產出三件套：乾淨資料表（Excel）、互動視覺化報告（HTML）、歷年比較資料庫。計算方法寫成「方法說明」分頁，數字才經得起問；每張圖旁邊附「重點觀察」，報告自己會簡報。格式分工也是學來的細節：Excel 只放資料，圖表全放 HTML，因為報告最怕的不是醜，是壞。",
   hi:["三份檔案數字完全一致，收入口徑用詞精確、不含糊","用詞倫理：不對合作教師的課程做熱門冷門的排行式呈現","歷年資料庫涵蓋 2020 到 2026，明年比較零重工"],
   tech:["資料清理與對帳","Excel 資料建模","HTML/JS 圖表","方法論文件化"],
@@ -589,16 +637,20 @@ const PROJECTS = [
   one:"同一份知識自動輸出三種型態：AI 技能手冊、自動生成的 Word 手冊、自動展開的日期主檔。",
   num:"16 章手冊，驗收標準是「新人照著做就能跑完一年」",
   role:"我的角色：知識架構的設計者。決定「單一資料來源」長什麼樣、三種輸出各給誰用。",
+  learn:"一開始手寫 Word 手冊，寫完沒多久就過期。改成「寫一份原始碼、三種輸出用程式生成」之後，更新變成跑一次腳本。學到：文件落後現況不是人懶，是用錯了生產方式。",
+  tip:"交接文件用「新人照著做能不能跑完一年」來驗收，而不是「有沒有寫到」。每條規則附上什麼時候做、做完有什麼、地雷在哪。",
   desc:"行政最大的隱形成本是交接：規則存在承辦人腦中，文件永遠落後現況。我把整年度業務寫成「原始碼」：給會用 AI 的人，是 16 章 Claude Skill，新的 AI 會話能直接回答「現在幾月、該做什麼」；給習慣紙本的人，是腳本自動生成的 Word 手冊；給要排時程的人，是填三個錨點日期、整年時程自動展開的 Excel 主檔。內容更新重跑一次，三種輸出同步。",
   hi:["軟體業的 single source of truth，完全適用於行政","文件不用手排、用生成：交接從「祈禱文件是新的」變成「跑一次腳本」","交接包一鍵打包，附給不熟 AI 的同事的兩分鐘安裝說明","第四種介面是 Notion：六個資料庫鏡像（Skill 目錄、流程卡、待辦與進度…），給習慣 Notion 的接手者看，正本仍在本機"],
   tech:["Markdown/JSON 原始碼","Python 產檔腳本","Claude Skill","知識架構設計"],
   shots:[{s:"assets/handover-notion.png",c:"Notion「牛寶工作台」入口：六個資料庫鏡像的總覽，頁面裡就寫明「規則正本仍在 skill／Obsidian，Notion 只是鏡像」——單一資料來源的原則貫徹到每個出口"},{s:"assets/handover-skills.png",c:"Skill 目錄實拍：40+ 本手冊依「工具與技術／本人與業務」分組，每本標註什麼時候用、管哪條業務線、母版放哪——接手的人用這張表就能找到所有規則"},{s:"assets/handover-flowcards.png",c:"流程卡實拍：一卡一流程的索引——何時做、做完會有什麼、先要有什麼、地雷在哪、對應時程月份；全文在手冊，這裡是給人快速翻的卡片層"},{s:"assets/handover-sop-grade.jpg",c:"對學生端的圖解 SOP：「成績單下載教學」四步驟說明圖——交接不只對同事，對使用者的說明也要圖解到照著走就會（AI 協作製圖）"},{s:"assets/handover-sop-system.jpg",c:"對接手者的系統操作圖解：「已繳款學生統計教學」——後台在哪裡點、每週做一次、統計口徑的提醒都畫進圖裡（畫面為空資料示範）"}]},
 
  {id:"nubao", cat:["ai"], svg:"nubao",
-  title:"🐮 AI 助理「牛寶」系統", status:"wip", statusTxt:"🚧 持續進化中（這個網站也是牛寶蓋的）",
-  one:"把 AI 當團隊成員管理：43 本技能手冊、長期記憶、自動排程與明文化的權限邊界，任何新的 AI 會話都能立刻接手我的工作。",
+  title:"🐮 AI 助理「牛寶」：我怎麼把 AI 當同事管", status:"live", statusTxt:"✅ 每天在用・持續進化中（這個網站也是牛寶蓋的）",
+  one:"把 AI 當團隊成員管理：43 本工作手冊、長期記憶、自動排程與白紙黑字的權限邊界，任何新的 AI 會話都能立刻接手我的工作。",
   num:"43 本技能手冊＋長期記憶＋雲端排程",
   role:"我的角色：AI 的主管。寫它的工作手冊、定它的權限邊界、驗收它的每一次產出——哪些事永遠要回到人身上，由我決定。",
+  learn:"曾經讓 AI 自動貼信箱標籤，它會誤判；解法不是要求它更準，而是收回那個權限改成人工。學到：把 AI 當同事管，最重要的不是教它做更多，而是寫清楚哪些事永遠要回到人身上。",
+  tip:"把 AI 當團隊成員：給它工作手冊（規則與口吻）、讓它有記憶（踩過的坑）、定它的權限（只建議、只讀）。三件事做到，換模型、換電腦都能接手。",
   desc:"我最大的差異化不是會用 AI 聊天，而是把「怎麼把 AI 用好」做成一套會自己長大的系統。43 本技能手冊涵蓋三條業務線的規則、對學生／窗口／內部同事三種擬信口吻、我的視覺風格品味、檔案歸檔規範，甚至「交付前要用哪些專家視角自我檢查」；跨對話記憶讓每一次踩雷都變成防呆紀錄；雲端排程讓例行工作在我睡覺時也照跑。",
   hi:["實際扛起來的工作：兩套信箱分流（SOS＋跨校通識）每日自動運轉、提前交成績主控台、報名分析報告、履歷雙視角總體檢、這個作品集網站——全部在手冊規範下產出，而不是每次重新教",
    "權限治理白紙黑字：AI 只建議不代行、對外信件只建草稿、自動化只「讀＋報告」不寫入我手動管理的空間；發現自動貼標籤會誤判時，解法是收回權限改人工，而不是要求 AI 更準",
@@ -609,10 +661,12 @@ const PROJECTS = [
   shots:[{s:"assets/handover-skills.png",c:"牛寶的「工作手冊書櫃」：40+ 本 skill 的 Notion 目錄鏡像——業務規則、信件口吻、視覺品味、檔案規範全部成冊，這就是任何新 AI 會話能立刻接手的原因"}]},
 
  {id:"marketing", cat:["mkt"], svg:"mkt",
-  title:"🎀 行銷 × 內容作品系列", status:"wip", statusTxt:"🛠 已上線：四大系列 13 件作品，持續擴充中",
+  title:"🎀 行銷 × 內容作品系列", status:"live", statusTxt:"✅ 已上線：四大系列 13 件作品，持續擴充中",
   one:"手繪溫暖拼貼風的年度宣傳系列、創意敘事企劃、開課指引圖解、GDSC 社群經營案——專屬子頁上線。",
   num:"4 大系列 13 件作品已上架",
   role:"我的角色：從視覺、文案到企劃全系列親手產出（Canva＋AI 生圖＋手繪拼貼風）。",
+  learn:"一開始每張圖各自好看，放在一起卻像不同人做的。後來定下一套視覺語言（紙感底、固定配色、雙角色），形式可以變、風格不變。學到：系列感比單張精美更重要。",
+  tip:"社群文宣先定「行動資訊永遠在」的鐵則：日期、QR、平台名每張都有，其他的再玩形式。各平台用原生比例，不硬裁。",
   desc:"行銷與內容作品有自己的專屬子頁：手繪溫暖拼貼風的年度主視覺與時程圖、創意敘事企劃（四格漫畫、LINE 多頁訊息、IG 加開檔期）、把行政 SOP 圖解化的開課指引系列，以及 GDSC 社群經營案（粉專成長 124%、集點企劃、運勢抽籤週邊）——四大系列 13 件已上架，每件附設計思維說明。HTML 信件模板集與更多檔期整理中。",
   hi:["一套視覺語言跑完整個招生檔期：預告→報名→倒數→開課","資訊五層架構＋吉祥物雙角色敘事，資訊多也有秩序","各平台用原生比例：IG 4:5、LINE 1.11:1，不硬裁","所有展出作品皆為實際公開發布過的文宣"],
   tech:["Canva","AI 生圖","創意敘事","社群經營"],
@@ -621,7 +675,7 @@ const PROJECTS = [
 
 
 /* ---------- 整理資料：標題拿掉開頭 emoji（品牌只留手繪與 ✿）、配門牌號碼 ---------- */
-const FEATURED = ["mail", "catlendar", "course"];
+const FEATURED = ["mail", "catlendar", "course", "nubao"];
 const stripEmoji = t => t.replace(/^\p{Extended_Pictographic}️?\s*/u, "");
 PROJECTS.forEach((p, i) => { p.title = stripEmoji(p.title); p.no = "No." + String(i + 1).padStart(2, "0"); });
 const byId = Object.fromEntries(PROJECTS.map(p => [p.id, p]));
@@ -674,10 +728,7 @@ function render(filter) {
   });
   document.getElementById("gridStatus").textContent = `顯示 ${n} 件作品`;
 }
-document.querySelectorAll(".chip").forEach(c => {
-  c.insertAdjacentHTML("beforeend", ` <span class="cnt">${PROJECTS.filter(p => inFilter(p, c.dataset.f)).length}</span>`);
-  c.setAttribute("aria-pressed", String(c.classList.contains("on")));
-});
+document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", String(c.classList.contains("on"))));
 document.getElementById("chips").addEventListener("click", e => {
   const b = e.target.closest(".chip"); if (!b) return;
   document.querySelectorAll(".chip").forEach(c => { c.classList.toggle("on", c === b); c.setAttribute("aria-pressed", String(c === b)); });
@@ -736,6 +787,8 @@ function modalHTML(p) {
     <div class="role">${p.role}</div>
     <h4>亮點</h4>
     <ul>${p.hi.map(h => `<li>${h}</li>`).join("")}</ul>
+    ${p.learn ? `<div class="learn"><b>我踩過的坑</b><p>${p.learn}</p></div>` : ""}
+    ${p.tip ? `<div class="tip"><b>這件事的通用做法</b><p>${p.tip}</p></div>` : ""}
     <h4>技術與方法</h4>
     <div class="tech-tags">${p.tech.map(t => `<span class="pill">${t}</span>`).join("")}</div>
     ${p.link ? `<h4>傳送門</h4><a class="btn btn-line" href="${p.link}" target="_blank" rel="noopener">${p.linkTxt}</a>` : ""}
