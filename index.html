@@ -233,11 +233,6 @@ section.wrap{padding:72px 24px 10px}   /* .wrap 的 padding 會蓋掉 section �
 .numbers div{text-align:center;flex:1;min-width:120px}
 .numbers b{display:block;font-family:var(--sans);font-weight:600;font-size:30px;color:var(--head-ink);letter-spacing:.01em;font-variant-numeric:tabular-nums;white-space:nowrap}
 .numbers small{color:var(--muted);font-size:13px}
-.voices{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.voice{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin:0}
-.voice blockquote{margin:0;font-family:var(--serif);font-size:1.02em;line-height:1.8;color:var(--head-ink)}
-.voice blockquote::before{content:"“";color:var(--pink);font-size:1.6em;line-height:0;margin-right:4px}
-.voice figcaption{margin-top:12px;font-size:.85em;color:var(--muted)}
 .about{display:grid;grid-template-columns:auto 1fr;gap:30px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:32px 34px;align-items:center}
 .ava{width:120px;height:120px;border-radius:50%;background:var(--beige);display:flex;align-items:center;justify-content:center;overflow:hidden}
 .ava img{width:100px;height:100px;object-fit:contain;margin-top:6px}
@@ -516,11 +511,6 @@ dialog{color:var(--ink)}
 
 
 
-<section id="voices" class="wrap" hidden>
-  <div class="sec-head"><h2>常客怎麼說<span class="flower" aria-hidden="true">✿</span></h2><span class="kicker">VOICES</span><p>合作過的同事與各校窗口的回饋，皆經本人同意後刊登。</p></div>
-  <div class="voices" id="voicesGrid"></div>
-</section>
-
 <section id="about" class="wrap">
   <div class="sec-head"><h2>店長是誰<span class="flower" aria-hidden="true">✿</span></h2><span class="kicker">ABOUT</span></div>
   <div class="about">
@@ -760,13 +750,6 @@ const PROJECTS = [
 
 /* ---------- 整理資料：標題拿掉開頭 emoji（品牌只留手繪與 ✿）、配門牌號碼 ---------- */
 const FEATURED = ["mail", "catlendar", "course", "nubao"];
-/* ---------- 見證：陣列是空的就整區不顯示。格式：{who:"合作窗口（某大學）", text:"一句話回饋", work:"mail"(選填，對應作品 id)} ---------- */
-const QUOTES = [];
-function renderVoices() {
-  const sec = document.getElementById("voices"); if (!QUOTES.length) { sec.hidden = true; return; }
-  sec.hidden = false;
-  document.getElementById("voicesGrid").innerHTML = QUOTES.map(q => `<figure class="voice"><blockquote>${q.text}</blockquote><figcaption>— ${q.who}${q.work && byId[q.work] ? `・<a href="#work/${q.work}">${byId[q.work].title}</a>` : ""}</figcaption></figure>`).join("");
-}
 const stripEmoji = t => t.replace(/^\p{Extended_Pictographic}️?\s*/u, "");
 PROJECTS.forEach((p, i) => { p.title = stripEmoji(p.title); p.no = "No." + String(i + 1).padStart(2, "0"); });
 const byId = Object.fromEntries(PROJECTS.map(p => [p.id, p]));
@@ -979,7 +962,6 @@ if (heroSvg && heroSvg.dataset.mobileViewbox) {
 
 render("all");
 document.getElementById("notes").innerHTML = PROJECTS.filter(p => p.tip).map((p, i) => `<div class="note"><i>NOTE ${String(i + 1).padStart(2, "0")}</i><p>${p.tip}</p><a href="#work/${p.id}">來自：${p.title} →</a></div>`).join("");
-renderVoices();
 updatePassport();
 /* 深連結：網址帶 #work/xxx 進站就直接打開那件作品（不新增歷史紀錄） */
 const deep = (location.hash.match(/^#work\/([\w-]+)/) || [])[1];
