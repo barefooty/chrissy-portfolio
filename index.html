@@ -474,6 +474,62 @@ dialog{color:var(--ink)}
 .play .stage .st b{display:block;font-size:1.05em;color:var(--head-ink);margin-bottom:4px}
 .play .checks{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .play .checks span{font-size:11px;padding:3px 9px;border-radius:999px;background:#F2F8F3;color:#3F6B4C;font-weight:700}
+/* 動手玩 v2 補充：時間軸、上傳模擬、舊首頁找入口、多處手改 */
+.play .tl{list-style:none;margin:12px 0 0;padding:0 0 0 18px;border-left:2px solid var(--line)}
+.play .tl li{position:relative;padding:6px 0 6px 14px;font-size:.86em;color:var(--ink);line-height:1.6;opacity:0;animation:pop .3s ease both}
+.play .tl li::before{content:"";position:absolute;left:-24px;top:13px;width:10px;height:10px;border-radius:50%;background:var(--blue);border:2px solid #fff;box-shadow:0 0 0 1.5px var(--blue)}
+.play .tl li.me::before{background:var(--pink-deep);box-shadow:0 0 0 1.5px var(--pink-deep)}
+.play .tl li.sys::before{background:var(--head-ink);box-shadow:0 0 0 1.5px var(--head-ink)}
+.play .tl li b{font-family:var(--sans);font-weight:600;color:var(--head-ink);margin-right:6px;font-variant-numeric:tabular-nums}
+.play .tl li .who{display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:700;margin-right:6px}
+.play .tl li .who.a{background:var(--blue-50);color:var(--blue-ink)}.play .tl li .who.t{background:var(--butter);color:#7A5A2E}.play .tl li .who.s{background:var(--pink-50);color:var(--pink-ink)}.play .tl li .who.m{background:var(--head-ink);color:#fff}
+.play .legend2{display:flex;gap:10px;flex-wrap:wrap;font-size:11.5px;color:var(--muted);margin-top:8px}
+.play .manual{list-style:none;margin:0;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.play .manual li{display:flex;gap:8px;align-items:flex-start;font-size:.84em;color:var(--muted);line-height:1.5}
+.play .manual li i{font-style:normal;flex:none;width:20px;height:20px;border-radius:50%;background:var(--beige);color:var(--muted);font-size:11px;display:inline-flex;align-items:center;justify-content:center;margin-top:2px}
+.play .manual li small{display:block;color:#B8A491;font-size:.9em}
+.play .drop{border:2px dashed var(--blue);border-radius:14px;padding:22px 14px;text-align:center;color:var(--blue-ink);font-size:.9em;cursor:pointer;transition:background .2s;background:#FFFDFA}
+.play .drop:hover{background:var(--blue-50)}
+.play .drop.busy{border-style:solid;cursor:default}
+.play .did{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.play .did li{font-size:.86em;color:var(--ink);opacity:0;animation:pop .3s ease both;display:flex;gap:8px;align-items:center}
+.play .did li::before{content:"✓";width:18px;height:18px;border-radius:50%;background:#8FB49A;color:#fff;font-size:11px;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.play .oldnav{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;font-size:12px}
+.play .oldnav .top{display:flex;gap:6px;align-items:center;background:#2F5FA8;color:#fff;padding:8px 10px;flex-wrap:wrap}
+.play .oldnav .top .lg{font-weight:800;letter-spacing:.04em;margin-right:6px;color:#FFD766}
+.play .oldnav .top button{background:transparent;border:0;color:#fff;font:inherit;font-weight:700;padding:6px 8px;border-radius:6px;cursor:pointer;position:relative}
+.play .oldnav .top button:hover{background:rgba(255,255,255,.15)}
+.play .oldnav .dd{display:none;position:absolute;top:100%;left:0;background:#6F8FCB;color:#fff;min-width:170px;padding:6px 0;border-radius:0 0 8px 8px;z-index:3;text-align:left;box-shadow:0 8px 18px rgba(0,0,0,.18)}
+.play .oldnav .top button[aria-expanded="true"] .dd{display:block}
+.play .oldnav .dd span{display:block;padding:6px 12px;font-weight:600}
+.play .oldnav .dd span:hover{background:rgba(255,255,255,.18)}
+.play .oldnav .hero{height:54px;background:linear-gradient(90deg,#0B1E3F,#12356E 60%,#0B1E3F);color:#FFD766;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;letter-spacing:.1em}
+.play .oldnav .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:10px}
+.play .oldnav .tiles button{border:0;border-radius:10px;padding:9px 4px;font:inherit;font-weight:700;color:#fff;background:linear-gradient(180deg,#FF9A3C,#F0741A);cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.12)}
+.play .oldnav .tiles button.b{background:linear-gradient(180deg,#2E8BD8,#1B63B6)}
+.play .oldnav .tiles button.no{animation:shake .3s ease}
+@keyframes shake{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.play .oldnav .tiles button.yes,.play .oldnav .dd span.yes{outline:3px solid #8FB49A;outline-offset:-3px}
+@media (max-width:640px){.play .oldnav .tiles{grid-template-columns:repeat(2,1fr)}}
+.play .places{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:640px){.play .places{grid-template-columns:1fr}}
+.play .places li{border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:.84em;background:var(--card);cursor:pointer;transition:border-color .2s,background .2s}
+.play .places li b{display:block;font:600 11px/1 var(--sans);letter-spacing:.14em;color:var(--blue-ink);margin-bottom:6px}
+.play .places li .v{font-family:var(--sans);color:var(--ink)}
+.play .places li.old .v{color:var(--pink-ink);text-decoration:line-through}
+.play .places li.old::after{content:"還是舊的，點一下手動改";display:block;font-size:11px;color:var(--pink-ink);margin-top:4px}
+.play .places li.new{border-color:#8FB49A;background:#F2F8F3}
+.play .places li.new::after{content:"✓ 已同步";display:block;font-size:11px;color:#3F6B4C;margin-top:4px}
+.play .places li.auto{cursor:default}
+.play .mini{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+@media (max-width:640px){.play .mini{grid-template-columns:1fr 1fr}}
+.play .mini div{border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;background:var(--card);opacity:0;animation:pop .35s ease both}
+.play .mini b{display:block;font-family:var(--sans);font-size:20px;color:var(--head-ink)}
+.play .mini span{font-size:11px;color:var(--muted)}
+.play .bars{display:flex;align-items:flex-end;gap:8px;height:90px;padding:10px 12px 0;margin-top:8px}
+.play .bars div{flex:1;background:linear-gradient(180deg,var(--blue),var(--blue-deep));border-radius:6px 6px 0 0;position:relative;height:0;transition:height .6s ease}
+.play .bars div span{position:absolute;left:0;right:0;bottom:-18px;text-align:center;font-size:10px;color:var(--muted);white-space:nowrap}
+.play .bars div i{position:absolute;left:0;right:0;top:-16px;text-align:center;font-style:normal;font-size:10px;color:var(--head-ink);font-family:var(--sans)}
 @media (prefers-reduced-motion: reduce){.play *{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -968,32 +1024,33 @@ const esc = t => t.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&
 const win = (title, inner) => `<div class="win"><div class="wt"><i></i><i></i><i></i>${title}</div>${inner}</div>`;
 const ph = (t, s) => `<div class="ph"><b>${t}</b><small>${s}</small></div>`;
 
-/* 01 信箱：你來挑，再交給小幫手 */
+/* 01 信箱：你來挑，再交給小幫手（討論區通知分「老師已回」與「沒人回、要追」） */
 const MAILS = [
-  ["甲大學 王O明", "想申請退費，請問流程", "reply"], ["ewant 討論區", "[課程A] 新的討論：作業二怎麼交", "notice"],
-  ["ewant 討論區", "[課程B] 老師已回覆：期末範圍", "notice"], ["乙大學 教務處", "學生名單更正一名", "reply"],
-  ["ewant 討論區", "[課程A] 新的討論：影片打不開", "notice"], ["系統通知", "本週課程進度提醒", "post"],
+  ["甲大學 王O明", "想申請退費，請問流程", "reply"], ["ewant 討論區", "[課程A] 老師已回覆：作業二怎麼交", "notice"],
+  ["ewant 討論區", "[課程A] 新的討論：影片打不開（還沒人回）", "track"], ["乙大學 教務處", "學生名單更正一名", "reply"],
+  ["ewant 討論區", "[課程B] 老師已回覆：期末範圍", "notice"], ["系統通知", "本週課程進度提醒", "post"],
   ["丙大學 林O婷", "成績什麼時候會出來？", "reply"], ["ewant 討論區", "[課程C] 老師已回覆：補考", "notice"],
-  ["ewant 討論區", "[課程B] 新的討論：心得字數", "notice"], ["平台公告", "系統維護通知（週日 02:00）", "post"]];
+  ["ewant 討論區", "[課程B] 新的討論：心得字數（還沒人回）", "track"], ["平台公告", "系統維護通知（週日 02:00）", "post"]];
 PLAY.mail = {
-  html: () => ph("你來挑挑看：哪幾封真的要回？", "點一下勾選，再交給小幫手分類") +
+  html: () => ph("你來挑挑看：哪幾封需要有人處理？", "點一下勾選，再交給小幫手分類") +
     win("共用信箱・今天 10 封（示範）", `<ul class="mail">${MAILS.map((m, i) => `<li role="checkbox" aria-checked="false" data-i="${i}" data-g="${m[2]}"><span class="dot"></span><span class="from">${m[0]}</span><span class="sub">${m[1]}</span><span class="tagx" hidden></span><span class="pick"></span></li>`).join("")}</ul>`) +
     `<div class="pbar"><button class="pb go" data-act="sort">交給小幫手分類</button><button class="pb ghost" data-act="reset">重來</button></div><div class="result"></div>
-     <p class="note">真實情況：SOS 最忙一週 333 封、最多一天 114 封。小幫手每個工作日跑兩次，你只要讀一封報告。</p>`,
+     <p class="note">討論區通知不是全部一句帶過：老師已經回的，一句帶過；還沒人回的，小幫手會標成「待追蹤」一直追，直到老師回覆。真實情況：SOS 最忙一週 333 封、最多一天 114 封。</p>`,
   init: root => {
     const ul = root.querySelector(".mail"), res = root.querySelector(".result");
     ul.addEventListener("click", e => { const li = e.target.closest("li"); if (!li || ul.dataset.done) return; li.setAttribute("aria-checked", li.getAttribute("aria-checked") !== "true"); });
     root.addEventListener("click", e => {
       const b = e.target.closest("[data-act]"); if (!b) return;
-      if (b.dataset.act === "reset") { ul.dataset.done = ""; res.textContent = ""; ul.querySelectorAll("li").forEach(li => { li.setAttribute("aria-checked", "false"); li.className = ""; li.querySelector(".tagx").hidden = true; }); return; }
+      if (b.dataset.act === "reset") { ul.dataset.done = ""; res.textContent = ""; [...ul.children].sort((x, y) => +x.dataset.i - +y.dataset.i).forEach(li => { li.setAttribute("aria-checked", "false"); li.className = ""; li.querySelector(".tagx").hidden = true; ul.appendChild(li); }); return; }
+      if (ul.dataset.done) return;
       const picked = [...ul.querySelectorAll('li[aria-checked="true"]')].map(li => +li.dataset.i);
-      const names = { reply: "要回", notice: "通知", post: "公告" }, order = { reply: 0, post: 1, notice: 2 };
+      const names = { reply: "要回", track: "待追蹤", notice: "老師已回", post: "公告" }, order = { reply: 0, track: 1, post: 2, notice: 3 };
       const lis = [...ul.children].sort((a, b) => order[a.dataset.g] - order[b.dataset.g]);
-      lis.forEach((li, k) => { setTimeout(() => { li.className = "g-" + li.dataset.g; const t = li.querySelector(".tagx"); t.textContent = names[li.dataset.g]; t.hidden = false; ul.appendChild(li); }, RM ? 0 : k * 70); });
-      const truth = MAILS.map((m, i) => m[2] === "reply" ? i : -1).filter(i => i >= 0);
+      lis.forEach((li, k) => { setTimeout(() => { li.className = "g-" + (li.dataset.g === "track" ? "reply" : li.dataset.g); const t = li.querySelector(".tagx"); t.textContent = names[li.dataset.g]; t.hidden = false; ul.appendChild(li); }, RM ? 0 : k * 70); });
+      const truth = MAILS.map((m, i) => (m[2] === "reply" || m[2] === "track") ? i : -1).filter(i => i >= 0);
       const hit = picked.filter(i => truth.includes(i)).length, miss = truth.length - hit, extra = picked.length - hit;
       ul.dataset.done = "1";
-      setTimeout(() => { res.textContent = `小幫手挑出 3 封要回、5 封通知一句帶過、2 封公告。你勾中 ${hit} 封${miss ? `、漏了 ${miss} 封` : ""}${extra ? `、多勾 ${extra} 封` : ""}。要回的永遠排最上面，通知不用再一封封點開。`; }, RM ? 0 : 800);
+      setTimeout(() => { res.textContent = `小幫手的分法：3 封學生與學校來信要回、2 封討論區沒人回要追蹤（提醒老師）、3 封老師已回一句帶過、2 封公告。你勾中 ${hit} 封${miss ? `、漏了 ${miss} 封` : ""}${extra ? `、多勾 ${extra} 封` : ""}。要處理的永遠排最上面。`; }, RM ? 0 : 800);
     });
   }
 };
@@ -1047,45 +1104,59 @@ PLAY.course = {
   }
 };
 
-/* 04 提前交成績：期限試算 */
+/* 04 提前交成績：選日期 → 反推死線 → 誰在哪一天收到什麼 */
 const GR = {
-  "9/1": { need: "9/1（二）", days: [["9/1", "二", "need"], ["8/31", "一", "cnt"], ["8/30", "日", "skip"], ["8/29", "六", "skip"], ["8/28", "五", "cnt"], ["8/27", "四", "dl"]], dl: "8/27（四）", why: "往前數 3 個工作日，跳過 8/29、8/30 週末。" },
-  "8/26": { need: "8/26（三）", days: [["8/26", "三", "need"], ["8/25", "二", "cnt"], ["8/24", "一", "cnt"], ["8/23", "日", "skip"], ["8/22", "六", "skip"], ["8/21", "五", "dl"]], dl: "8/21（五）", why: "往前數 3 個工作日，跳過 8/22、8/23 週末。" },
-  "7/7": { need: "7/7（二）", days: [["7/7", "二", "need"], ["7/6", "一", "cnt"], ["7/5", "日", "skip"], ["7/4", "六", "skip"], ["7/3", "五", "skip"], ["7/2", "四", "skip"], ["7/1", "三", "skip"], ["6/30", "二", "skip"], ["6/29", "一", "skip"], ["6/26", "五", "cnt"], ["6/25", "四", "dl"]], dl: "6/25（四）", why: "跳過週末，還跳過 6/29 到 7/3 的全校暑休，所以死線一口氣提前到 6/25。" }
+  "9/1": { need: "9/1（二）", days: [["9/1", "二", "need"], ["8/31", "一", "cnt"], ["8/30", "日", "skip"], ["8/29", "六", "skip"], ["8/28", "五", "cnt"], ["8/27", "四", "dl"]], dl: "8/27（四）", remind: "8/25（二）", ready: "8/31（一）", why: "往前數 3 個工作日，跳過 8/29、8/30 週末。" },
+  "8/26": { need: "8/26（三）", days: [["8/26", "三", "need"], ["8/25", "二", "cnt"], ["8/24", "一", "cnt"], ["8/23", "日", "skip"], ["8/22", "六", "skip"], ["8/21", "五", "dl"]], dl: "8/21（五）", remind: "8/19（三）", ready: "8/25（二）", why: "往前數 3 個工作日，跳過 8/22、8/23 週末。" },
+  "7/7": { need: "7/7（二）", days: [["7/7", "二", "need"], ["7/6", "一", "cnt"], ["7/5", "日", "skip"], ["7/4", "六", "skip"], ["7/3", "五", "skip"], ["7/2", "四", "skip"], ["7/1", "三", "skip"], ["6/30", "二", "skip"], ["6/29", "一", "skip"], ["6/26", "五", "cnt"], ["6/25", "四", "dl"]], dl: "6/25（四）", remind: "6/23（二）", ready: "7/6（一）", why: "跳過週末，還跳過 6/29 到 7/3 的全校暑休，所以死線一口氣提前到 6/25。" }
 };
 PLAY.grades = {
-  html: () => ph("選一個學生需要成績的日期，看期限引擎怎麼反推", "示範以 3 個工作日反推，暑休為示範日期") +
+  html: () => ph("選一個學生需要成績的日期，看系統怎麼反推、誰在哪一天收到什麼", "示範以 3 個工作日反推；暑休與提醒天數為示範") +
     `<div class="pbar">${Object.keys(GR).map((k, i) => `<button class="pb" data-k="${k}" aria-pressed="${i === 0}">${GR[k].need}</button>`).join("")}</div>
      <div class="days" data-days></div><div class="result" data-res></div>
-     <p class="note">改造前：這些日期靠承辦人用手算、用腦記，15 件案子就是 15 個不同的死線。現在系統算，改一格狀態就自動交棒。</p>`,
+     <ul class="tl" data-tl></ul>
+     <div class="legend2"><span>● 系統自動做</span><span style="color:var(--pink-ink)">● 我做的只有一件：改一格狀態</span></div>
+     <p class="note">改造前：這些日期和要提醒誰，靠承辦人用手算、用腦記，15 件案子就是 15 條不同的時間線。改造後：申請一進來，全部自動排好，人只負責判斷。</p>`,
   init: root => {
     const draw = k => {
       const g = GR[k];
       root.querySelectorAll("[data-k]").forEach(b => b.setAttribute("aria-pressed", b.dataset.k === k));
       root.querySelector("[data-days]").innerHTML = g.days.map((d, i) => `<span class="${d[2]}" style="animation:pop .3s ease ${RM ? 0 : i * 60}ms both"><b>${d[0]}</b>${d[1]}</span>`).join("");
       root.querySelector("[data-res]").textContent = `學生需要成績：${g.need} → 老師結算死線：${g.dl}。${g.why}`;
+      const ev = [
+        ["sys", "申請送出當天", "<span class='who s'>學生</span>自動收到「已收到申請」回信；案件自動建檔，一位學生修兩門課就拆成兩條線。"],
+        ["sys", "同一天", "<span class='who a'>同事 A</span>收到交棒信：學生、課程、需成績日、老師結算死線都帶齊，連要問老師的信稿都寫好放在裡面。"],
+        ["sys", "同事寄出後", "<span class='who t'>老師</span>收到請求提前結算的信（同事按寄出）。"],
+        ["sys", g.remind, "<span class='who a'>同事 A</span>收到提醒：老師結算死線剩 2 個工作日，還沒收到成績就再催一次。"],
+        ["sys", g.dl, "老師結算死線。成績一進來，<span class='who m'>我</span>收到通知。"],
+        ["me", "我改一格狀態", "就這一步是人做的：確認無誤後把狀態改成「可核章」。"],
+        ["sys", "改完的瞬間", "核章文件自動生成；給<span class='who s'>學生</span>的通知信與給<span class='who t'>學校窗口</span>的檢送信草稿自動備好。"],
+        ["sys", g.ready, "<span class='who s'>學生</span>收到「成績可領取」通知，比需要的日子早一個工作日。"]];
+      root.querySelector("[data-tl]").innerHTML = ev.map((e, i) => `<li class="${e[0]}" style="animation-delay:${RM ? 0 : 120 + i * 90}ms"><b>${e[1]}</b>${e[2]}</li>`).join("");
     };
     root.addEventListener("click", e => { const b = e.target.closest("[data-k]"); if (b) draw(b.dataset.k); });
     draw("9/1");
   }
 };
 
-/* 05 VBA 工具箱：排出作業順序 */
-const VBA_STEPS = ["上傳學校交來的名單", "核對帳號格式與重複", "統計各課程人數", "產生匯入用的檔案", "下載結果，原始檔不動"];
+/* 05 VBA 工具箱：以前要自己做的 8 件事 vs 現在上傳就完成 */
 PLAY.vba = {
-  html: () => ph("排排看：一份名單進工具箱，正確順序是什麼？", "拖曳，或用 ▲▼ 調整") +
-    `<ul class="sort" data-sort>${[2, 4, 0, 3, 1].map(i => `<li draggable="true" data-i="${i}"><span class="h">⋮⋮</span><span class="t">${VBA_STEPS[i]}</span><span class="mv"><button type="button" data-mv="-1" aria-label="上移">▲</button><button type="button" data-mv="1" aria-label="下移">▼</button></span></li>`).join("")}</ul>
-     <div class="result" data-res></div>
-     <p class="note">改造前：51 個筆記頁面裡的巨集，要用哪支、先用哪支，只有前任知道。改造後：工具箱照作業流程排，選一項業務就一步一步帶著做，原始檔永遠不被改到。</p>`,
+  html: () => ph("以前跑一支巨集要做的事 vs 現在", "右邊點一下，模擬上傳一份名單") +
+    `<div class="two">
+      ${win("改造前・每次都要自己來", `<ul class="manual">${[["翻筆記找到那一支巨集", "散在 51 頁裡，先確定沒找錯版本"], ["開 Excel、啟用巨集，把檔案另存一份", "不另存會直接改到原始檔"], ["改程式裡的路徑", "每台電腦路徑不同"], ["改工作表名稱、欄位位置", "學校交來的格式每次都不一樣"], ["手動刪掉範例列與空白列", "漏刪就多算一筆"], ["執行，看它有沒有跑完", "一半的巨集已經跑不動"], ["跳錯就回去找哪一步寫錯", "沒人記得當初為什麼這樣寫"], ["做完記得自己備份", "沒人提醒"]].map((x, i) => `<li><i>${i + 1}</i><span>${x[0]}<small>${x[1]}</small></span></li>`).join("")}</ul>`)}
+      ${win("改造後・工具箱", `<div style="padding:12px"><div class="drop" data-drop role="button" tabindex="0">📄 點這裡，模擬上傳「某校名單.xlsx」</div><ul class="did" data-did></ul><div class="result" data-res></div></div>`)}
+     </div>
+     <p class="note">62 支工具照作業流程排，選一項業務就一步一步帶著做；上傳、處理、下載三步，原始檔永遠不被改到。</p>`,
   init: root => {
-    const ul = root.querySelector("[data-sort]"), res = root.querySelector("[data-res]");
-    const check = () => { const lis = [...ul.children]; let ok = 0; lis.forEach((li, i) => { const good = +li.dataset.i === i; li.classList.toggle("ok", good); if (good) ok++; }); res.textContent = ok === lis.length ? "全對！工具箱裡的導覽就是這個順序：上傳 → 核對 → 統計 → 產檔 → 下載。" : `目前正確位置：${ok} / ${lis.length}`; };
-    ul.addEventListener("click", e => { const b = e.target.closest("[data-mv]"); if (!b) return; const li = b.closest("li"), d = +b.dataset.mv; if (d < 0 && li.previousElementSibling) ul.insertBefore(li, li.previousElementSibling); if (d > 0 && li.nextElementSibling) ul.insertBefore(li.nextElementSibling, li); check(); });
-    let dragging = null;
-    ul.addEventListener("dragstart", e => { dragging = e.target.closest("li"); dragging.classList.add("drag"); e.dataTransfer.effectAllowed = "move"; });
-    ul.addEventListener("dragend", () => { if (dragging) dragging.classList.remove("drag"); dragging = null; check(); });
-    ul.addEventListener("dragover", e => { e.preventDefault(); const li = e.target.closest("li"); if (!li || li === dragging) return; const r = li.getBoundingClientRect(); ul.insertBefore(dragging, e.clientY < r.top + r.height / 2 ? li : li.nextSibling); });
-    check();
+    const drop = root.querySelector("[data-drop]"), did = root.querySelector("[data-did]"), res = root.querySelector("[data-res]");
+    let t = [];
+    const run = () => {
+      if (drop.classList.contains("busy")) return;
+      drop.classList.add("busy"); drop.textContent = "處理中…"; did.innerHTML = ""; res.textContent = ""; t.forEach(clearTimeout); t = [];
+      const steps = ["讀取檔案，原始檔不動", "自動找到表頭與欄位（不用改程式）", "剔除範例列、空白列、重複帳號", "格式檢查：帳號、Email、學號", "統計各課程人數", "產生匯入用檔案，附處理紀錄"];
+      steps.forEach((s, i) => t.push(setTimeout(() => { did.insertAdjacentHTML("beforeend", `<li>${s}</li>`); if (i === steps.length - 1) { drop.classList.remove("busy"); drop.textContent = "✓ 完成，下載結果（再點一次重跑）"; res.textContent = "以前 8 個步驟、每一步都可能出錯；現在上傳就完成，處理紀錄一起給你。重建時順手修掉 11 個會毀資料的地雷。"; } }, RM ? 0 : 450 * (i + 1))));
+    };
+    drop.addEventListener("click", run); drop.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); run(); } });
   }
 };
 
@@ -1115,60 +1186,98 @@ PLAY["sos-site"] = {
   }
 };
 
-/* 07 ewant：依身分找入口 */
-const EW_ZONES = ["大學課程", "高中課程", "微學程", "企業培訓", "教師專區", "合作學校", "活動公告"];
-const EW_WHO = { u: ["我是大學生", "大學課程", "大學生入口：找課、跨校抵免，一條路"], h: ["我是高中生", "高中課程", "高中生入口：先修課程、升學加分，一條路"], s: ["我是社會人士", "企業培訓", "社會學習者入口：微學程、企業培訓，一條路"] };
+/* 07 ewant：改版前，請你找到 SOS 的入口 */
 PLAY.ewant = {
-  html: () => ph("選一個身分，看改版前後怎麼找入口", "改版核心：從「機構分類」改成「依身分分流」") +
-    `<div class="pbar">${Object.entries(EW_WHO).map(([k, v], i) => `<button class="pb" data-w="${k}" aria-pressed="${i === 0}">${v[0]}</button>`).join("")}</div>
-     <div class="two">${win("改版前・7 個專區並列", `<div style="padding:12px"><div class="zones" data-before>${EW_ZONES.map(z => `<span>${z}</span>`).join("")}</div><p class="note">每一區都在對你招手，要先懂機構怎麼分類。</p></div>`)}
-     ${win("改版後・依身分找入口", `<div style="padding:12px"><div class="zones" data-after><span>我是大學生</span><span>我是高中生</span><span>我是社會人士</span></div><p class="note" data-cap></p></div>`)}</div>`,
-  init: root => {
-    const draw = k => {
-      root.querySelectorAll("[data-w]").forEach(b => b.setAttribute("aria-pressed", b.dataset.w === k));
-      const target = EW_WHO[k][1];
-      root.querySelectorAll("[data-before] span").forEach(s => { s.className = s.textContent === target ? "hot" : ""; });
-      root.querySelectorAll("[data-after] span").forEach(s => { s.className = s.textContent === EW_WHO[k][0] ? "hot" : "dim"; });
-      root.querySelector("[data-cap]").textContent = EW_WHO[k][2] + "。";
-    };
-    root.addEventListener("click", e => { const b = e.target.closest("[data-w]"); if (b) draw(b.dataset.w); });
-    draw("u");
-  }
-};
-
-/* 08 報名數據：點數字，看它從哪裡算出來 */
-PLAY.analysis = {
-  html: () => ph("點任何一個數字，看它怎麼算出來", "報告最怕的不是醜，是被問倒") +
-    `<div class="two">${win("改造前・系統原始檔", `<div class="sheet">學號      姓名    課程   狀態    金額\nS01xx    王O明   A101   已繳費   900\nS02xx    林O婷   B203   退費    -900\nS03xx    陳O安   A101   已繳費  1800\nS04xx    張O宇   C305   停修     900\n…（幾千列，每個人看到的數字都不一樣）</div>`)}
-     ${win("改造後・決策報告", `<div style="padding:12px"><div class="kpis"><button aria-expanded="false" data-why="人次＝一位學生修兩門課算 2；資料截止 8/31；退費者不計入。寫在報告頭的小字裡。"><b>2,941</b><span>報名人次</span></button><button aria-expanded="false" data-why="校數＝名單上出現過的合作學校去重；含只有 1 人報名的學校。"><b>59</b><span>合作學校</span></button><button aria-expanded="false" data-why="通過＝成績 ≥ 60；分母排除停修，所以比對外保守口徑略高，報告兩種都列。"><b>%</b><span>通過率</span></button></div><div class="result" data-res></div></div>`)}</div>
-     <p class="note">三份檔案（Excel 資料表、互動報告、歷年資料庫）數字完全一致；每張圖旁邊都有「重點觀察」，報告自己會簡報。</p>`,
-  init: root => {
-    root.addEventListener("click", e => { const b = e.target.closest("[data-why]"); if (!b) return; const on = b.getAttribute("aria-expanded") === "true"; root.querySelectorAll("[data-why]").forEach(x => x.setAttribute("aria-expanded", "false")); if (!on) { b.setAttribute("aria-expanded", "true"); root.querySelector("[data-res]").textContent = b.dataset.why; } else root.querySelector("[data-res]").textContent = ""; });
-  }
-};
-
-/* 09 交接系統：改一處，三處同步 */
-const HO = { "5/4": ["5/4（一）", "6/28（日）", "7/1（三）"], "5/11": ["5/11（一）", "7/5（日）", "7/8（三）"], "5/18": ["5/18（一）", "7/12（日）", "7/15（三）"] };
-PLAY.handover = {
-  html: () => ph("改一個日期，三種版本一起變", "一份原稿，三種輸出") +
-    `<div class="pbar"><span class="note" style="margin:0 6px 0 0">報名開始日：</span>${Object.keys(HO).map((k, i) => `<button class="pb" data-d="${k}" aria-pressed="${i === 0}">${k}</button>`).join("")}</div>
-     <div class="outs">
-      <div class="o" data-o><b>AI 手冊</b>報名期間 <mark data-f="0"></mark> 至 <mark data-f="1"></mark>；截止後兩天內寄成班通知。</div>
-      <div class="o" data-o><b>WORD 手冊</b>第 3 章「報名作業」：<mark data-f="0"></mark> 開放報名，<mark data-f="1"></mark> 23:59 截止。</div>
-      <div class="o" data-o><b>EXCEL 時程</b>報名開始 <mark data-f="0"></mark>｜報名截止 <mark data-f="1"></mark>｜開課 <mark data-f="2"></mark></div>
+  html: () => ph("改版前的首頁：請你找到「SOS 暑期線上學院」的入口", "點你覺得對的地方（模擬畫面，依原站結構重製）") +
+    `<div class="oldnav" data-old>
+      <div class="top"><span class="lg">ewant</span>
+        <button type="button" data-menu="課程探索" aria-expanded="false">課程探索 ▾<span class="dd"><span data-item="大學課程">大學課程</span><span data-item="高中課程">高中課程</span><span data-item="微學程">微學程</span></span></button>
+        <button type="button" data-menu="合作夥伴" aria-expanded="false">合作夥伴 ▾<span class="dd"><span data-item="合作學校">合作學校</span><span data-item="合作機構">合作機構</span></span></button>
+        <button type="button" data-menu="認識ewant" aria-expanded="false">認識 ewant ▾<span class="dd"><span data-item="新手上路">新手上路</span><span data-item="操作指南">操作指南</span><span data-item="大學跨校通識數字課程">大學跨校通識數字課程</span><span data-item="SOS" data-win="1">SOS! 暑期線上學院</span><span data-item="高中自主學習">高中自主學習</span><span data-item="高中人才培育">高中人才培育</span><span data-item="公務員增能">公務員增能</span></span></button>
+      </div>
+      <div class="hero">財經新聞看門道（輪播）</div>
+      <div class="tiles">${["熱門推薦", "大學學分", "高中自主學習", "Global Campus", "在職進修", "教育部計畫", "UHCOOL", "學習達人秀"].map((t, i) => `<button type="button" data-item="${t}" class="${i === 3 || i === 7 ? "b" : ""}">${t}</button>`).join("")}</div>
      </div>
-     <p class="note">改造前：三份文件各自手改，永遠有一份是舊的。改造後：只改原稿，跑一次腳本三種輸出同步。示範日期為虛構。</p>`,
+     <div class="result" data-res></div>
+     <div class="ph" style="margin-top:16px"><b>改版後：先問你是誰</b><small>同一個目標，點一次就到</small></div>
+     <div class="zones" data-after><span data-who="u">我是大學生</span><span data-who="h">我是高中生</span><span data-who="s">我是社會人士</span></div>
+     <div class="note" data-cap>點「我是大學生」看看。</div>`,
   init: root => {
-    const draw = k => {
-      root.querySelectorAll("[data-d]").forEach(b => b.setAttribute("aria-pressed", b.dataset.d === k));
-      root.querySelectorAll("[data-f]").forEach(m => m.textContent = HO[k][+m.dataset.f]);
-      root.querySelectorAll("[data-o]").forEach(o => { o.classList.remove("flash"); void o.offsetWidth; o.classList.add("flash"); setTimeout(() => o.classList.remove("flash"), 700); });
-    };
-    root.addEventListener("click", e => { const b = e.target.closest("[data-d]"); if (b) draw(b.dataset.d); });
-    draw("5/4");
+    let tries = 0, found = false; const res = root.querySelector("[data-res]");
+    root.querySelector("[data-old]").addEventListener("click", e => {
+      const nav = e.target.closest("[data-menu]"); const item = e.target.closest("[data-item]");
+      if (item) {
+        e.stopPropagation();
+        if (found) return;
+        tries++;
+        if (item.dataset.win) { found = true; item.classList.add("yes"); res.textContent = `找到了，在「認識 ewant」下拉選單的第 4 項。你點了 ${tries} 次。它跟「新手上路」「公務員增能」排在一起，和下面橘色的「大學學分」「高中自主學習」又是另一套分類，使用者要先猜機構怎麼分。`; }
+        else { item.classList.remove("no"); void item.offsetWidth; item.classList.add("no"); res.textContent = `不在「${item.dataset.item}」。再找找（第 ${tries} 次）。提示：它藏在某個下拉選單裡。`; }
+        return;
+      }
+      if (nav) { const open = nav.getAttribute("aria-expanded") === "true"; root.querySelectorAll("[data-menu]").forEach(b => b.setAttribute("aria-expanded", "false")); nav.setAttribute("aria-expanded", String(!open)); }
+    });
+    const cap = { u: "大學生入口：SOS 暑期線上學院、跨校通識、大學學分，一條路到底。", h: "高中生入口：先修課程、UHCOOL、升學加分。", s: "社會學習者入口：在職進修、微學程、公務員增能。" };
+    root.querySelector("[data-after]").addEventListener("click", e => { const s = e.target.closest("[data-who]"); if (!s) return; root.querySelectorAll("[data-who]").forEach(x => x.className = x === s ? "hot" : "dim"); root.querySelector("[data-cap]").textContent = cap[s.dataset.who]; });
   }
 };
 
+/* 08 報名數據：一鍵整理，數字與圖馬上出來（示範數字） */
+PLAY.analysis = {
+  html: () => ph("改造前的原始檔，按一下「整理」看會變成什麼", "示範數字，非真實金額") +
+    `<div class="two">
+      ${win("改造前・系統匯出的原始檔", `<div class="sheet">學號    姓名    課程   狀態      繳費   備註
+S01xx  王O明   A101   已繳費    900
+S02xx  林O婷   B203   退選      -900   手續費另計
+S03xx  陳O安   A101   已繳費   1800
+S04xx  張O宇   C305   停修      900    不退費
+S05xx  李O慈   A101   已繳費      0    低收免費
+S06xx  吳O宏   B203   退選      -900
+…（幾千列：退了幾個人？收了多少？低收、手續費怎麼算？每個人算出來都不一樣）</div>`)}
+      ${win("改造後・決策報告", `<div style="padding:12px"><div class="pbar" style="margin:0"><button class="pb go" data-act="go">整理成報告</button><button class="pb ghost" data-act="reset">重來</button></div><div class="mini" data-mini hidden></div><div class="bars" data-bars hidden></div><div class="result" data-res></div></div>`)}
+     </div>
+     <p class="note">改造前：資料難看、難對帳，退選人數與實收金額（低收免費、手續費）每次都要重算。改造後：一次整理，數字、口徑、圖表都在同一份報告；三份檔案數字完全一致，明年重跑一次就好。</p>`,
+  init: root => {
+    const mini = root.querySelector("[data-mini]"), bars = root.querySelector("[data-bars]"), res = root.querySelector("[data-res]");
+    root.addEventListener("click", e => {
+      const b = e.target.closest("[data-act]"); if (!b) return;
+      if (b.dataset.act === "reset") { mini.hidden = bars.hidden = true; res.textContent = ""; return; }
+      mini.hidden = false;
+      mini.innerHTML = [["2,941", "報名人次"], ["186", "退選人次（示範）"], ["59", "合作學校"], ["37", "課程"], ["口徑一致", "低收免費、手續費分開列"], ["0 筆", "三份檔案數字差異"]].map((x, i) => `<div style="animation-delay:${RM ? 0 : i * 110}ms"><b>${x[0]}</b><span>${x[1]}</span></div>`).join("");
+      bars.hidden = false; bars.innerHTML = [["A101", 68], ["B203", 45], ["C305", 90], ["D118", 30], ["E221", 56]].map(x => `<div data-h="${x[1]}"><i>${x[1]}</i><span>${x[0]}</span></div>`).join("");
+      setTimeout(() => bars.querySelectorAll("div").forEach(d => d.style.height = d.dataset.h + "%"), 50);
+      res.textContent = "每個數字旁邊都寫口徑：人次怎麼算、退費怎麼互抵、低收與手續費放哪一欄。主管在會議上可以直接講，被問到也答得出來。";
+    });
+  }
+};
+
+/* 09 交接系統：改造前要去 4 個地方改、還要核對；改造後改一處 */
+const HO = { "5/4": ["5/4（一）", "6/28（日）"], "5/11": ["5/11（一）", "7/5（日）"], "5/18": ["5/18（一）", "7/12（日）"] };
+const HO_PLACES = [["WORD 手冊 第 3 章", d => `報名期間：${d[0]} 至 ${d[1]} 23:59`], ["EXCEL 時程表", d => `報名開始 ${d[0]}｜報名截止 ${d[1]}`], ["NOTION 承辦頁", d => `📅 報名 ${d[0]} – ${d[1]}`], ["給學校的信件範本", d => `敬請協助於 ${d[1]} 前完成報名`]];
+PLAY.handover = {
+  html: () => ph("今年報名日期改了，改造前後各要做幾件事？", "先在「改造前」把四個地方一一改完，再切到「改造後」") +
+    `<div class="pbar"><button class="pb" data-mode="before" aria-pressed="true">改造前</button><button class="pb" data-mode="after" aria-pressed="false">改造後</button><span class="note" style="margin:0 0 0 auto">報名開始改為：</span>${Object.keys(HO).map((k, i) => `<button class="pb ghost" data-d="${k}" aria-pressed="${i === 0}">${k}</button>`).join("")}</div>
+     <ul class="places" data-places></ul><div class="result" data-res></div>
+     <p class="note">改造前：規則散在 Word、Excel、Notion、信件範本裡，格式各不相同，改完還要一份一份核對有沒有漏。改造後：只改原稿，三種輸出（AI 手冊、Word 手冊、Excel 時程）由程式生成，不需要核對改了沒。</p>`,
+  init: root => {
+    let mode = "before", cur = "5/4", fixed = new Set();
+    const list = root.querySelector("[data-places]"), res = root.querySelector("[data-res]");
+    const draw = () => {
+      root.querySelectorAll("[data-mode]").forEach(b => b.setAttribute("aria-pressed", b.dataset.mode === mode));
+      root.querySelectorAll("[data-d]").forEach(b => b.setAttribute("aria-pressed", b.dataset.d === cur));
+      const d = HO[cur], old = HO["5/4"];
+      list.innerHTML = HO_PLACES.map((p, i) => { const synced = mode === "after" || fixed.has(i) || cur === "5/4"; return `<li class="${mode === "after" ? "new auto" : synced ? "new" : "old"}" data-p="${i}"><b>${p[0]}</b><span class="v">${synced ? p[1](d) : p[1](old)}</span></li>`; }).join("");
+      if (mode === "before") { const left = cur === "5/4" ? 0 : HO_PLACES.length - fixed.size; res.textContent = cur === "5/4" ? "先選一個新的報名日期。" : left ? `還有 ${left} 處是舊日期，要自己一個一個改，改完還得再核對一次。` : "四處都改好了。但你確定沒有第五處嗎？去年的信件副本、網站公告……這就是改造前每年的焦慮。"; }
+      else res.textContent = cur === "5/4" ? "選一個新的報名日期看看。" : "原稿改一次，所有輸出同步，0 處要核對。";
+    };
+    root.addEventListener("click", e => {
+      const m = e.target.closest("[data-mode]"), dd = e.target.closest("[data-d]"), li = e.target.closest("[data-p]");
+      if (m) { mode = m.dataset.mode; fixed.clear(); draw(); }
+      else if (dd) { cur = dd.dataset.d; fixed.clear(); draw(); }
+      else if (li && mode === "before" && li.classList.contains("old")) { fixed.add(+li.dataset.p); draw(); }
+    });
+    draw();
+  }
+};
 /* 10 牛寶：權限邊界 ＋ 新對話接手 */
 PLAY.nubao = {
   html: () => ph("AI 能做什麼、不能做什麼，白紙黑字", "點「開一個新對話」看它怎麼接手") +
