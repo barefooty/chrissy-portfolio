@@ -154,9 +154,12 @@ footer .sig{margin-top:4px;font-size:.85em}
 .stamp{border:1.5px dashed var(--blue);border-radius:12px;background:#fff;padding:10px 8px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:2px;cursor:pointer;font-family:inherit;transition:transform .15s,background .2s}
 .stamp b{display:block;font-size:24px;color:var(--blue);font-family:"Noto Sans TC",sans-serif;line-height:1.1}
 .stamp span{font-size:11px;color:var(--muted)}
-.stamp[aria-pressed="true"]{border-style:solid;border-color:var(--pink-deep);background:var(--pink-50);animation:stampIn .35s cubic-bezier(.2,1.4,.4,1)}
-.stamp[aria-pressed="true"] b{color:var(--pink-deep)}
-.stamp[aria-pressed="true"] b::after{content:" ✓"}
+.stamp[aria-pressed="true"]{border-style:solid;border-color:var(--pink-deep);background:var(--pink-50)}
+.stamp[aria-pressed="true"] b,.stamp[aria-pressed="true"] span{opacity:.45}
+.stamp{position:relative;overflow:hidden}
+.stamp .seal{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;opacity:0;transform:rotate(-14deg) scale(1.6);pointer-events:none}
+.stamp[aria-pressed="true"] .seal{animation:sealIn .3s cubic-bezier(.2,1.2,.4,1) forwards}
+@keyframes sealIn{to{opacity:.82;transform:rotate(-14deg) scale(1)}}
 @keyframes stampIn{0%{transform:scale(1.25) rotate(-6deg)}100%{transform:none}}
 .play .two{align-items:stretch}
 .play .win{display:flex;flex-direction:column}
@@ -278,16 +281,16 @@ footer .sig{margin-top:4px;font-size:.85em}
   <div class="tiles">
     <figure class="tile"><div class="ph"><img loading="lazy" decoding="async" src="assets/mkt-gdsc-poster.jpg" alt="GDSC 社博宣傳海報" data-cap="社團博覽會宣傳海報，用 Adobe Illustrator 繪製。3D 字母當主視覺，寫上社團能帶給你什麼，附 LINE 社群與 IG 粉專兩個 QR 入口，是招募新社員的第一張門面。"></div><figcaption>社團博覽會宣傳海報（Adobe Illustrator）：招募新社員的第一張門面。</figcaption></figure>
     <figure class="tile"><div class="ph"><img loading="lazy" decoding="async" src="assets/mkt-gdsc-points.jpg" alt="期末交流集點企劃" data-cap="期末交流的集點企劃（IG 限時動態）。先領卡，答對社團相關問題、完成尋寶等任務就蓋章，集滿 G、D、S、C 四格換社團小鑰匙圈（鑰匙圈也是我設計的），把期末活動變成一場闖關遊戲。"></div><figcaption>期末交流的集點企劃：答對社團問題、完成尋寶就蓋章，集滿換我設計的社團小鑰匙圈。</figcaption></figure>
-    <figure class="tile"><div class="ph"><img loading="lazy" decoding="async" src="assets/mkt-gdsc-fortune.jpg" alt="社博運勢抽籤週邊" data-cap="社團博覽會的運勢抽籤。在攤位打卡就能抽一支自製籤，抽到大吉、中吉、小吉各換對應禮物（拍立得、鑰匙圈、貼紙包）；路過的人為了抽籤停下來，抽完自然就聊起社團，週邊是打開話題的方法。"></div><figcaption>社博運勢抽籤：到攤位打卡就能抽一支籤，大吉、中吉、小吉各換不同禮物。</figcaption></figure>
+    <figure class="tile"><div class="ph"><img loading="lazy" decoding="async" src="assets/mkt-gdsc-fortune.jpg" alt="社博運勢抽籤週邊" data-cap="社團博覽會的運勢抽籤。在攤位打卡就能抽一支自製籤，抽到超吉、中吉、小吉各換對應禮物（拍立得、鑰匙圈、貼紙包）；路過的人為了抽籤停下來，抽完自然就聊起社團，週邊是打開話題的方法。"></div><figcaption>社博運勢抽籤：到攤位打卡就能抽一支籤，超吉、中吉、小吉各換不同禮物。</figcaption></figure>
   </div>
   <div class="play" id="gdscPlay">
     <div class="ph"><b>動手玩：社博現場的兩個小遊戲</b><small>模擬當年攤位的玩法；獎品是當時的，現在抽到不會真的送</small></div>
     <div class="two">
-      <div class="win"><div class="wt">集點卡・集滿 G D S C 換鑰匙圈</div><div class="stamps" data-stamps><button type="button" class="stamp" data-s="G" aria-pressed="false"><b>G</b><span>答對一題社團問答</span></button><button type="button" class="stamp" data-s="D" aria-pressed="false"><b>D</b><span>找到攤位上的尋寶貼紙</span></button><button type="button" class="stamp" data-s="S" aria-pressed="false"><b>S</b><span>追蹤社團 IG</span></button><button type="button" class="stamp" data-s="C" aria-pressed="false"><b>C</b><span>跟一位社員聊 1 分鐘</span></button></div><div class="result" data-stampres></div></div>
+      <div class="win"><div class="wt">集點卡・集滿 G D S C 換鑰匙圈</div><div class="stamps" data-stamps><button type="button" class="stamp" data-s="G" aria-pressed="false"><b>G</b><span>答對一題社團問答</span><img class="seal" src="assets/stamp-done.webp" alt="" width="240" height="240" loading="lazy"></button><button type="button" class="stamp" data-s="D" aria-pressed="false"><b>D</b><span>找到攤位上的尋寶貼紙</span><img class="seal" src="assets/stamp-done.webp" alt="" width="240" height="240" loading="lazy"></button><button type="button" class="stamp" data-s="S" aria-pressed="false"><b>S</b><span>追蹤社團 IG</span><img class="seal" src="assets/stamp-done.webp" alt="" width="240" height="240" loading="lazy"></button><button type="button" class="stamp" data-s="C" aria-pressed="false"><b>C</b><span>跟一位社員聊 1 分鐘</span><img class="seal" src="assets/stamp-done.webp" alt="" width="240" height="240" loading="lazy"></button></div><div class="result" data-stampres></div></div>
       <div class="win"><div class="wt">運勢抽籤・打卡就能抽</div><div class="draw">
         <div class="stage">
           <div class="tubewrap" data-tube aria-hidden="true"><img class="stick" data-stick src="assets/omikuji-stick.webp" alt="" width="36" height="300" loading="lazy"><img src="assets/omikuji-tube.webp?v=2" alt="" width="420" height="420" loading="lazy"></div>
-          <div class="oslot"><span class="slot-hint" data-slothint>籤會抽到這裡</span><img class="slip" data-slip hidden src="assets/omikuji-dai.webp" alt="" width="123" height="480" loading="lazy"></div>
+          <div class="oslot"><span class="slot-hint" data-slothint>籤會抽到這裡</span><img class="slip" data-slip hidden src="assets/omikuji-cho.webp" alt="" width="123" height="480" loading="lazy"></div>
         </div>
         <div class="pbar"><button class="pb go" data-act="draw">打卡完成，抽一支</button></div>
         <div class="result" data-drawres></div>
@@ -329,9 +332,10 @@ footer .sig{margin-top:4px;font-size:.85em}
     const n = stamps.querySelectorAll('[aria-pressed="true"]').length;
     sres.textContent = n === 4 ? "集滿了！換一個社團小鑰匙圈（鑰匙圈也是我設計的）。四格任務讓新生開口問、動手找、追蹤、聊天，活動就不只是來拿禮物。" : n ? `蓋了 ${n} 格，還差 ${4 - n} 格。` : "";
   });
-  const LV = [["大吉", "拍立得合照", "dai"], ["中吉", "社團鑰匙圈", "chu"], ["小吉", "貼紙包", "sho"]];
+  const LV = [["超吉", "拍立得合照", "cho"], ["中吉", "社團鑰匙圈", "chu"], ["小吉", "貼紙包", "sho"]];
   const tube = root.querySelector("[data-tube]"), slip = root.querySelector("[data-slip]"), hint = root.querySelector("[data-slothint]"), dres = root.querySelector("[data-drawres]"), stick = root.querySelector("[data-stick]");
   let busy = false;
+  ["cho", "chu", "sho"].forEach(k => { const i = new Image(); i.src = `assets/omikuji-${k}.webp`; });
   root.querySelector("[data-act=draw]").addEventListener("click", () => {
     if (busy) return; busy = true; slip.hidden = true; hint.hidden = true; dres.textContent = ""; stick.classList.remove("up"); tube.classList.remove("shake"); void tube.offsetWidth; tube.classList.add("shake"); setTimeout(() => stick.classList.add("up"), 500);
     setTimeout(() => { const r = LV[Math.floor(Math.random() * LV.length)]; slip.src = `assets/omikuji-${r[2]}.webp`; slip.alt = `${r[0]}：送${r[1]}`; slip.hidden = false; stick.classList.remove("up"); dres.textContent = `${r[0]}！當年可以換${r[1]}。這裡是模擬，不會真的送喔。`; busy = false; }, 1200);
