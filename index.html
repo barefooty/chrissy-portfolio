@@ -289,6 +289,19 @@ dialog{color:var(--ink)}
 .modal .learn b{color:var(--pink-ink)}
 .modal .tip b{color:var(--blue-ink)}
 .modal .learn p,.modal .tip p{margin:0}
+.modal .lede{font-size:1.02em;color:var(--head-ink);margin:4px 0 10px}
+.stages{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 6px;padding:4px;background:var(--beige);border-radius:999px;width:max-content;max-width:100%}
+.stages button{min-height:36px;padding:0 14px 1px;border-radius:999px;border:0;background:transparent;color:var(--muted);font:600 .86em/1 inherit;font-family:inherit;cursor:pointer;transition:background .15s,color .15s}
+.stages button[aria-selected="true"]{background:var(--card);color:var(--head-ink);box-shadow:0 1px 4px rgba(60,50,40,.12)}
+.modal .stage{display:none;padding:0}.modal .stage.on{display:block;animation:pop .25s ease}
+.stages button{white-space:nowrap}
+.play .two{align-items:start}
+.modal .links{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 14px}
+@media (max-width:760px){.play .sw{grid-template-columns:1fr}}
+.stage-next{margin-top:18px;display:flex;justify-content:flex-end}
+@media (max-width:640px){.stages{width:100%;justify-content:space-between}.stages button{flex:1;padding:0 4px 1px;font-size:.8em}.stage-next .btn{width:100%}}
+/* 圖片比對：手機截圖是直的，容器用 4:3、對齊上緣，看得到首頁上半部 */
+.play .cmp{aspect-ratio:4/3;max-width:560px;margin:0 auto}
 .modal h4{font-family:var(--serif);font-weight:600;color:var(--head-ink);font-size:1.12em;margin:22px 0 8px}
 .modal h4::before{content:"✿";color:var(--pink);margin-right:6px;font-size:.85em}
 .modal ul{padding-left:1.3em}
@@ -455,6 +468,8 @@ dialog{color:var(--ink)}
 .play .kpis button span{font-size:11.5px;color:var(--muted)}
 .play .kpis button[aria-expanded="true"]{border-color:var(--pink-deep);background:var(--pink-50)}
 .play .sheet{font-family:var(--sans);font-size:11px;color:var(--muted);line-height:1.5;padding:8px 12px;white-space:pre;overflow:auto}
+.play .sheet.wrap{white-space:pre-wrap;font-size:12px;line-height:1.7;overflow:visible}
+.play .rep{margin-top:4px}
 .play .outs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 @media (max-width:640px){.play .outs,.play .kpis{grid-template-columns:1fr}}
 .play .outs .o{border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:.84em;background:var(--card)}
@@ -767,7 +782,7 @@ const PROJECTS = [
       "可以複製：公開起始包＋8 題 AI 訪談，作者自測約 20 分鐘建好；成本每人每月約 NT$640（Claude Pro）",
       "穩定運轉三個多月：433 封摘要報告，排程寄出 95%（209／220 場）；垃圾信匣也一起掃，上線初期就撈回 2 封差點漏接的學生求助信"],
   tech:["Python","Gmail API（唯讀＋貼標籤）","Claude 雲端排程","隱私遮罩＋41 項自動檢查","訪談式建置（8 題）"],
-  link:"https://github.com/barefooty/mail-helper-starter-kit", linkTxt:"看公開起始包（GitHub，不含任何真實資料）",
+  link:"https://github.com/barefooty/mail-helper-starter-kit", linkTxt:"看公開起始包（GitHub）",
   annotTitle:"從一封信到一份報告・三張圖看懂",
   annotated:[
    {s:"assets/mail-privacy-flow.webp",t:"先遮再讀，個資在第一步就離開",n:"原本是讓 AI 讀完整原信，再叮嚀它不要抄個資，只能靠它自律、不保證。現在程式讀信當下就先遮，AI 只看得到遮好的版本，寄出前再打碼一次。<span class='hx'>隱私預設保護</span>"},
@@ -1162,7 +1177,7 @@ PLAY.vba = {
 
 /* 06 SOS 網站：改造前後拉一拉 ＋ 決策圖試走 */
 PLAY["sos-site"] = {
-  html: () => ph("拉一拉：Notion 長頁 vs 新網站（手機畫面）", "再往下試走學生的決策圖") +
+  html: () => ph("拉一拉：Notion 長頁 vs 新網站（手機畫面上半部）", "完整截圖在「③ 截圖」；再往下試走學生的決策圖") +
     `<div class="cmp" data-cmp><img src="assets/site-before-notion.jpg" alt="改造前：Notion 長頁" loading="lazy"><img class="after" src="assets/site-sos-mobile.jpg" alt="改造後：新網站首頁" loading="lazy"><div class="hd"><i>⇔</i></div><span class="lb l">改造前</span><span class="lb r">改造後</span></div>
      <div class="ph" style="margin-top:16px"><b>學生只要回答兩個問題</b><small>示範簡化版，實際規則以網站公告為準</small></div>
      <div class="pbar" data-q="1"><span class="note" style="margin:0 6px 0 0">課程開始了嗎？</span><button class="pb" data-a="no">還沒</button><button class="pb" data-a="yes">已經開課</button></div>
@@ -1223,29 +1238,28 @@ PLAY.ewant = {
 
 /* 08 報名數據：一鍵整理，數字與圖馬上出來（示範數字） */
 PLAY.analysis = {
-  html: () => ph("改造前的原始檔，按一下「整理」看會變成什麼", "示範數字，非真實金額") +
-    `<div class="two">
-      ${win("改造前・系統匯出的原始檔", `<div class="sheet">學號    姓名    課程   狀態      繳費   備註
-S01xx  王O明   A101   已繳費    900
-S02xx  林O婷   B203   退選      -900   手續費另計
-S03xx  陳O安   A101   已繳費   1800
-S04xx  張O宇   C305   停修      900    不退費
-S05xx  李O慈   A101   已繳費      0    低收免費
-S06xx  吳O宏   B203   退選      -900
-…（幾千列：退了幾個人？收了多少？低收、手續費怎麼算？每個人算出來都不一樣）</div>`)}
-      ${win("改造後・決策報告", `<div style="padding:12px"><div class="pbar" style="margin:0"><button class="pb go" data-act="go">整理成報告</button><button class="pb ghost" data-act="reset">重來</button></div><div class="mini" data-mini hidden></div><div class="bars" data-bars hidden></div><div class="result" data-res></div></div>`)}
-     </div>
+  html: () => ph("改造前的原始檔長這樣，按一下「整理成報告」", "示範數字，非真實金額") +
+    win("改造前・系統匯出的原始檔（幾千列）", `<div class="sheet wrap">學號 S01xx｜王O明｜A101｜已繳費｜900
+學號 S02xx｜林O婷｜B203｜退選｜-900｜手續費另計
+學號 S03xx｜陳O安｜A101｜已繳費｜1800
+學號 S04xx｜張O宇｜C305｜停修｜900｜不退費
+學號 S05xx｜李O慈｜A101｜已繳費｜0｜低收免費
+學號 S06xx｜吳O宏｜B203｜退選｜-900
+…退了幾個人？收了多少？低收、手續費怎麼算？每個人算出來都不一樣</div>`) +
+    `<div class="pbar" style="justify-content:center;margin:12px 0 8px"><button class="pb go" data-act="go">整理成報告</button><button class="pb ghost" data-act="reset">重來</button></div>
+     <div class="rep" data-rep hidden>${win("改造後・決策報告", `<div style="padding:12px"><div class="mini" data-mini></div><p class="note" style="margin:12px 0 0">各課程報名人數（示範）</p><div class="bars" data-bars></div><div class="result" data-res style="margin-top:26px"></div></div>`)}</div>
      <p class="note">改造前：資料難看、難對帳，退選人數與實收金額（低收免費、手續費）每次都要重算。改造後：一次整理，數字、口徑、圖表都在同一份報告；三份檔案數字完全一致，明年重跑一次就好。</p>`,
   init: root => {
-    const mini = root.querySelector("[data-mini]"), bars = root.querySelector("[data-bars]"), res = root.querySelector("[data-res]");
+    const rep = root.querySelector("[data-rep]"), mini = root.querySelector("[data-mini]"), bars = root.querySelector("[data-bars]"), res = root.querySelector("[data-res]");
     root.addEventListener("click", e => {
       const b = e.target.closest("[data-act]"); if (!b) return;
-      if (b.dataset.act === "reset") { mini.hidden = bars.hidden = true; res.textContent = ""; return; }
-      mini.hidden = false;
-      mini.innerHTML = [["2,941", "報名人次"], ["186", "退選人次（示範）"], ["59", "合作學校"], ["37", "課程"], ["口徑一致", "低收免費、手續費分開列"], ["0 筆", "三份檔案數字差異"]].map((x, i) => `<div style="animation-delay:${RM ? 0 : i * 110}ms"><b>${x[0]}</b><span>${x[1]}</span></div>`).join("");
-      bars.hidden = false; bars.innerHTML = [["A101", 68], ["B203", 45], ["C305", 90], ["D118", 30], ["E221", 56]].map(x => `<div data-h="${x[1]}"><i>${x[1]}</i><span>${x[0]}</span></div>`).join("");
+      if (b.dataset.act === "reset") { rep.hidden = true; res.textContent = ""; return; }
+      rep.hidden = false;
+      mini.innerHTML = [["2,941", "報名人次"], ["186", "退選人次"], ["59", "合作學校"], ["37", "課程"], ["2 種", "通過率口徑並列"], ["0 筆", "三份檔案數字差異"]].map((x, i) => `<div style="animation-delay:${RM ? 0 : i * 110}ms"><b>${x[0]}</b><span>${x[1]}</span></div>`).join("");
+      bars.innerHTML = [["A101", 68], ["B203", 45], ["C305", 90], ["D118", 30], ["E221", 56]].map(x => `<div data-h="${x[1]}"><i>${x[1]}</i><span>${x[0]}</span></div>`).join("");
       setTimeout(() => bars.querySelectorAll("div").forEach(d => d.style.height = d.dataset.h + "%"), 50);
       res.textContent = "每個數字旁邊都寫口徑：人次怎麼算、退費怎麼互抵、低收與手續費放哪一欄。主管在會議上可以直接講，被問到也答得出來。";
+      rep.scrollIntoView({ block: "nearest", behavior: RM ? "auto" : "smooth" });
     });
   }
 };
@@ -1308,7 +1322,8 @@ PLAY.marketing = {
     r.addEventListener("input", draw); draw();
   }
 };
-function playHTML(p) { const P = PLAY[p.id]; return P ? `<h4>動手玩</h4><div class="play" data-play="${p.id}">${P.html()}</div>` : ""; }
+function playHTML(p, heading = true) { const P = PLAY[p.id]; return P ? `${heading ? "<h4>動手玩</h4>" : ""}<div class="play" data-play="${p.id}">${P.html()}</div>` : ""; }
+const linkRow = p => p.link ? `<div class="links"><a class="btn btn-line" href="${p.link}" target="_blank" rel="noopener">${p.linkTxt}</a></div>` : "";
 function playInit(scope) { scope.querySelectorAll(".play[data-play]").forEach(el => { const P = PLAY[el.dataset.play]; if (P && !el.dataset.ready) { el.dataset.ready = "1"; P.init(el); } }); }
 
 /* ---------- 作品彈窗：原生 dialog＋可分享網址 #work/xxx（返回鍵＝關掉彈窗，不會離開網站） ---------- */
@@ -1316,14 +1331,12 @@ const dlg = document.getElementById("workDlg"), modal = document.getElementById(
 let lastFocus = null, pushed = false, curId = null;
 function modalHTML(p) {
   const i = PROJECTS.indexOf(p), prev = PROJECTS[(i - 1 + PROJECTS.length) % PROJECTS.length], next = PROJECTS[(i + 1) % PROJECTS.length];
-  return `
-    <span class="m-status">${p.statusTxt}</span>
+  const head = `<span class="m-status">${p.statusTxt}</span>
     <h3 id="dlgTitle" tabindex="-1">${p.title}</h3>
-    ${p.stats ? `<div class="stats">${p.stats.map(s => `<div><b>${s.n}<small>${s.u}</small></b><span>${s.t}</span></div>`).join("")}</div>${p.statsNote ? `<p class="stats-note">${p.statsNote}</p>` : ""}` : ""}
-    <p>${p.desc}</p>
+    ${p.stats ? `<div class="stats">${p.stats.map(s => `<div><b>${s.n}<small>${s.u}</small></b><span>${s.t}</span></div>`).join("")}</div>${p.statsNote ? `<p class="stats-note">${p.statsNote}</p>` : ""}` : ""}`;
+  const playPart = playHTML(p, false) + (p.demo === "mask" ? MASK_DEMO : "");
+  const story = `<p>${p.desc}</p>
     ${p.cast ? `<div class="cast">${p.cast.map(c => `<div><img src="${c.img}" alt="" width="72" height="72" loading="lazy"><div><b>${c.name}</b><span class="en">${c.en}</span><p>${c.line}</p></div></div>`).join("")}</div>` : ""}
-    ${p.demo === "mask" ? MASK_DEMO : ""}
-    ${playHTML(p)}
     <div class="role">${p.role}</div>
     <h4>亮點</h4>
     <ul>${p.hi.map(h => `<li>${h}</li>`).join("")}</ul>
@@ -1331,10 +1344,29 @@ function modalHTML(p) {
     ${p.tip ? `<div class="tip"><b>這件事的通用做法</b><p>${p.tip}</p></div>` : ""}
     <h4>技術與方法</h4>
     <div class="tech-tags">${p.tech.map(t => `<span class="pill">${t}</span>`).join("")}</div>
-    ${p.link ? `<h4>連結</h4><a class="btn btn-line" href="${p.link}" target="_blank" rel="noopener">${p.linkTxt}</a>` : ""}
-    ${p.annotated ? `<h4>${p.annotTitle || "逐區段設計思維"}</h4>` + p.annotated.map(a => `<div class="annot"><img src="${a.s}" alt="${a.t}" loading="lazy" decoding="async" data-cap="${a.t}：${a.n.replace(/<[^>]+>/g, "")}"><div class="note"><b>${a.t}</b>${a.n}</div></div>`).join("") : ""}
-    ${p.shots && p.shots.length ? `<h4>截圖（示範資料／去識別化）</h4><div class="shots">${p.shots.map(x => `<figure><img src="${x.s}" alt="${x.c}" loading="lazy" decoding="async" data-cap="${x.c}"><figcaption>${x.c}</figcaption></figure>`).join("")}</div>` : ""}
-    <div class="m-next"><button type="button" class="btn btn-line" data-nav="-1">← ${prev.title}</button><button type="button" class="btn btn-main" data-nav="1">下一件：${next.title} →</button></div>`;
+`;
+  const evidence = `${p.annotated ? `<h4>${p.annotTitle || "逐區段設計思維"}</h4>` + p.annotated.map(a => `<div class="annot"><img src="${a.s}" alt="${a.t}" loading="lazy" decoding="async" data-cap="${a.t}：${a.n.replace(/<[^>]+>/g, "")}"><div class="note"><b>${a.t}</b>${a.n}</div></div>`).join("") : ""}
+    ${p.shots && p.shots.length ? `<h4>截圖（示範資料／去識別化）</h4><div class="shots">${p.shots.map(x => `<figure><img src="${x.s}" alt="${x.c}" loading="lazy" decoding="async" data-cap="${x.c}"><figcaption>${x.c}</figcaption></figure>`).join("")}</div>` : ""}`;
+  const nav = `<div class="m-next"><button type="button" class="btn btn-line" data-nav="-1">← ${prev.title}</button><button type="button" class="btn btn-main" data-nav="1">下一件：${next.title} →</button></div>`;
+  const evCount = (p.annotated ? p.annotated.length : 0) + (p.shots ? p.shots.length : 0);
+  const staged = evCount >= 3 || !!p.demo;   /* 內容長的才分段：先玩 → 故事 → 證據；短的一頁到底、互動置頂 */
+  if (!staged) return head + `<p class="lede">${p.one}</p>` + linkRow(p) + `<h4>動手玩</h4>` + playPart + story + evidence + nav;
+  const hasEv = evCount > 0;
+  return head + `
+    <nav class="stages" role="tablist" aria-label="這件作品的三個部分">
+      <button type="button" role="tab" data-stage="1" aria-selected="true">① 動手玩</button>
+      <button type="button" role="tab" data-stage="2" aria-selected="false">② 故事</button>
+      ${hasEv ? `<button type="button" role="tab" data-stage="3" aria-selected="false">③ 截圖</button>` : ""}
+    </nav>
+    <section class="stage on" data-stage="1"><p class="lede">${p.one}</p>${linkRow(p)}${playPart}<div class="stage-next"><button type="button" class="btn btn-main" data-go="2">看它怎麼做出來的 →</button></div></section>
+    <section class="stage" data-stage="2">${story}${hasEv ? `<div class="stage-next"><button type="button" class="btn btn-main" data-go="3">看截圖與證據 →</button></div>` : ""}</section>
+    ${hasEv ? `<section class="stage" data-stage="3">${evidence}</section>` : ""}
+    ${nav}`;
+}
+function setStage(n) {
+  modal.querySelectorAll(".stage").forEach(sec => sec.classList.toggle("on", sec.dataset.stage === String(n)));
+  modal.querySelectorAll("[data-stage][role=tab]").forEach(b => b.setAttribute("aria-selected", String(b.dataset.stage === String(n))));
+  const tabs = modal.querySelector(".stages"); if (tabs) dlg.scrollTo({ top: Math.max(0, tabs.offsetTop - 12), behavior: RM ? "auto" : "smooth" });
 }
 function navBy(step) {
   const i = PROJECTS.findIndex(p => p.id === curId);
@@ -1349,6 +1381,7 @@ function openModal(p, { push = true } = {}) {
   modal.querySelectorAll(".shots img, .annot img").forEach(im => im.addEventListener("click", () => openLight(im.src, im.dataset.cap)));
   modal.querySelectorAll("[data-nav]").forEach(b => b.addEventListener("click", () => navBy(+b.dataset.nav)));
   playInit(modal);
+  modal.querySelectorAll("[data-stage][role=tab],[data-go]").forEach(b => b.addEventListener("click", () => setStage(b.dataset.stage || b.dataset.go)));
   const demo = modal.querySelector(".mask-demo");
   if (demo) { setMask(demo, 0); demo.addEventListener("click", e => { const b = e.target.closest("[data-go]"); if (b) setMask(demo, +b.dataset.go); }); }
   if (!wasOpen) { lastFocus = document.activeElement; dlg.showModal(); document.body.style.overflow = "hidden"; }
