@@ -390,7 +390,13 @@ dialog{color:var(--ink)}
 .play .pb:hover{transform:translateY(-1px)}
 .play .pb[aria-pressed="true"],.play .pb.on{background:var(--blue-ink);border-color:var(--blue-ink);color:#fff}
 .play .pb.ghost{border-color:var(--line);color:var(--muted)}
-.play .pb.go{background:var(--head-ink);border-color:var(--head-ink);color:#fff}
+.play .pb.go{background:var(--head-ink);border-color:var(--head-ink);color:#fff;animation:pbPulse 1.3s ease 3}
+@keyframes pbPulse{50%{transform:scale(1.05);box-shadow:0 0 0 7px rgba(60,50,40,.14)}}
+.play .race[data-act],.play .clickable[data-act]{cursor:pointer;position:relative}
+.play .race-hint{position:absolute;left:50%;top:6px;transform:translateX(-50%);z-index:2;padding:8px 14px;border-radius:999px;background:rgba(60,50,40,.82);color:#fff;font-size:.82em;font-weight:700;pointer-events:none;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.play .pb.go:disabled{animation:none}
+.play .grow .race-hint{left:26%;top:60%;transform:translate(-50%,-50%)}
+@media (max-width:640px){.play .grow .race-hint{left:50%;top:70px;transform:translateX(-50%)}.play .race .race-hint,.play .chat2 .race-hint{top:36px}}
 .play .pb:disabled{opacity:.5;cursor:default;transform:none}
 .play .note{font-size:.84em;color:var(--muted);margin-top:10px;line-height:1.7}
 .play .result{margin-top:12px;padding:12px 14px;border-radius:12px;background:var(--pink-50);color:var(--pink-ink);font-weight:600;font-size:.92em;line-height:1.6;animation:pop .35s ease}
@@ -426,12 +432,13 @@ dialog{color:var(--ink)}
 .play .race .col{padding:12px 14px}
 .play .race .col h5{font-size:.9em;color:var(--head-ink);margin:0 0 8px;display:flex;justify-content:space-between;align-items:baseline}
 .play .race .col h5 em{font-style:normal;font-family:var(--sans);font-weight:600;font-size:1.3em;color:var(--pink-ink);font-variant-numeric:tabular-nums}
-.play .race ol{margin:0;padding:0;list-style:none}
-.play .race li{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:.86em;color:var(--muted);transition:color .3s}
+.play .race ol{margin:0;padding:0;list-style:none;counter-reset:step}
+.play .race li{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:.86em;color:var(--muted);transition:color .3s;counter-increment:step}
+.play .race li i::before{content:counter(step);font-size:11px;font-weight:700;color:var(--muted)}
 .play .race li i{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line);display:inline-flex;align-items:center;justify-content:center;font-style:normal;font-size:11px;flex:none;transition:all .3s}
 .play .race li.on{color:var(--ink)}.play .race li.on i{background:var(--blue-ink);border-color:var(--blue-ink);color:#fff}
 .play .race li.done i{background:var(--pink-deep);border-color:var(--pink-deep);color:#fff}
-.play .race li.done i::before{content:"✓"}.play .race li.on i::before{content:"›"}
+.play .race li.done i::before{content:"✓";color:#fff}.play .race li.on i::before{content:"›";color:#fff}
 .play .bar{height:8px;border-radius:999px;background:var(--beige);overflow:hidden;margin-top:8px}
 .play .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--pink-deep));transition:width .5s linear}
 /* 排順序 */
@@ -1147,24 +1154,25 @@ const CAT_STEPS = [
   ["v53", "功能 12 個了，我反而越來越少打開它。", "體檢後砍掉第一層：只留「今天先看這裡」，其他退到第二層。", ["今日駕駛艙"], "focus"],
   ["v63", "一個人用的工具，用久了有點孤單。", "十隻貓狗輪班值日，開源到 GitHub 給別人也能用。", ["貓狗值班"]]];
 PLAY.catlendar = {
-  html: () => ph("一起養大它：每解決一個煩惱，就多一個功能", "按「下一個煩惱」，看它從一張清單長成系統") +
-    `<div class="grow">
+  html: () => ph("一起養大它：每解決一個煩惱，就多一個功能", "按「▶ 下一個煩惱」，看它從一張清單長成系統") +
+    `<div class="pbar"><button class="pb go" data-act="next">▶ 下一個煩惱</button><button class="pb ghost" data-act="reset">從頭來</button><span class="dots" data-dots>${CAT_STEPS.map(() => "<i></i>").join("")}</span></div>
+     <div class="grow clickable" data-act="next"><span class="race-hint" data-hint>▶ 點這裡看第一個煩惱</span>
       ${win(`Catlendar <b data-ver>v0</b>`, `<div class="app" data-app><div class="mods" data-mods></div><p class="empty" data-empty>現在只有一疊便條紙。</p></div>`)}
       <div class="story"><div class="pain" data-pain><b>那時的煩惱</b>按下面的按鈕，看第一個煩惱是什麼。</div><div class="fix" data-fix hidden><b>於是加了</b><span></span></div></div>
      </div>
-     <div class="pbar"><button class="pb go" data-act="next">下一個煩惱</button><button class="pb ghost" data-act="reset">從頭來</button><span class="dots" data-dots>${CAT_STEPS.map(() => "<i></i>").join("")}</span></div>
      <div class="result" data-res></div>
      <p class="note">八個煩惱是真實順序的濃縮版：六天 27 版、第一週 11 個模組，到 v53 體檢才學到「工具的敵人不是功能太少，是想做所有事」。</p>`,
   init: root => {
     const ver = root.querySelector("[data-ver]"), app = root.querySelector("[data-app]"), mods = root.querySelector("[data-mods]"), empty = root.querySelector("[data-empty]"),
       pain = root.querySelector("[data-pain]"), fix = root.querySelector("[data-fix]"), dots = root.querySelectorAll("[data-dots] i"), res = root.querySelector("[data-res]"), next = root.querySelector("[data-act=next]");
     let k = 0, t = [];
-    const reset = () => { t.forEach(clearTimeout); t = []; k = 0; ver.textContent = "v0"; mods.innerHTML = ""; empty.hidden = false; app.classList.remove("focus"); pain.innerHTML = "<b>那時的煩惱</b>按下面的按鈕，看第一個煩惱是什麼。"; fix.hidden = true; res.textContent = ""; dots.forEach(d => d.className = ""); next.disabled = false; next.textContent = "下一個煩惱"; };
+    const reset = () => { t.forEach(clearTimeout); t = []; k = 0; ver.textContent = "v0"; mods.innerHTML = ""; empty.hidden = false; app.classList.remove("focus"); pain.innerHTML = "<b>那時的煩惱</b>按下面的按鈕，看第一個煩惱是什麼。"; fix.hidden = true; res.textContent = ""; dots.forEach(d => d.className = ""); next.disabled = false; next.textContent = "▶ 下一個煩惱"; };
     root.addEventListener("click", e => {
       const b = e.target.closest("[data-act]"); if (!b) return;
       if (b.dataset.act === "reset") return reset();
-      if (k >= CAT_STEPS.length) return;
-      const st = CAT_STEPS[k]; t.forEach(clearTimeout); t = [];
+      if (k >= CAT_STEPS.length || next.disabled) return;
+      const st = CAT_STEPS[k]; t.forEach(clearTimeout); t = []; const hint = root.querySelector("[data-hint]"); if (hint) hint.remove();
+      next.disabled = true; t.push(setTimeout(() => { if (k < CAT_STEPS.length) next.disabled = false; }, RM ? 0 : 900));
       pain.innerHTML = `<b>那時的煩惱 ${k + 1}／${CAT_STEPS.length}</b>${st[1]}`; fix.hidden = true;
       dots.forEach((d, i) => d.className = i < k + 1 ? "on" : "");
       t.push(setTimeout(() => { fix.hidden = false; fix.querySelector("span").textContent = st[2]; }, RM ? 0 : 450));
@@ -1181,17 +1189,19 @@ PLAY.catlendar = {
 
 /* 03 課程異動：兩條流程賽跑 */
 PLAY.course = {
-  html: () => ph("按下去，看同一件申請在兩條流程各要多久", "示範時間依實際平均值") +
-    `<div class="two race">
+  html: () => ph("同一件申請，紙本流程和線上流程各要多久？", "按「▶ 送一件申請」開始賽跑；示範時間依實際平均值") +
+    `<div class="pbar"><button class="pb go" data-act="run">▶ 送一件申請</button><button class="pb ghost" data-act="reset">重來</button></div>
+     <div class="two race" data-act="run"><span class="race-hint" data-racehint>▶ 點這裡也可以開始</span>
       ${win("改造前・紙本流程", `<div class="col"><h5>人工 7 步<em data-t="a">0 分鐘</em></h5><ol data-steps="a">${["學生下載 Word 申請表", "填寫後 Email 寄回", "格式不對，來回補件", "承辦人逐欄轉錄到表單", "手工排版收執聯", "回信附上收執聯", "存檔歸檔"].map(t => `<li><i></i>${t}</li>`).join("")}</ol><div class="bar"><i data-bar="a"></i></div></div>`)}
       ${win("改造後・線上流程", `<div class="col"><h5>自動 3 步<em data-t="b">0 分鐘</em></h5><ol data-steps="b">${["學生填線上表單，格式錯就送不出去", "承辦人審核：狀態改一格", "收執聯自動生成、寄出、歸檔"].map(t => `<li><i></i>${t}</li>`).join("")}</ol><div class="bar"><i data-bar="b"></i></div></div>`)}
      </div>
-     <div class="pbar"><button class="pb go" data-act="run">送一件申請看看</button><button class="pb ghost" data-act="reset">重來</button></div><div class="result"></div>`,
+     <div class="result"></div>`,
   init: root => {
     let timers = [];
     const stop = () => { timers.forEach(clearTimeout); timers = []; };
+    const runBtn = root.querySelector("[data-act=run]");
     const run = () => {
-      stop(); reset();
+      stop(); reset(); runBtn.disabled = true; runBtn.textContent = "處理中…"; const hint = root.querySelector("[data-racehint]"); if (hint) hint.remove();
       const go = (key, total, per) => {
         const lis = root.querySelectorAll(`[data-steps="${key}"] li`), em = root.querySelector(`[data-t="${key}"]`), bar = root.querySelector(`[data-bar="${key}"]`);
         lis.forEach((li, i) => {
@@ -1200,9 +1210,10 @@ PLAY.course = {
       };
       go("a", 20, 650); go("b", 4, 650);
       timers.push(setTimeout(() => { root.querySelector(".result").textContent = "線上流程 4 分鐘做完，紙本流程還在補件。每件省下約 16 分鐘，轉錄錯誤歸零；這一季自動出了 37 份收執聯。"; }, RM ? 0 : 650 * 3 + 200));
+      timers.push(setTimeout(() => { runBtn.disabled = false; runBtn.textContent = "▶ 再送一件"; }, RM ? 0 : 650 * 7 + 300));
     };
     const reset = () => { root.querySelectorAll(".race li").forEach(li => li.className = ""); root.querySelectorAll("[data-t]").forEach(e => e.textContent = "0 分鐘"); root.querySelectorAll("[data-bar]").forEach(b => b.style.width = 0); root.querySelector(".result").textContent = ""; };
-    root.addEventListener("click", e => { const b = e.target.closest("[data-act]"); if (!b) return; b.dataset.act === "run" ? run() : (stop(), reset()); });
+    root.addEventListener("click", e => { const b = e.target.closest("[data-act]"); if (!b) return; if (b.dataset.act === "run") { if (!runBtn.disabled) run(); } else { stop(); reset(); runBtn.disabled = false; runBtn.textContent = "▶ 送一件申請"; } });
   }
 };
 
@@ -1351,7 +1362,7 @@ PLAY.ewant = {
 
 /* 08 報名數據：一鍵整理，數字與圖馬上出來（示範數字） */
 PLAY.analysis = {
-  html: () => ph("改造前的原始檔長這樣，按一下「整理成報告」", "示範數字，非真實金額") +
+  html: () => ph("改造前的原始檔長這樣，按「▶ 整理成報告」看它變成什麼", "示範數字，非真實金額") +
     win("改造前・系統匯出的原始檔（幾千列）", `<div class="sheet wrap">學號 S01xx｜王O明｜A101｜已繳費｜900
 學號 S02xx｜林O婷｜B203｜退選｜-900｜手續費另計
 學號 S03xx｜陳O安｜A101｜已繳費｜1800
@@ -1359,7 +1370,7 @@ PLAY.analysis = {
 學號 S05xx｜李O慈｜A101｜已繳費｜0｜低收免費
 學號 S06xx｜吳O宏｜B203｜退選｜-900
 …退了幾個人？收了多少？低收、手續費怎麼算？每個人算出來都不一樣</div>`) +
-    `<div class="pbar" style="justify-content:center;margin:12px 0 8px"><button class="pb go" data-act="go">整理成報告</button><button class="pb ghost" data-act="reset">重來</button></div>
+    `<div class="pbar" style="justify-content:center;margin:12px 0 8px"><button class="pb go" data-act="go">▶ 整理成報告</button><button class="pb ghost" data-act="reset">重來</button></div>
      <div class="rep" data-rep hidden>${win("改造後・決策報告", `<div style="padding:12px"><div class="mini" data-mini></div><p class="note" style="margin:12px 0 0">各課程報名人數（示範）</p><div class="bars" data-bars></div><div class="result" data-res style="margin-top:26px"></div></div>`)}</div>
      <p class="note">改造前：資料難看、難對帳，退選人數與實收金額（低收免費、手續費）每次都要重算。改造後：一次整理，數字、口徑、圖表都在同一份報告；三份檔案數字完全一致，明年重跑一次就好。</p>`,
   init: root => {
@@ -1407,12 +1418,12 @@ PLAY.handover = {
 };
 /* 10 牛寶：權限邊界 ＋ 新對話接手 */
 PLAY.nubao = {
-  html: () => ph("同一句「幫我處理今天的信」，兩隻大牛差在哪", "按「開一個新對話」，看左右兩邊怎麼回") +
-    `<div class="two chat2">
+  html: () => ph("同一句「幫我處理今天的信」，兩隻大牛差在哪", "按「▶ 開一個新對話」，先看改造前、再看改造後") +
+    `<div class="pbar"><button class="pb go" data-act="boot">▶ 開一個新對話</button><button class="pb ghost" data-act="reset">重來</button></div>
+     <div class="two chat2 clickable" data-act="boot"><span class="race-hint" data-hint>▶ 點這裡開始</span>
       ${win("改造前・每次都是新來的大牛", `<div class="chat" data-chat="a"></div><div class="meter" data-meter="a">　</div>`)}
       ${win("改造後・有手冊、有記憶的大牛", `<div class="chat" data-chat="b"></div><div class="meter" data-meter="b">　</div>`)}
      </div>
-     <div class="pbar"><button class="pb go" data-act="boot">開一個新對話</button><button class="pb ghost" data-act="reset">重來</button></div>
      <div class="result" data-res></div>
      <p class="note">改造後的大牛也有永遠不做的事：不自己寄信、不刪信、推程式碼前一定先問。這些寫在手冊裡，不是每次用講的。</p>`,
   init: root => {
@@ -1422,15 +1433,20 @@ PLAY.nubao = {
     const ca = root.querySelector('[data-chat="a"]'), cb = root.querySelector('[data-chat="b"]'), ma = root.querySelector('[data-meter="a"]'), mb = root.querySelector('[data-meter="b"]'), res = root.querySelector("[data-res]");
     let t = [];
     const bubble = (m) => `<div class="msg ${m[0]}"><img src="${m[1]}" alt="" width="34" height="34" loading="lazy"><div class="bb">${m[3] ? `<small>${m[3]}</small>` : ""}${m[2]}</div></div>`;
-    const reset = () => { t.forEach(clearTimeout); t = []; ca.innerHTML = cb.innerHTML = ""; ma.textContent = mb.textContent = "　"; res.textContent = ""; };
+    const boot = root.querySelector("[data-act=boot]");
+    const reset = () => { t.forEach(clearTimeout); t = []; ca.innerHTML = cb.innerHTML = ""; ma.textContent = mb.textContent = "　"; res.textContent = ""; boot.disabled = false; boot.textContent = "▶ 開一個新對話"; };
     root.addEventListener("click", e => {
-      const b = e.target.closest("[data-act]"); if (!b) return; reset();
-      if (b.dataset.act === "reset") return;
-      const play = (list, box, meter, endTxt, gap) => {
-        list.forEach((m, i) => t.push(setTimeout(() => { box.insertAdjacentHTML("beforeend", bubble(m)); if (i === list.length - 1) meter.textContent = endTxt; }, RM ? 0 : gap * (i + 1))));
+      const b = e.target.closest("[data-act]"); if (!b) return;
+      if (b.dataset.act === "reset") return reset();
+      if (boot.disabled) return; reset(); boot.disabled = true; boot.textContent = "對話進行中…"; const hint = root.querySelector("[data-hint]"); if (hint) hint.remove();
+      const play = (list, box, meter, endTxt, gap, offset) => {
+        list.forEach((m, i) => t.push(setTimeout(() => { box.insertAdjacentHTML("beforeend", bubble(m)); if (i === list.length - 1) meter.textContent = endTxt; }, RM ? 0 : offset + gap * (i + 1))));
+        return offset + gap * (i_len(list) + 1);
       };
-      play(A, ca, ma, "你重講了 3 件事，信一封都還沒讀。", 700); play(B, cb, mb, "你講了 1 句，剩下的它自己分工做完。", 800);
-      t.push(setTimeout(() => { res.textContent = "差別不在模型，在三件事：規則寫進手冊、踩過的坑寫進記憶、每件事交給對的小幫手。新對話幾秒內就能接手。"; }, RM ? 0 : 800 * (B.length + 1)));
+      const i_len = l => l.length;
+      const endA = play(A, ca, ma, "你重講了 3 件事，信一封都還沒讀。", 700, 0);
+      const endB = play(B, cb, mb, "你講了 1 句，剩下的它自己分工做完。", 800, endA + 500);
+      t.push(setTimeout(() => { res.textContent = "差別不在模型，在三件事：規則寫進手冊、踩過的坑寫進記憶、每件事交給對的小幫手。新對話幾秒內就能接手。"; boot.disabled = false; boot.textContent = "▶ 再開一個新對話"; }, RM ? 0 : endB + 300));
     });
   }
 };
