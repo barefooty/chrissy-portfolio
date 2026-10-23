@@ -301,7 +301,10 @@ dialog{color:var(--ink)}
 .stage-next{margin-top:18px;display:flex;justify-content:flex-end}
 @media (max-width:640px){.stages{width:100%;justify-content:space-between}.stages button{flex:1;padding:0 4px 1px;font-size:.8em}.stage-next .btn{width:100%}}
 /* 圖片比對：手機截圖是直的，容器用 4:3、對齊上緣，看得到首頁上半部 */
-.play .cmp{aspect-ratio:4/3;max-width:560px;margin:0 auto}
+.play .phones{display:grid;grid-template-columns:1fr 1fr;gap:14px;justify-items:center}
+.play .phone{margin:0;width:100%;max-width:230px}
+.play .phone img{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;object-position:center 9%;border-radius:18px;border:4px solid #2F3440;background:#fff}
+.play .phone figcaption{font-size:11.5px;color:var(--muted);line-height:1.55;margin-top:8px;text-align:center}
 .modal h4{font-family:var(--serif);font-weight:600;color:var(--head-ink);font-size:1.12em;margin:22px 0 8px}
 .modal h4::before{content:"✿";color:var(--pink);margin-right:6px;font-size:.85em}
 .modal ul{padding-left:1.3em}
@@ -518,7 +521,11 @@ dialog{color:var(--ink)}
 .play .oldnav .top button[aria-expanded="true"] .dd{display:block}
 .play .oldnav .dd span{display:block;padding:6px 12px;font-weight:600}
 .play .oldnav .dd span:hover{background:rgba(255,255,255,.18)}
-.play .oldnav .hero{height:54px;background:linear-gradient(90deg,#0B1E3F,#12356E 60%,#0B1E3F);color:#FFD766;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;letter-spacing:.1em}
+.play .oldnav .hero{position:relative;height:64px;background:linear-gradient(90deg,#0B1E3F,#12356E 55%,#1D4B8F);overflow:hidden}
+.play .oldnav .hero .slide{position:absolute;left:12%;top:14px;width:46%;height:10px;border-radius:5px;background:rgba(255,215,102,.85)}
+.play .oldnav .hero .slide::after{content:"";position:absolute;left:0;top:18px;width:70%;height:7px;border-radius:4px;background:rgba(255,255,255,.55)}
+.play .oldnav .hero .dots{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);display:flex;gap:5px}
+.play .oldnav .hero .dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.45)}.play .oldnav .hero .dots i.on{background:#fff}
 .play .oldnav .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:10px}
 .play .oldnav .tiles button{border:0;border-radius:10px;padding:9px 4px;font:inherit;font-weight:700;color:#fff;background:linear-gradient(180deg,#FF9A3C,#F0741A);cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.12)}
 .play .oldnav .tiles button.b{background:linear-gradient(180deg,#2E8BD8,#1B63B6)}
@@ -919,13 +926,13 @@ const PROJECTS = [
 
  {id:"marketing", cat:["mkt"], svg:"mkt",
   title:"🎀 行銷 × 內容作品系列", status:"live", statusTxt:"✅ 已上線：四大系列 13 件作品，持續擴充中",
-  one:"年度宣傳主視覺、創意敘事企劃、開課指引圖解、GDSC 社群經營案，共四個系列，有專屬頁面。",
+  one:"年度主視覺、四格漫畫說故事、搭節慶與倒數的檔期、集點抽籤的互動企劃，共四個系列，有專屬頁面。",
   num:"4 個系列、13 件作品",
   role:"我的角色：從視覺、文案到企劃全系列親手產出（Canva＋AI 生圖＋手繪拼貼風）。",
   learn:"一開始每張圖各自好看，放在一起卻像不同人做的。後來定下一套視覺語言（紙感底、固定配色、雙角色），形式可以變、風格不變。學到：系列感比單張精美更重要。",
   tip:"社群文宣先定「行動資訊永遠在」的鐵則：日期、QR、平台名每張都有，其他的再玩形式。各平台用原生比例，不硬裁。",
-  desc:"行銷與內容作品有自己的專屬子頁：手繪溫暖拼貼風的年度主視覺與時程圖、創意敘事企劃（四格漫畫、LINE 多頁訊息、IG 加開檔期）、把行政 SOP 圖解化的開課指引系列，以及 GDSC 社群經營案（粉專成長 124%、集點企劃、運勢抽籤週邊）——四大系列 13 件已上架，每件附設計思維說明。HTML 信件模板集與更多檔期整理中。",
-  hi:["一套視覺語言跑完整個招生檔期：預告→報名→倒數→開課","資訊五層架構＋吉祥物雙角色敘事，資訊多也有秩序","各平台用原生比例：IG 4:5、LINE 1.11:1，不硬裁","所有展出作品皆為實際公開發布過的文宣"],
+  desc:"我喜歡用創意講行政：用四格漫畫說故事、搭節慶做檔期、大活動配小活動（集點卡、運勢抽籤週邊）把學生拉進來，而不是只發一張公告圖；同時守住一套視覺語言，讓整季看起來是同一個人做的。行銷與內容作品有自己的專屬子頁：手繪溫暖拼貼風的年度主視覺與時程圖、創意敘事企劃（四格漫畫、LINE 多頁訊息、IG 加開檔期）、把行政 SOP 圖解化的開課指引系列，以及 GDSC 社群經營案（粉專成長 124%、集點企劃、運勢抽籤週邊）——四大系列 13 件已上架，每件附設計思維說明。HTML 信件模板集與更多檔期整理中。",
+  hi:["創意是主菜：故事型四格、節慶與倒數檔期、集點與抽籤互動，讓學生主動靠過來","一套視覺語言跑完整個招生檔期：預告→報名→倒數→開課","資訊五層架構＋吉祥物雙角色敘事，資訊多也有秩序","各平台用原生比例：IG 4:5、LINE 1.11:1，不硬裁","所有展出作品皆為實際公開發布過的文宣"],
   tech:["Canva","AI 生圖","創意敘事","社群經營"],
   link:"marketing.html", linkTxt:"🎀 進入行銷作品專區", shots:[]},
 ];
@@ -1177,19 +1184,13 @@ PLAY.vba = {
 
 /* 06 SOS 網站：改造前後拉一拉 ＋ 決策圖試走 */
 PLAY["sos-site"] = {
-  html: () => ph("拉一拉：Notion 長頁 vs 新網站（手機畫面上半部）", "完整截圖在「③ 截圖」；再往下試走學生的決策圖") +
-    `<div class="cmp" data-cmp><img src="assets/site-before-notion.jpg" alt="改造前：Notion 長頁" loading="lazy"><img class="after" src="assets/site-sos-mobile.jpg" alt="改造後：新網站首頁" loading="lazy"><div class="hd"><i>⇔</i></div><span class="lb l">改造前</span><span class="lb r">改造後</span></div>
+  html: () => ph("改造前後，手機打開第一眼", "完整截圖在「③ 截圖」；再往下試走學生的決策圖") +
+    `<div class="phones"><figure class="phone"><img src="assets/site-before-notion.jpg" alt="改造前：Notion 長頁" loading="lazy"><figcaption>改造前・Notion 長頁：深色、層層折疊，要一直往下滑</figcaption></figure><figure class="phone"><img src="assets/site-sos-mobile.jpg" alt="改造後：新網站首頁" loading="lazy"><figcaption>改造後・新網站：公告置頂、六張導覽卡一眼分流</figcaption></figure></div>
      <div class="ph" style="margin-top:16px"><b>學生只要回答兩個問題</b><small>示範簡化版，實際規則以網站公告為準</small></div>
      <div class="pbar" data-q="1"><span class="note" style="margin:0 6px 0 0">課程開始了嗎？</span><button class="pb" data-a="no">還沒</button><button class="pb" data-a="yes">已經開課</button></div>
      <div class="pbar" data-q="2"><span class="note" style="margin:0 6px 0 0">你想要？</span><button class="pb" data-b="swap">換別門課</button><button class="pb" data-b="drop">不修了</button></div>
      <div class="result" data-res></div>`,
   init: root => {
-    const cmp = root.querySelector("[data-cmp]"), after = cmp.querySelector(".after"), hd = cmp.querySelector(".hd");
-    const setX = x => { const r = cmp.getBoundingClientRect(); const p = Math.max(4, Math.min(96, (x - r.left) / r.width * 100)); after.style.clipPath = `inset(0 0 0 ${p}%)`; hd.style.left = p + "%"; };
-    let down = false;
-    cmp.addEventListener("pointerdown", e => { down = true; setX(e.clientX); });
-    addEventListener("pointermove", e => { if (down) setX(e.clientX); });
-    addEventListener("pointerup", () => down = false);
     const ans = {}; const res = root.querySelector("[data-res]");
     const R = { "no-swap": "開課前換課：直接改選另一門，不用先退再報。", "no-drop": "開課前退選：可以退選並申請退費。", "yes-swap": "開課後不能換課：只能停修原課程，想修別門要等下一期。", "yes-drop": "開課後停修：可以停修，但不退費。" };
     root.addEventListener("click", e => {
@@ -1210,8 +1211,8 @@ PLAY.ewant = {
         <button type="button" data-menu="合作夥伴" aria-expanded="false">合作夥伴 ▾<span class="dd"><span data-item="合作學校">合作學校</span><span data-item="合作機構">合作機構</span></span></button>
         <button type="button" data-menu="認識ewant" aria-expanded="false">認識 ewant ▾<span class="dd"><span data-item="新手上路">新手上路</span><span data-item="操作指南">操作指南</span><span data-item="大學跨校通識數字課程">大學跨校通識數字課程</span><span data-item="SOS" data-win="1">SOS! 暑期線上學院</span><span data-item="高中自主學習">高中自主學習</span><span data-item="高中人才培育">高中人才培育</span><span data-item="公務員增能">公務員增能</span></span></button>
       </div>
-      <div class="hero">財經新聞看門道（輪播）</div>
-      <div class="tiles">${["熱門推薦", "大學學分", "高中自主學習", "Global Campus", "在職進修", "教育部計畫", "UHCOOL", "學習達人秀"].map((t, i) => `<button type="button" data-item="${t}" class="${i === 3 || i === 7 ? "b" : ""}">${t}</button>`).join("")}</div>
+      <div class="hero" aria-label="首頁輪播圖"><span class="slide"></span><span class="dots"><i class="on"></i><i></i><i></i></span></div>
+      <div class="tiles">${["熱門推薦", "大學學分", "高中自主學習", "Global Campus", "在職進修", "教育部計畫", "UHCOOL", "學習達人秀"].map((t, i) => `<button type="button" data-item="${t}" class="${i === 3 || i === 7 ? "b" : ""}"${t === "大學學分" ? ' data-near="1"' : ""}>${t}</button>`).join("")}</div>
      </div>
      <div class="result" data-res></div>
      <div class="ph" style="margin-top:16px"><b>改版後：先問你是誰</b><small>同一個目標，點一次就到</small></div>
@@ -1226,6 +1227,7 @@ PLAY.ewant = {
         if (found) return;
         tries++;
         if (item.dataset.win) { found = true; item.classList.add("yes"); res.textContent = `找到了，在「認識 ewant」下拉選單的第 4 項。你點了 ${tries} 次。它跟「新手上路」「公務員增能」排在一起，和下面橘色的「大學學分」「高中自主學習」又是另一套分類，使用者要先猜機構怎麼分。`; }
+        else if (item.dataset.near) { found = true; item.classList.add("yes"); res.textContent = `算你找到一條繞路（第 ${tries} 次）：「大學學分」點進去會跳到另一個分頁，還要在那一頁裡再找一次「SOS」。正門其實藏在上方「認識 ewant」的下拉選單第 4 項。兩個入口都不直觀，這就是改版要解決的事。`; }
         else { item.classList.remove("no"); void item.offsetWidth; item.classList.add("no"); res.textContent = `不在「${item.dataset.item}」。再找找（第 ${tries} 次）。提示：它藏在某個下拉選單裡。`; }
         return;
       }
