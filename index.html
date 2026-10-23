@@ -552,6 +552,35 @@ dialog{color:var(--ink)}
 .play .bars div{flex:1;background:linear-gradient(180deg,var(--blue),var(--blue-deep));border-radius:6px 6px 0 0;position:relative;height:0;transition:height .6s ease}
 .play .bars div span{position:absolute;left:0;right:0;bottom:-18px;text-align:center;font-size:10px;color:var(--muted);white-space:nowrap}
 .play .bars div i{position:absolute;left:0;right:0;top:-16px;text-align:center;font-style:normal;font-size:10px;color:var(--head-ink);font-family:var(--sans)}
+/* SOS 網站：找答案任務（Notion 當網頁 vs 新網站） */
+.play .task{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--pink-50);border-radius:12px;padding:10px 14px;font-size:.9em;color:var(--pink-ink);font-weight:600;margin-bottom:12px}
+.play .task .cnt{margin-left:auto;font-family:var(--sans);font-weight:600;color:var(--head-ink);background:#fff;border-radius:999px;padding:2px 10px;font-size:.86em}
+.play .nt{background:#fff;padding:10px 14px 12px;font-size:12.5px;color:#4A4A4A;line-height:1.75;min-height:280px}
+.play .nt h6{margin:0 0 6px;font-size:1.25em;font-weight:800;color:#1F1F1F;letter-spacing:.02em}
+.play .nt p{margin:0 0 6px}
+.play .nt .tg{display:block;width:100%;text-align:left;background:transparent;border:0;padding:3px 0;font:inherit;color:#1F1F1F;cursor:pointer;display:flex;align-items:center;gap:4px}
+.play .nt .tg::before{content:"▸";font-size:9px;color:#9A9A9A;width:10px;transition:transform .15s}
+.play .nt .tg[aria-expanded="true"]::before{transform:rotate(90deg)}
+.play .nt .tg[aria-expanded="true"]+.body{display:block}
+.play .nt .body{display:none;padding:2px 0 6px 14px;color:#5C5C5C}
+.play .nt a,.play .nt .lk{color:#B9B2AA;text-decoration:underline;text-decoration-color:#DDD6CE;cursor:pointer}
+.play .nt .ans{cursor:pointer;border-radius:4px;padding:0 2px}
+.play .nt .ans.hit{background:var(--butter);color:var(--head-ink);font-weight:700}
+.play .ns{background:#FFFDFA;padding:0 0 12px;font-size:12.5px;min-height:280px}
+.play .ns .nav{display:flex;gap:4px;padding:8px 10px;background:#EEF3F1;border-bottom:1px solid #D9E3DE;flex-wrap:wrap;height:auto;max-width:none;margin:0;border-radius:0;box-shadow:none;backdrop-filter:none}
+.play .ns .nav button{border:0;background:transparent;font:inherit;font-weight:700;color:#3F6B4C;padding:6px 9px;border-radius:8px;cursor:pointer;font-size:12px}
+.play .ns .nav button[aria-pressed="true"]{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.play .ns .pg{padding:10px 14px}
+.play .ns .pg h6{margin:0 0 8px;font-size:1.1em;color:#2C3E33}
+.play .ns .faq{border:1px solid #D9E3DE;border-radius:10px;margin:6px 0;overflow:hidden}
+.play .ns .faq button{width:100%;text-align:left;background:#fff;border:0;padding:9px 12px;font:inherit;font-weight:700;color:#2C3E33;cursor:pointer;display:flex;justify-content:space-between;gap:8px}
+.play .ns .faq button::after{content:"▾";color:#3F6B4C}
+.play .ns .faq button[aria-expanded="true"]::after{content:"▴"}
+.play .ns .faq .a{display:none;padding:8px 12px 12px;background:#F6FAF8;color:#2C3E33;line-height:1.7}
+.play .ns .faq button[aria-expanded="true"]+.a{display:block}
+.play .ns .a a{color:#2E7D4F;font-weight:700;text-decoration:underline}
+.play .ns .pg p.hint{color:#6B655E;margin:0 0 8px}
+.play .phones.small .phone{max-width:150px}
 @media (prefers-reduced-motion: reduce){.play *{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -858,7 +887,7 @@ const PROJECTS = [
   learn:"上線前列了 14 條待確認紅字，每一條都是「規則我以為我懂，寫出來才發現有例外」。學到：對外說明寫不出來的地方，通常就是流程本身還沒定清楚的地方。",
   tip:"學生指南的核心不是把規則列完整，而是幫學生做判斷：先問「你的情況是哪一種」，再給答案。一張決策圖勝過三頁說明。",
   desc:"學生不是不看指南，是資訊埋在層層折疊的長頁面裡、手機上讀不下去。我重新設計「學生怎麼找到答案」：首頁六張導覽卡一眼分流、自製課程異動決策圖讓學生回答兩個問題就知道能退選還是停修、每一頁的結尾都找得到人。網站和申請自動化系統無縫銜接，端到端零紙本。",
-  hi:["四張自製 HTML 互動決策流程圖，規則不用讀、用「判斷」的","刻意選 Google Sites：零費用、團隊任何人都能維護，不留技術債","「繳費後 1 到 2 天會出現在我的課程」：明確的時間預期，就少一封焦慮的信"],
+  hi:["Notion 直接當網頁的四個問題：沒有側欄與上方分類、摺疊小三角太小看不出能展開、可點的連結變淺色反而最不明顯、資訊散在各段；改版後上方先分類，每一項裡都有 FAQ，同學先看問題再看答案","四張自製 HTML 互動決策流程圖，規則不用讀、用「判斷」的","刻意選 Google Sites：零費用、團隊任何人都能維護，不留技術債","「繳費後 1 到 2 天會出現在我的課程」：明確的時間預期，就少一封焦慮的信"],
   tech:["Google Sites","HTML/CSS 流程圖","資訊架構","AI 瀏覽器自動化"],
   shots:[{s:"assets/site-before-notion.jpg",c:"Before：原 Notion 指南的手機畫面——深色長頁＋層層折疊，學生讀不下去"},{s:"assets/site-sos-mobile.jpg",c:"After：新網站手機版首頁——公告置頂＋柯基主題導覽卡，響應式直排"},{s:"assets/site-sos-nav.jpg",c:"手機導覽選單：7 頁架構一目了然，依學生旅程排序"}],
   link:"https://sites.google.com/ewant.org/sos-ewant/", linkTxt:"網站是公開的，點此逛逛"},
@@ -1182,26 +1211,57 @@ PLAY.vba = {
   }
 };
 
-/* 06 SOS 網站：改造前後拉一拉 ＋ 決策圖試走 */
+/* 06 SOS 網站：同一個問題，兩邊各點幾下才找到 */
 PLAY["sos-site"] = {
-  html: () => ph("改造前後，手機打開第一眼", "完整截圖在「③ 截圖」；再往下試走學生的決策圖") +
-    `<div class="phones"><figure class="phone"><img src="assets/site-before-notion.jpg" alt="改造前：Notion 長頁" loading="lazy"><figcaption>改造前・Notion 長頁：深色、層層折疊，要一直往下滑</figcaption></figure><figure class="phone"><img src="assets/site-sos-mobile.jpg" alt="改造後：新網站首頁" loading="lazy"><figcaption>改造後・新網站：公告置頂、六張導覽卡一眼分流</figcaption></figure></div>
-     <div class="ph" style="margin-top:16px"><b>學生只要回答兩個問題</b><small>示範簡化版，實際規則以網站公告為準</small></div>
-     <div class="pbar" data-q="1"><span class="note" style="margin:0 6px 0 0">課程開始了嗎？</span><button class="pb" data-a="no">還沒</button><button class="pb" data-a="yes">已經開課</button></div>
-     <div class="pbar" data-q="2"><span class="note" style="margin:0 6px 0 0">你想要？</span><button class="pb" data-b="swap">換別門課</button><button class="pb" data-b="drop">不修了</button></div>
-     <div class="result" data-res></div>`,
+  html: () => ph("任務：幫同學找到「退費什麼時候入帳？」的答案", "左右各找一次，看各點了幾下") +
+    `<div class="task"><span>左右兩邊都找到答案就算完成</span><span class="cnt" data-cnt-a>改造前 0 下</span><span class="cnt" data-cnt-b>改造後 0 下</span></div>
+     <div class="two">
+      ${win("改造前・Notion 直接當網頁", `<div class="nt" data-nt>
+        <h6>SOS 暑期線上學院 說明指南</h6>
+        <p>歡迎來到 SOS！以下為本年度相關說明，請同學詳閱。相關表單請見<span class="lk">報名系統</span>。</p>
+        <button class="tg" aria-expanded="false">重要資訊</button><div class="body">報名期間 5/4 至 6/28。課程於 7/1 開始，請留意<span class="lk">時程表</span>。</div>
+        <button class="tg" aria-expanded="false">計畫說明</button><div class="body">本計畫由多所大學合作開設線上課程，學分認抵請洽貴校教務單位。詳見<span class="lk">計畫手冊</span>。</div>
+        <button class="tg" aria-expanded="false">報名與繳費</button><div class="body">繳費後 1 到 2 天會出現在我的課程。繳費方式見<span class="lk">繳費說明</span>。</div>
+        <button class="tg" aria-expanded="false">課程異動</button><div class="body">換課、停修、退選三種異動的規定不同。
+          <button class="tg" aria-expanded="false">退選與退費</button><div class="body">開課前可退選。<span class="ans" data-ans="a">退費於課程結束後約 30 個工作天入帳</span>，以<span class="lk">退費說明</span>為準。</div>
+          <button class="tg" aria-expanded="false">換課</button><div class="body">開課前可換一次，請填<span class="lk">換課表單</span>。</div>
+          <button class="tg" aria-expanded="false">停修</button><div class="body">開課後只能停修，不退費。</div>
+        </div>
+        <button class="tg" aria-expanded="false">成績與證書</button><div class="body">成績於 9 月初寄送各校，證書請至<span class="lk">下載頁</span>。</div>
+        <button class="tg" aria-expanded="false">聯絡我們</button><div class="body">請來信 SOS 信箱，標題註明學校與姓名。</div>
+      </div>`)}
+      ${win("改造後・新網站", `<div class="ns" data-ns>
+        <div class="nav" data-nsnav>${["公告", "報名繳費", "課程異動", "成績證書", "常見問題"].map((t, i) => `<button type="button" data-sec="${t}" aria-pressed="${i === 0}">${t}</button>`).join("")}</div>
+        <div class="pg" data-pg></div>
+      </div>`)}
+     </div>
+     <div class="result" data-res></div>
+     <p class="note">Notion 當網頁的問題：沒有側欄、沒有上方分類，只能一直往下滑；摺疊的小三角很小，看不出哪裡能展開；可以點的連結變成淺色，反而最不明顯；資訊散在各段裡。改版後：上方先分類，每一項裡都有 FAQ，同學先看問題再看答案，不用讀一大段說明。</p>
+     <div class="phones small"><figure class="phone"><img src="assets/site-before-notion.jpg" alt="改造前：Notion 長頁" loading="lazy"><figcaption>改造前真實畫面</figcaption></figure><figure class="phone"><img src="assets/site-sos-mobile.jpg" alt="改造後：新網站首頁" loading="lazy"><figcaption>改造後真實畫面</figcaption></figure></div>`,
   init: root => {
-    const ans = {}; const res = root.querySelector("[data-res]");
-    const R = { "no-swap": "開課前換課：直接改選另一門，不用先退再報。", "no-drop": "開課前退選：可以退選並申請退費。", "yes-swap": "開課後不能換課：只能停修原課程，想修別門要等下一期。", "yes-drop": "開課後停修：可以停修，但不退費。" };
-    root.addEventListener("click", e => {
-      const a = e.target.closest("[data-a]"), b = e.target.closest("[data-b]"); if (!a && !b) return;
-      if (a) { ans.a = a.dataset.a; root.querySelectorAll("[data-a]").forEach(x => x.setAttribute("aria-pressed", x === a)); }
-      if (b) { ans.b = b.dataset.b; root.querySelectorAll("[data-b]").forEach(x => x.setAttribute("aria-pressed", x === b)); }
-      res.textContent = ans.a && ans.b ? R[ans.a + "-" + ans.b] + " 這張決策圖做成網站互動後，學生不用讀完整頁規則就知道該填哪張表。" : "";
+    const ca = root.querySelector("[data-cnt-a]"), cb = root.querySelector("[data-cnt-b]"), res = root.querySelector("[data-res]");
+    let a = 0, b = 0, doneA = false, doneB = false;
+    const finish = () => { if (doneA && doneB) res.textContent = `同一個問題：改造前點了 ${a} 下才找到（還要先猜哪個小三角裡有），改造後 ${b} 下。差別不是版面漂亮，是資訊架構：先分類、再 FAQ，答案永遠在兩層以內。`; };
+    root.querySelector("[data-nt]").addEventListener("click", e => {
+      const tg = e.target.closest(".tg"), ans = e.target.closest("[data-ans]"), lk = e.target.closest(".lk");
+      if (doneA) return;
+      if (tg) { a++; tg.setAttribute("aria-expanded", tg.getAttribute("aria-expanded") !== "true"); }
+      else if (ans) { a++; ans.classList.add("hit"); doneA = true; res.textContent = doneB ? "" : `改造前：第 ${a} 下才找到。現在換右邊試試。`; }
+      else if (lk) { a++; res.textContent = doneB ? "" : "那是連結，會跳走；答案還在某個小三角裡。"; }
+      ca.textContent = `改造前 ${a} 下`; finish();
     });
+    const PG = {
+      "公告": `<h6>最新公告</h6><p class="hint">報名 5/4 至 6/28，課程 7/1 開始。想找規則請用上方分類。</p>`,
+      "報名繳費": `<h6>報名繳費</h6><div class="faq"><button type="button" aria-expanded="false">繳費後多久會出現在我的課程？</button><div class="a">1 到 2 天。</div></div>`,
+      "課程異動": `<h6>課程異動</h6><div class="faq"><button type="button" aria-expanded="false">退費什麼時候入帳？</button><div class="a" data-ans="b">課程結束後約 30 個工作天，依<a>退費說明</a>為準。</div></div><div class="faq"><button type="button" aria-expanded="false">開課後還能換課嗎？</button><div class="a">不能，只能停修。</div></div>`,
+      "成績證書": `<h6>成績證書</h6><div class="faq"><button type="button" aria-expanded="false">成績什麼時候出來？</button><div class="a">9 月初寄送各校。</div></div>`,
+      "常見問題": `<h6>常見問題</h6><div class="faq"><button type="button" aria-expanded="false">退費什麼時候入帳？</button><div class="a" data-ans="b">課程結束後約 30 個工作天，依<a>退費說明</a>為準。</div></div><div class="faq"><button type="button" aria-expanded="false">忘記密碼怎麼辦？</button><div class="a">用登入頁的「忘記密碼」重設。</div></div>`
+    };
+    const pg = root.querySelector("[data-pg]"); pg.innerHTML = PG["公告"];
+    root.querySelector("[data-nsnav]").addEventListener("click", e => { const btn = e.target.closest("[data-sec]"); if (!btn || doneB) return; b++; root.querySelectorAll("[data-sec]").forEach(x => x.setAttribute("aria-pressed", x === btn)); pg.innerHTML = PG[btn.dataset.sec]; cb.textContent = `改造後 ${b} 下`; });
+    pg.addEventListener("click", e => { const q = e.target.closest(".faq > button"); if (!q || doneB) return; b++; q.setAttribute("aria-expanded", q.getAttribute("aria-expanded") !== "true"); cb.textContent = `改造後 ${b} 下`; if (q.nextElementSibling.dataset.ans) { doneB = true; q.nextElementSibling.style.background = "var(--butter)"; res.textContent = doneA ? "" : `改造後：第 ${b} 下就找到。再試試左邊。`; finish(); } });
   }
 };
-
 /* 07 ewant：改版前，請你找到 SOS 的入口 */
 PLAY.ewant = {
   html: () => ph("改版前的首頁：請你找到「SOS 暑期線上學院」的入口", "點你覺得對的地方（模擬畫面，依原站結構重製）") +
