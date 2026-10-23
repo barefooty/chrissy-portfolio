@@ -91,7 +91,7 @@ section.wrap{padding:48px 20px 0}
 .slot b{color:var(--head-ink);font-weight:600}
 .slot small{font-size:.92em}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
-.tiles.four{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.tiles.four{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
 .tile{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow-s);display:flex;flex-direction:column;margin:0}
 .tile .ph{flex:1}
 /* 裱框：別的品牌色（SOS、GDSC）放進奶油紙框裡，像展品、不像網站本身的顏色 */
@@ -136,6 +136,39 @@ footer .sig{margin-top:4px;font-size:.85em}
   .nav-links{display:none}.nav{padding:0 6px 0 12px;height:56px}header{padding:8px 8px 0}.nav-cta{min-height:34px;padding:0 12px 1px;font-size:12.5px}
   .to-top{width:40px;height:40px;right:12px;bottom:14px}
 }
+.play{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 18px 14px;margin:22px 0 6px}
+.play .ph{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.play .ph b{font-family:var(--head);font-weight:600;font-size:1.05em;color:var(--head-ink)}
+.play .ph small{color:var(--muted);font-size:.84em}
+.play .two{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+@media (max-width:640px){.play .two{grid-template-columns:1fr}}
+.play .win{border:1px solid var(--line);border-radius:14px;background:#FFFDFA;overflow:hidden}
+.play .win .wt{padding:8px 12px;background:#F1ECE5;font:600 11.5px/1 "Noto Sans TC",sans-serif;letter-spacing:.14em;color:var(--muted)}
+.play .note{font-size:.84em;color:var(--muted);margin-top:10px;line-height:1.7}
+.play .result{margin:0 12px 12px;padding:10px 12px;border-radius:12px;background:var(--pink-50);color:var(--pink-ink);font-weight:600;font-size:.9em;line-height:1.6}
+.play .result:empty{display:none}
+.play .pbar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:10px 0}
+.play .pb{min-height:38px;padding:0 16px 2px;border-radius:999px;border:1.5px solid var(--blue);background:var(--card);color:var(--blue-ink);font:700 .86em/1 inherit;font-family:inherit;cursor:pointer}
+.play .pb.go{background:var(--head-ink);border-color:var(--head-ink);color:#fff}
+.stamps{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px}
+.stamp{border:1.5px dashed var(--blue);border-radius:12px;background:#fff;padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit;transition:transform .15s,background .2s}
+.stamp b{display:block;font-size:24px;color:var(--blue);font-family:"Noto Sans TC",sans-serif;line-height:1.1}
+.stamp span{font-size:11px;color:var(--muted)}
+.stamp[aria-pressed="true"]{border-style:solid;border-color:var(--pink-deep);background:var(--pink-50);animation:stampIn .35s cubic-bezier(.2,1.4,.4,1)}
+.stamp[aria-pressed="true"] b{color:var(--pink-deep)}
+.stamp[aria-pressed="true"] b::after{content:" ✓"}
+@keyframes stampIn{0%{transform:scale(1.25) rotate(-6deg)}100%{transform:none}}
+.draw{padding:12px;text-align:center}
+.tube{position:relative;width:86px;height:92px;margin:4px auto 0;background:linear-gradient(180deg,#E9D9C7,#D6C2AA);border-radius:10px 10px 14px 14px;border:2px solid #B49883}
+.tube i{position:absolute;bottom:60px;width:9px;height:50px;background:#F6EBD9;border:1.5px solid #B49883;border-radius:3px 3px 0 0}
+.tube i:nth-child(1){left:14px}.tube i:nth-child(2){left:28px;height:58px}.tube i:nth-child(3){left:42px;height:54px}.tube i:nth-child(4){left:56px;height:60px}.tube i:nth-child(5){left:68px;height:52px}
+.tube.shake{animation:shake .5s ease 2}
+@keyframes shake{25%{transform:rotate(-5deg)}75%{transform:rotate(5deg)}}
+.slip{display:inline-flex;flex-direction:column;align-items:center;gap:4px;padding:12px 18px;border:2px solid var(--pink-deep);border-radius:10px;background:#FFF8F4;animation:slipIn .4s ease}
+.slip b{font-family:var(--head);font-size:1.3em;color:var(--pink-ink)}
+.slip span{font-size:.86em;color:var(--ink)}
+@keyframes slipIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.play *{animation:none!important;transition:none!important}}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -173,7 +206,7 @@ footer .sig{margin-top:4px;font-size:.85em}
     <h1>一套視覺語言，<br>跑完整個<span class="pk">招生檔期</span><span class="flower" aria-hidden="true"> ✿</span></h1>
     <p>我喜歡用創意講行政：四格漫畫說故事、搭節慶做檔期、大活動配小活動（集點卡、運勢抽籤週邊），讓學生主動靠過來，而不是只發一張公告圖。同時我自己發展出一套「手繪溫暖拼貼風」：米白紙感的底、水彩暈染、兩隻吉祥物對戲，從預告、報名、倒數到開課指引走完一季。以下都是 SOS 暑期線上學院與 GDSC 社團實際發布過的文宣。</p>
     <div class="proof" aria-label="作品規模"><span><b>4</b> 個系列</span><span><b>13</b> 件作品</span><span><b>1</b> 個完整招生季</span><span><b>+124%</b> GDSC 粉專追蹤</span></div>
-    <span class="role-line">我的角色：企劃、視覺、文案都由我一人完成，工具是 Canva 和 AI 生圖</span>
+    <span class="role-line">我的角色：企劃、視覺、文案都由我一人完成，工具是 Canva、Adobe Illustrator 和 AI 生圖</span>
   </div>
   <div class="hero-art">
     <figure class="tile wide"><div class="ph"><img decoding="async" src="assets/mkt-banner-16x9.jpg?v=2" alt="開始報名橫幅" data-cap="開始報名主視覺（16:9 寬版）。資訊分成五層：大標、日期帶、三張賣點卡、細項說明、行動資訊，一層都不缺。"></div><figcaption>開始報名主視覺（16:9），這一季的門面。點圖可以放大。</figcaption></figure>
@@ -230,13 +263,25 @@ footer .sig{margin-top:4px;font-size:.85em}
     <h2>④ GDSC 社群經營案<span class="std">GDSC 品牌色</span></h2>
     <div class="guide">
       <img class="gimg" src="assets/g-bacon-dance.webp" alt="五花跳舞" width="272" height="319" loading="lazy" decoding="async">
-      <div class="bubble">我在交大 Google Developer Student Clubs 擔任<b>行銷組組長</b>，任內粉專追蹤從 351 成長到 789（<b>+124%</b>），發了 42 則貼文、7 支短影音。設計思維：<b>互動優先</b>。讓粉絲「做一件事」，而不是「看一張圖」；集點、抽籤、限時動態模板，都是讓人參與的入口。</div>
+      <div class="bubble">我在交大 Google Developer Student Clubs 擔任<b>行銷組組長</b>，任內粉專追蹤從 351 成長到 789（<b>+124%</b>），發了 42 則貼文、7 支短影音。設計思維：<b>把遊戲化融入宣傳</b>。讓粉絲「做一件事」，而不是「看一張圖」：集點卡要答題和尋寶才能蓋章，抽籤要先打卡，獎品是我設計的週邊。參與了，才會記得這個社團。</div>
     </div>
   </div>
   <div class="tiles">
-    <figure class="tile"><div class="ph"><img loading="lazy" decoding="async" src="assets/mkt-gdsc-poster.jpg" alt="GDSC 社博宣傳海報" data-cap="社團博覽會宣傳海報。3D 字母當主視覺，寫上社團能帶給你什麼，附 LINE 社群與 IG 粉專兩個 QR 入口，是招募新社員的第一張門面。"></div><figcaption>社團博覽會宣傳海報：招募新社員的第一張門面。</figcaption></figure>
-    <figure class="tile"><div class="ph"><img loading="lazy" decoding="async" src="assets/mkt-gdsc-points.jpg" alt="期末交流集點企劃" data-cap="期末交流的集點企劃（IG 限時動態）。先領卡，完成 G、D、S、C 四個任務，再兌換獎品，把期末活動變成一場闖關遊戲。"></div><figcaption>期末交流的集點企劃：把活動變成闖關遊戲。</figcaption></figure>
-    <figure class="tile"><div class="ph"><img loading="lazy" decoding="async" src="assets/mkt-gdsc-fortune.jpg" alt="社博運勢抽籤週邊" data-cap="社團博覽會的運勢抽籤週邊（超吉、中吉、小吉）。自製籤卡讓路過的人想抽一張，抽完自然就聊起社團，週邊是打開話題的方法。"></div><figcaption>運勢抽籤週邊：週邊是打開話題的方法。</figcaption></figure>
+    <figure class="tile"><div class="ph"><img loading="lazy" decoding="async" src="assets/mkt-gdsc-poster.jpg" alt="GDSC 社博宣傳海報" data-cap="社團博覽會宣傳海報，用 Adobe Illustrator 繪製。3D 字母當主視覺，寫上社團能帶給你什麼，附 LINE 社群與 IG 粉專兩個 QR 入口，是招募新社員的第一張門面。"></div><figcaption>社團博覽會宣傳海報（Adobe Illustrator）：招募新社員的第一張門面。</figcaption></figure>
+    <figure class="tile"><div class="ph"><img loading="lazy" decoding="async" src="assets/mkt-gdsc-points.jpg" alt="期末交流集點企劃" data-cap="期末交流的集點企劃（IG 限時動態）。先領卡，答對社團相關問題、完成尋寶等任務就蓋章，集滿 G、D、S、C 四格換社團小鑰匙圈（鑰匙圈也是我設計的），把期末活動變成一場闖關遊戲。"></div><figcaption>期末交流的集點企劃：答對社團問題、完成尋寶就蓋章，集滿換我設計的社團小鑰匙圈。</figcaption></figure>
+    <figure class="tile"><div class="ph"><img loading="lazy" decoding="async" src="assets/mkt-gdsc-fortune.jpg" alt="社博運勢抽籤週邊" data-cap="社團博覽會的運勢抽籤。在攤位打卡就能抽一支自製籤，抽到超吉、中吉、小吉各換對應禮物；路過的人為了抽籤停下來，抽完自然就聊起社團，週邊是打開話題的方法。"></div><figcaption>社博運勢抽籤：到攤位打卡就能抽一支籤，超吉、中吉、小吉各換不同禮物。</figcaption></figure>
+  </div>
+  <div class="play" id="gdscPlay">
+    <div class="ph"><b>動手玩：社博現場的兩個小遊戲</b><small>模擬版，獎品與題目為示意</small></div>
+    <div class="two">
+      <div class="win"><div class="wt">集點卡・集滿 G D S C 換鑰匙圈</div><div class="stamps" data-stamps><button type="button" class="stamp" data-s="G" aria-pressed="false"><b>G</b><span>答對一題社團問答</span></button><button type="button" class="stamp" data-s="D" aria-pressed="false"><b>D</b><span>找到攤位上的尋寶貼紙</span></button><button type="button" class="stamp" data-s="S" aria-pressed="false"><b>S</b><span>追蹤社團 IG</span></button><button type="button" class="stamp" data-s="C" aria-pressed="false"><b>C</b><span>跟一位社員聊 1 分鐘</span></button></div><div class="result" data-stampres></div></div>
+      <div class="win"><div class="wt">運勢抽籤・打卡就能抽</div><div class="draw">
+        <div class="tube" data-tube><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="pbar"><button class="pb go" data-act="draw">打卡完成，抽一支</button></div>
+        <div class="slip" data-slip hidden><b data-lv></b><span data-gift></span></div>
+      </div></div>
+    </div>
+    <p class="note">集點卡的四個任務逼人開口、逼人走動；籤要先打卡才能抽，抽到就換禮物。宣傳變成一場小遊戲，粉專追蹤才會從 351 長到 789。</p>
   </div>
 </section>
 
@@ -262,6 +307,24 @@ footer .sig{margin-top:4px;font-size:.85em}
 <button class="to-top" id="toTop" aria-label="回到頂端"><img src="assets/logo-niubao.webp?v=2" alt="" width="256" height="256" loading="lazy"></button>
 <dialog id="lightbox" aria-label="圖片放大檢視"><button type="button" class="lb-close" aria-label="關閉放大圖">✕</button><span class="lb-idx" id="lbIdx"></span><button type="button" class="lb-nav prev" data-step="-1" aria-label="上一張">‹</button><button type="button" class="lb-nav next" data-step="1" aria-label="下一張">›</button><img id="lightImg" alt=""><div class="lb-cap" id="lightCap"></div></dialog>
 <script>
+/* 社博小遊戲：集點卡與抽籤（模擬） */
+(() => {
+  const root = document.getElementById("gdscPlay"); if (!root) return;
+  const stamps = root.querySelector("[data-stamps]"), sres = root.querySelector("[data-stampres]");
+  stamps.addEventListener("click", e => {
+    const b = e.target.closest(".stamp"); if (!b) return;
+    b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") !== "true");
+    const n = stamps.querySelectorAll('[aria-pressed="true"]').length;
+    sres.textContent = n === 4 ? "集滿了！換一個社團小鑰匙圈（鑰匙圈也是我設計的）。四格任務讓新生開口問、動手找、追蹤、聊天，活動就不只是來拿禮物。" : n ? `蓋了 ${n} 格，還差 ${4 - n} 格。` : "";
+  });
+  const LV = [["超吉", "換：社團小鑰匙圈"], ["中吉", "換：貼紙組"], ["小吉", "換：一句社員手寫祝福"]];
+  const tube = root.querySelector("[data-tube]"), slip = root.querySelector("[data-slip]");
+  let busy = false;
+  root.querySelector("[data-act=draw]").addEventListener("click", () => {
+    if (busy) return; busy = true; slip.hidden = true; tube.classList.remove("shake"); void tube.offsetWidth; tube.classList.add("shake");
+    setTimeout(() => { const r = LV[Math.floor(Math.random() * LV.length)]; slip.querySelector("[data-lv]").textContent = r[0]; slip.querySelector("[data-gift]").textContent = r[1]; slip.hidden = false; busy = false; }, 1000);
+  });
+})();
 const lightbox = document.getElementById("lightbox"), lightImg = document.getElementById("lightImg"), lightCap = document.getElementById("lightCap"), lbIdx = document.getElementById("lbIdx");
 const IMGS = [...document.querySelectorAll(".tile img")];
 let cur = 0;
