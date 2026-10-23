@@ -363,6 +363,117 @@ dialog{color:var(--ink)}
   *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}
 }
+/* ===== 動手玩：每件作品一個小互動（教學專家／UI UX／動畫專家會診，2026-10-24）===== */
+.play{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 18px 16px;margin:16px 0 6px}
+.play .ph{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.play .ph b{font-family:var(--serif);font-weight:600;font-size:1.05em;color:var(--head-ink)}
+.play .ph small{color:var(--muted);font-size:.84em}
+.play .pbar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.play .pb{min-height:38px;padding:0 14px 2px;border-radius:999px;border:1.5px solid var(--blue);background:var(--card);color:var(--blue-ink);font:700 .86em/1 inherit;font-family:inherit;cursor:pointer;transition:background .15s,transform .15s}
+.play .pb:hover{transform:translateY(-1px)}
+.play .pb[aria-pressed="true"],.play .pb.on{background:var(--blue-ink);border-color:var(--blue-ink);color:#fff}
+.play .pb.ghost{border-color:var(--line);color:var(--muted)}
+.play .pb.go{background:var(--head-ink);border-color:var(--head-ink);color:#fff}
+.play .pb:disabled{opacity:.5;cursor:default;transform:none}
+.play .note{font-size:.84em;color:var(--muted);margin-top:10px;line-height:1.7}
+.play .result{margin-top:12px;padding:12px 14px;border-radius:12px;background:var(--pink-50);color:var(--pink-ink);font-weight:600;font-size:.92em;line-height:1.6;animation:pop .35s ease}
+.play .result:empty{display:none}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.play .win{border:1px solid var(--line);border-radius:14px;background:#FFFDFA;overflow:hidden}
+.play .win .wt{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--beige);font:600 11.5px/1 var(--sans);letter-spacing:.14em;color:var(--muted)}
+.play .win .wt i{width:9px;height:9px;border-radius:50%;background:#E6D6C4;display:inline-block}
+.play .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.play .two{grid-template-columns:1fr}}
+/* 信箱：挑信 */
+.play .mail{list-style:none;margin:0;padding:6px 0}
+.play .mail li{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px dashed var(--line);font-size:.88em;cursor:pointer;transition:background .2s,transform .35s,opacity .35s}
+.play .mail li:last-child{border-bottom:0}
+.play .mail li .dot{width:8px;height:8px;border-radius:50%;background:var(--pink);flex:none}
+.play .mail li .from{color:var(--muted);width:92px;flex:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.play .mail li .sub{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.play .mail li .pick{width:18px;height:18px;border:1.5px solid var(--line);border-radius:5px;flex:none;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff}
+.play .mail li[aria-checked="true"] .pick{background:var(--blue-ink);border-color:var(--blue-ink)}
+.play .mail li[aria-checked="true"] .pick::before{content:"✓"}
+.play .mail li.g-reply{background:#F4F7FB}.play .mail li.g-notice{opacity:.55}.play .mail li.g-post{opacity:.7}
+.play .mail li .tagx{font-size:11px;padding:2px 8px;border-radius:999px;background:var(--blue-50);color:var(--blue-ink);font-weight:700;flex:none}
+.play .mail li.g-notice .tagx{background:var(--beige);color:var(--muted)}
+.play .mail li.g-post .tagx{background:var(--pink-50);color:var(--pink-ink)}
+/* 版本滑桿 */
+.play input[type=range]{width:100%;accent-color:var(--pink-deep);margin:8px 0}
+.play .chips{display:flex;flex-wrap:wrap;gap:6px;min-height:34px}
+.play .chips span{padding:4px 10px;border-radius:999px;background:var(--blue-50);color:var(--blue-ink);font-size:12px;font-weight:600;animation:pop .3s ease}
+.play .chips span.new{background:var(--pink-50);color:var(--pink-ink)}
+.play .big{font-family:var(--sans);font-weight:600;font-size:30px;color:var(--head-ink);font-variant-numeric:tabular-nums;line-height:1}
+.play .vrow{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+/* 流程賽跑 */
+.play .race .col{padding:12px 14px}
+.play .race .col h5{font-size:.9em;color:var(--head-ink);margin:0 0 8px;display:flex;justify-content:space-between;align-items:baseline}
+.play .race .col h5 em{font-style:normal;font-family:var(--sans);font-weight:600;font-size:1.3em;color:var(--pink-ink);font-variant-numeric:tabular-nums}
+.play .race ol{margin:0;padding:0;list-style:none}
+.play .race li{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:.86em;color:var(--muted);transition:color .3s}
+.play .race li i{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line);display:inline-flex;align-items:center;justify-content:center;font-style:normal;font-size:11px;flex:none;transition:all .3s}
+.play .race li.on{color:var(--ink)}.play .race li.on i{background:var(--blue-ink);border-color:var(--blue-ink);color:#fff}
+.play .race li.done i{background:var(--pink-deep);border-color:var(--pink-deep);color:#fff}
+.play .race li.done i::before{content:"✓"}.play .race li.on i::before{content:"›"}
+.play .bar{height:8px;border-radius:999px;background:var(--beige);overflow:hidden;margin-top:8px}
+.play .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--pink-deep));transition:width .5s linear}
+/* 排順序 */
+.play .sort{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.play .sort li{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--card);font-size:.9em;cursor:grab;transition:border-color .25s,background .25s,transform .25s}
+.play .sort li.ok{border-color:#8FB49A;background:#F2F8F3}
+.play .sort li.drag{opacity:.5}
+.play .sort li .h{color:var(--muted);font-size:1.1em;cursor:grab}
+.play .sort li .t{flex:1}
+.play .sort li .mv{display:flex;gap:4px}
+.play .sort li .mv button{width:28px;height:28px;border-radius:8px;border:1px solid var(--line);background:var(--card);cursor:pointer;color:var(--ink);font-size:12px}
+.play .sort li .mv button:hover{border-color:var(--head-ink)}
+/* 期限試算 */
+.play .days{display:flex;gap:4px;flex-wrap:wrap;margin-top:10px}
+.play .days span{width:46px;height:52px;border-radius:10px;border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;color:var(--muted);line-height:1.3;background:var(--card);transition:all .3s}
+.play .days span b{font-family:var(--sans);font-size:14px;color:var(--head-ink)}
+.play .days span.skip{background:var(--beige);color:#B8A491;text-decoration:line-through}
+.play .days span.cnt{border-color:var(--blue);background:var(--blue-50)}
+.play .days span.need{border-color:var(--pink-deep);background:var(--pink-50)}.play .days span.need b{color:var(--pink-ink)}
+.play .days span.dl{border-color:var(--head-ink);background:var(--head-ink);color:#fff}.play .days span.dl b{color:#fff}
+/* 圖片比對 */
+.play .cmp{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/10;background:var(--beige);user-select:none;touch-action:none}
+.play .cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+.play .cmp .after{clip-path:inset(0 0 0 50%)}
+.play .cmp .hd{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.15)}
+.play .cmp .hd i{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:12px;color:var(--head-ink)}
+.play .cmp .lb{position:absolute;top:8px;padding:3px 10px;border-radius:999px;background:rgba(255,253,250,.92);font-size:11px;font-weight:700;color:var(--head-ink)}
+.play .cmp .lb.l{left:8px}.play .cmp .lb.r{right:8px}
+/* 身分入口／報告 ／ 其他 */
+.play .zones{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+.play .zones span{padding:10px 8px;border-radius:10px;border:1px solid var(--line);font-size:12px;text-align:center;color:var(--muted);background:var(--card);transition:all .3s}
+.play .zones span.hot{border-color:var(--pink-deep);background:var(--pink-50);color:var(--pink-ink);font-weight:700;transform:translateY(-2px)}
+.play .zones span.dim{opacity:.4}
+.play .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.play .kpis button{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:10px 8px;cursor:pointer;font-family:inherit;text-align:center;transition:border-color .2s}
+.play .kpis button b{display:block;font-family:var(--sans);font-size:22px;color:var(--head-ink)}
+.play .kpis button span{font-size:11.5px;color:var(--muted)}
+.play .kpis button[aria-expanded="true"]{border-color:var(--pink-deep);background:var(--pink-50)}
+.play .sheet{font-family:var(--sans);font-size:11px;color:var(--muted);line-height:1.5;padding:8px 12px;white-space:pre;overflow:auto}
+.play .outs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+@media (max-width:640px){.play .outs,.play .kpis{grid-template-columns:1fr}}
+.play .outs .o{border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:.84em;background:var(--card)}
+.play .outs .o b{display:block;font:600 11px/1 var(--sans);letter-spacing:.14em;color:var(--blue-ink);margin-bottom:6px}
+.play .outs .o mark{background:var(--butter);padding:0 3px;border-radius:3px;transition:background .3s}
+.play .outs .o.flash mark{background:var(--pink)}
+.play .sw{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 14px}
+@media (max-width:640px){.play .sw{grid-template-columns:1fr}}
+.play .sw li{display:flex;align-items:center;gap:8px;font-size:.86em;padding:6px 0;border-bottom:1px dashed var(--line)}
+.play .sw li i{width:34px;height:18px;border-radius:999px;background:#D8CFC4;position:relative;flex:none}
+.play .sw li i::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff}
+.play .sw li.on i{background:#8FB49A}.play .sw li.on i::after{left:18px}
+.play .sw li .w{color:var(--muted);font-size:.9em;margin-left:auto}
+.play .stage{display:flex;gap:10px;align-items:center}
+.play .stage img{width:46%;max-width:220px;border-radius:10px;border:1px solid var(--line);background:#fff}
+.play .stage .st{flex:1;font-size:.88em}
+.play .stage .st b{display:block;font-size:1.05em;color:var(--head-ink);margin-bottom:4px}
+.play .checks{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.play .checks span{font-size:11px;padding:3px 9px;border-radius:999px;background:#F2F8F3;color:#3F6B4C;font-weight:700}
+@media (prefers-reduced-motion: reduce){.play *{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -850,6 +961,246 @@ function setMask(root, s) {
   root.querySelectorAll("[data-go]").forEach(b => b.setAttribute("aria-pressed", String(+b.dataset.go === s)));
 }
 
+/* ---------- 動手玩：每件作品一個小互動（示範資料皆為虛構） ---------- */
+const PLAY = {};
+const esc = t => t.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const win = (title, inner) => `<div class="win"><div class="wt"><i></i><i></i><i></i>${title}</div>${inner}</div>`;
+const ph = (t, s) => `<div class="ph"><b>${t}</b><small>${s}</small></div>`;
+
+/* 01 信箱：你來挑，再交給小幫手 */
+const MAILS = [
+  ["甲大學 王O明", "想申請退費，請問流程", "reply"], ["ewant 討論區", "[課程A] 新的討論：作業二怎麼交", "notice"],
+  ["ewant 討論區", "[課程B] 老師已回覆：期末範圍", "notice"], ["乙大學 教務處", "學生名單更正一名", "reply"],
+  ["ewant 討論區", "[課程A] 新的討論：影片打不開", "notice"], ["系統通知", "本週課程進度提醒", "post"],
+  ["丙大學 林O婷", "成績什麼時候會出來？", "reply"], ["ewant 討論區", "[課程C] 老師已回覆：補考", "notice"],
+  ["ewant 討論區", "[課程B] 新的討論：心得字數", "notice"], ["平台公告", "系統維護通知（週日 02:00）", "post"]];
+PLAY.mail = {
+  html: () => ph("你來挑挑看：哪幾封真的要回？", "點一下勾選，再交給小幫手分類") +
+    win("共用信箱・今天 10 封（示範）", `<ul class="mail">${MAILS.map((m, i) => `<li role="checkbox" aria-checked="false" data-i="${i}" data-g="${m[2]}"><span class="dot"></span><span class="from">${m[0]}</span><span class="sub">${m[1]}</span><span class="tagx" hidden></span><span class="pick"></span></li>`).join("")}</ul>`) +
+    `<div class="pbar"><button class="pb go" data-act="sort">交給小幫手分類</button><button class="pb ghost" data-act="reset">重來</button></div><div class="result"></div>
+     <p class="note">真實情況：SOS 最忙一週 333 封、最多一天 114 封。小幫手每個工作日跑兩次，你只要讀一封報告。</p>`,
+  init: root => {
+    const ul = root.querySelector(".mail"), res = root.querySelector(".result");
+    ul.addEventListener("click", e => { const li = e.target.closest("li"); if (!li || ul.dataset.done) return; li.setAttribute("aria-checked", li.getAttribute("aria-checked") !== "true"); });
+    root.addEventListener("click", e => {
+      const b = e.target.closest("[data-act]"); if (!b) return;
+      if (b.dataset.act === "reset") { ul.dataset.done = ""; res.textContent = ""; ul.querySelectorAll("li").forEach(li => { li.setAttribute("aria-checked", "false"); li.className = ""; li.querySelector(".tagx").hidden = true; }); return; }
+      const picked = [...ul.querySelectorAll('li[aria-checked="true"]')].map(li => +li.dataset.i);
+      const names = { reply: "要回", notice: "通知", post: "公告" }, order = { reply: 0, post: 1, notice: 2 };
+      const lis = [...ul.children].sort((a, b) => order[a.dataset.g] - order[b.dataset.g]);
+      lis.forEach((li, k) => { setTimeout(() => { li.className = "g-" + li.dataset.g; const t = li.querySelector(".tagx"); t.textContent = names[li.dataset.g]; t.hidden = false; ul.appendChild(li); }, RM ? 0 : k * 70); });
+      const truth = MAILS.map((m, i) => m[2] === "reply" ? i : -1).filter(i => i >= 0);
+      const hit = picked.filter(i => truth.includes(i)).length, miss = truth.length - hit, extra = picked.length - hit;
+      ul.dataset.done = "1";
+      setTimeout(() => { res.textContent = `小幫手挑出 3 封要回、5 封通知一句帶過、2 封公告。你勾中 ${hit} 封${miss ? `、漏了 ${miss} 封` : ""}${extra ? `、多勾 ${extra} 封` : ""}。要回的永遠排最上面，通知不用再一封封點開。`; }, RM ? 0 : 800);
+    });
+  }
+};
+
+/* 02 Catlendar：版本滑桿，看它怎麼長大 */
+const CAT_MODS = [[1, "任務"], [3, "便利貼"], [6, "月曆"], [9, "日誌"], [11, "追蹤項目"], [14, "電話簿"], [18, "記帳"], [22, "習慣打卡"], [27, "番茄鐘"], [40, "追案看板"], [53, "今日駕駛艙"], [63, "貓狗值班"]];
+const CAT_CAP = [[1, "v1：只想擺脫便條紙，一個待辦清單。"], [11, "第一週：一天加一個小模組，長到 11 個。"], [27, "六天 27 版：每版都用真檔實測才算數。"], [53, "v53 體檢：功能太多反而少開，重新定位成「早上第一眼的駕駛艙」。"], [63, "v63 現在：開源在 GitHub，十隻貓狗吉祥物輪班。"]];
+PLAY.catlendar = {
+  html: () => ph("拖拖看：它是怎麼從一張便條紙長成系統的", "拉動版本號") +
+    `<div class="vrow"><span class="big" data-v>v1</span><span class="note" data-cap style="margin:0"></span></div>
+     <input type="range" min="1" max="63" value="1" aria-label="版本號"><div class="chips" data-chips></div>
+     <p class="note">模組出現的版本是示意順序；真實歷程見下方截圖與亮點。</p>`,
+  init: root => {
+    const r = root.querySelector("input"), v = root.querySelector("[data-v]"), cap = root.querySelector("[data-cap]"), chips = root.querySelector("[data-chips]");
+    let shown = 0;
+    const draw = () => {
+      const n = +r.value; v.textContent = "v" + n;
+      cap.textContent = CAT_CAP.filter(c => c[0] <= n).pop()[1];
+      const mods = CAT_MODS.filter(m => m[0] <= n);
+      chips.innerHTML = mods.map((m, i) => `<span class="${i === mods.length - 1 && mods.length > shown ? "new" : ""}">${m[1]}</span>`).join("");
+      shown = mods.length;
+    };
+    r.addEventListener("input", draw); draw();
+  }
+};
+
+/* 03 課程異動：兩條流程賽跑 */
+PLAY.course = {
+  html: () => ph("按下去，看同一件申請在兩條流程各要多久", "示範時間依實際平均值") +
+    `<div class="two race">
+      ${win("改造前・紙本流程", `<div class="col"><h5>人工 7 步<em data-t="a">0 分</em></h5><ol data-steps="a">${["學生下載 Word 申請表", "填寫後 Email 寄回", "格式不對，來回補件", "承辦人逐欄轉錄到表單", "手工排版收執聯", "回信附上收執聯", "存檔歸檔"].map(t => `<li><i></i>${t}</li>`).join("")}</ol><div class="bar"><i data-bar="a"></i></div></div>`)}
+      ${win("改造後・線上流程", `<div class="col"><h5>自動 3 步<em data-t="b">0 分</em></h5><ol data-steps="b">${["學生填線上表單，格式錯就送不出去", "承辦人審核：狀態改一格", "收執聯自動生成、寄出、歸檔"].map(t => `<li><i></i>${t}</li>`).join("")}</ol><div class="bar"><i data-bar="b"></i></div></div>`)}
+     </div>
+     <div class="pbar"><button class="pb go" data-act="run">送一件申請看看</button><button class="pb ghost" data-act="reset">重來</button></div><div class="result"></div>`,
+  init: root => {
+    let timers = [];
+    const stop = () => { timers.forEach(clearTimeout); timers = []; };
+    const run = () => {
+      stop(); reset();
+      const go = (key, total, per) => {
+        const lis = root.querySelectorAll(`[data-steps="${key}"] li`), em = root.querySelector(`[data-t="${key}"]`), bar = root.querySelector(`[data-bar="${key}"]`);
+        lis.forEach((li, i) => {
+          timers.push(setTimeout(() => { lis.forEach((x, j) => { x.classList.toggle("on", j === i); x.classList.toggle("done", j < i); }); em.textContent = Math.round(total * (i + 1) / lis.length) + " 分"; bar.style.width = (100 * (i + 1) / lis.length) + "%"; if (i === lis.length - 1) li.classList.add("done"); }, RM ? 0 : per * (i + 1)));
+        });
+      };
+      go("a", 20, 650); go("b", 4, 650);
+      timers.push(setTimeout(() => { root.querySelector(".result").textContent = "線上流程 4 分鐘做完，紙本流程還在補件。每件省下約 16 分鐘，轉錄錯誤歸零；這一季自動出了 37 份收執聯。"; }, RM ? 0 : 650 * 3 + 200));
+    };
+    const reset = () => { root.querySelectorAll(".race li").forEach(li => li.className = ""); root.querySelectorAll("[data-t]").forEach(e => e.textContent = "0 分"); root.querySelectorAll("[data-bar]").forEach(b => b.style.width = 0); root.querySelector(".result").textContent = ""; };
+    root.addEventListener("click", e => { const b = e.target.closest("[data-act]"); if (!b) return; b.dataset.act === "run" ? run() : (stop(), reset()); });
+  }
+};
+
+/* 04 提前交成績：期限試算 */
+const GR = {
+  "9/1": { need: "9/1（二）", days: [["9/1", "二", "need"], ["8/31", "一", "cnt"], ["8/30", "日", "skip"], ["8/29", "六", "skip"], ["8/28", "五", "cnt"], ["8/27", "四", "dl"]], dl: "8/27（四）", why: "往前數 3 個工作日，跳過 8/29、8/30 週末。" },
+  "8/26": { need: "8/26（三）", days: [["8/26", "三", "need"], ["8/25", "二", "cnt"], ["8/24", "一", "cnt"], ["8/23", "日", "skip"], ["8/22", "六", "skip"], ["8/21", "五", "dl"]], dl: "8/21（五）", why: "往前數 3 個工作日，跳過 8/22、8/23 週末。" },
+  "7/7": { need: "7/7（二）", days: [["7/7", "二", "need"], ["7/6", "一", "cnt"], ["7/5", "日", "skip"], ["7/4", "六", "skip"], ["7/3", "五", "skip"], ["7/2", "四", "skip"], ["7/1", "三", "skip"], ["6/30", "二", "skip"], ["6/29", "一", "skip"], ["6/26", "五", "cnt"], ["6/25", "四", "dl"]], dl: "6/25（四）", why: "跳過週末，還跳過 6/29 到 7/3 的全校暑休，所以死線一口氣提前到 6/25。" }
+};
+PLAY.grades = {
+  html: () => ph("選一個學生需要成績的日期，看期限引擎怎麼反推", "示範以 3 個工作日反推，暑休為示範日期") +
+    `<div class="pbar">${Object.keys(GR).map((k, i) => `<button class="pb" data-k="${k}" aria-pressed="${i === 0}">${GR[k].need}</button>`).join("")}</div>
+     <div class="days" data-days></div><div class="result" data-res></div>
+     <p class="note">改造前：這些日期靠承辦人用手算、用腦記，15 件案子就是 15 個不同的死線。現在系統算，改一格狀態就自動交棒。</p>`,
+  init: root => {
+    const draw = k => {
+      const g = GR[k];
+      root.querySelectorAll("[data-k]").forEach(b => b.setAttribute("aria-pressed", b.dataset.k === k));
+      root.querySelector("[data-days]").innerHTML = g.days.map((d, i) => `<span class="${d[2]}" style="animation:pop .3s ease ${RM ? 0 : i * 60}ms both"><b>${d[0]}</b>${d[1]}</span>`).join("");
+      root.querySelector("[data-res]").textContent = `學生需要成績：${g.need} → 老師結算死線：${g.dl}。${g.why}`;
+    };
+    root.addEventListener("click", e => { const b = e.target.closest("[data-k]"); if (b) draw(b.dataset.k); });
+    draw("9/1");
+  }
+};
+
+/* 05 VBA 工具箱：排出作業順序 */
+const VBA_STEPS = ["上傳學校交來的名單", "核對帳號格式與重複", "統計各課程人數", "產生匯入用的檔案", "下載結果，原始檔不動"];
+PLAY.vba = {
+  html: () => ph("排排看：一份名單進工具箱，正確順序是什麼？", "拖曳，或用 ▲▼ 調整") +
+    `<ul class="sort" data-sort>${[2, 4, 0, 3, 1].map(i => `<li draggable="true" data-i="${i}"><span class="h">⋮⋮</span><span class="t">${VBA_STEPS[i]}</span><span class="mv"><button type="button" data-mv="-1" aria-label="上移">▲</button><button type="button" data-mv="1" aria-label="下移">▼</button></span></li>`).join("")}</ul>
+     <div class="result" data-res></div>
+     <p class="note">改造前：51 個筆記頁面裡的巨集，要用哪支、先用哪支，只有前任知道。改造後：工具箱照作業流程排，選一項業務就一步一步帶著做，原始檔永遠不被改到。</p>`,
+  init: root => {
+    const ul = root.querySelector("[data-sort]"), res = root.querySelector("[data-res]");
+    const check = () => { const lis = [...ul.children]; let ok = 0; lis.forEach((li, i) => { const good = +li.dataset.i === i; li.classList.toggle("ok", good); if (good) ok++; }); res.textContent = ok === lis.length ? "全對！工具箱裡的導覽就是這個順序：上傳 → 核對 → 統計 → 產檔 → 下載。" : `目前正確位置：${ok} / ${lis.length}`; };
+    ul.addEventListener("click", e => { const b = e.target.closest("[data-mv]"); if (!b) return; const li = b.closest("li"), d = +b.dataset.mv; if (d < 0 && li.previousElementSibling) ul.insertBefore(li, li.previousElementSibling); if (d > 0 && li.nextElementSibling) ul.insertBefore(li.nextElementSibling, li); check(); });
+    let dragging = null;
+    ul.addEventListener("dragstart", e => { dragging = e.target.closest("li"); dragging.classList.add("drag"); e.dataTransfer.effectAllowed = "move"; });
+    ul.addEventListener("dragend", () => { if (dragging) dragging.classList.remove("drag"); dragging = null; check(); });
+    ul.addEventListener("dragover", e => { e.preventDefault(); const li = e.target.closest("li"); if (!li || li === dragging) return; const r = li.getBoundingClientRect(); ul.insertBefore(dragging, e.clientY < r.top + r.height / 2 ? li : li.nextSibling); });
+    check();
+  }
+};
+
+/* 06 SOS 網站：改造前後拉一拉 ＋ 決策圖試走 */
+PLAY["sos-site"] = {
+  html: () => ph("拉一拉：Notion 長頁 vs 新網站（手機畫面）", "再往下試走學生的決策圖") +
+    `<div class="cmp" data-cmp><img src="assets/site-before-notion.jpg" alt="改造前：Notion 長頁" loading="lazy"><img class="after" src="assets/site-sos-mobile.jpg" alt="改造後：新網站首頁" loading="lazy"><div class="hd"><i>⇔</i></div><span class="lb l">改造前</span><span class="lb r">改造後</span></div>
+     <div class="ph" style="margin-top:16px"><b>學生只要回答兩個問題</b><small>示範簡化版，實際規則以網站公告為準</small></div>
+     <div class="pbar" data-q="1"><span class="note" style="margin:0 6px 0 0">課程開始了嗎？</span><button class="pb" data-a="no">還沒</button><button class="pb" data-a="yes">已經開課</button></div>
+     <div class="pbar" data-q="2"><span class="note" style="margin:0 6px 0 0">你想要？</span><button class="pb" data-b="swap">換別門課</button><button class="pb" data-b="drop">不修了</button></div>
+     <div class="result" data-res></div>`,
+  init: root => {
+    const cmp = root.querySelector("[data-cmp]"), after = cmp.querySelector(".after"), hd = cmp.querySelector(".hd");
+    const setX = x => { const r = cmp.getBoundingClientRect(); const p = Math.max(4, Math.min(96, (x - r.left) / r.width * 100)); after.style.clipPath = `inset(0 0 0 ${p}%)`; hd.style.left = p + "%"; };
+    let down = false;
+    cmp.addEventListener("pointerdown", e => { down = true; setX(e.clientX); });
+    addEventListener("pointermove", e => { if (down) setX(e.clientX); });
+    addEventListener("pointerup", () => down = false);
+    const ans = {}; const res = root.querySelector("[data-res]");
+    const R = { "no-swap": "開課前換課：直接改選另一門，不用先退再報。", "no-drop": "開課前退選：可以退選並申請退費。", "yes-swap": "開課後不能換課：只能停修原課程，想修別門要等下一期。", "yes-drop": "開課後停修：可以停修，但不退費。" };
+    root.addEventListener("click", e => {
+      const a = e.target.closest("[data-a]"), b = e.target.closest("[data-b]"); if (!a && !b) return;
+      if (a) { ans.a = a.dataset.a; root.querySelectorAll("[data-a]").forEach(x => x.setAttribute("aria-pressed", x === a)); }
+      if (b) { ans.b = b.dataset.b; root.querySelectorAll("[data-b]").forEach(x => x.setAttribute("aria-pressed", x === b)); }
+      res.textContent = ans.a && ans.b ? R[ans.a + "-" + ans.b] + " 這張決策圖做成網站互動後，學生不用讀完整頁規則就知道該填哪張表。" : "";
+    });
+  }
+};
+
+/* 07 ewant：依身分找入口 */
+const EW_ZONES = ["大學課程", "高中課程", "微學程", "企業培訓", "教師專區", "合作學校", "活動公告"];
+const EW_WHO = { u: ["我是大學生", "大學課程", "大學生入口：找課、跨校抵免，一條路"], h: ["我是高中生", "高中課程", "高中生入口：先修課程、升學加分，一條路"], s: ["我是社會人士", "企業培訓", "社會學習者入口：微學程、企業培訓，一條路"] };
+PLAY.ewant = {
+  html: () => ph("選一個身分，看改版前後怎麼找入口", "改版核心：從「機構分類」改成「依身分分流」") +
+    `<div class="pbar">${Object.entries(EW_WHO).map(([k, v], i) => `<button class="pb" data-w="${k}" aria-pressed="${i === 0}">${v[0]}</button>`).join("")}</div>
+     <div class="two">${win("改版前・7 個專區並列", `<div style="padding:12px"><div class="zones" data-before>${EW_ZONES.map(z => `<span>${z}</span>`).join("")}</div><p class="note">每一區都在對你招手，要先懂機構怎麼分類。</p></div>`)}
+     ${win("改版後・依身分找入口", `<div style="padding:12px"><div class="zones" data-after><span>我是大學生</span><span>我是高中生</span><span>我是社會人士</span></div><p class="note" data-cap></p></div>`)}</div>`,
+  init: root => {
+    const draw = k => {
+      root.querySelectorAll("[data-w]").forEach(b => b.setAttribute("aria-pressed", b.dataset.w === k));
+      const target = EW_WHO[k][1];
+      root.querySelectorAll("[data-before] span").forEach(s => { s.className = s.textContent === target ? "hot" : ""; });
+      root.querySelectorAll("[data-after] span").forEach(s => { s.className = s.textContent === EW_WHO[k][0] ? "hot" : "dim"; });
+      root.querySelector("[data-cap]").textContent = EW_WHO[k][2] + "。";
+    };
+    root.addEventListener("click", e => { const b = e.target.closest("[data-w]"); if (b) draw(b.dataset.w); });
+    draw("u");
+  }
+};
+
+/* 08 報名數據：點數字，看它從哪裡算出來 */
+PLAY.analysis = {
+  html: () => ph("點任何一個數字，看它怎麼算出來", "報告最怕的不是醜，是被問倒") +
+    `<div class="two">${win("改造前・系統原始檔", `<div class="sheet">學號      姓名    課程   狀態    金額\nS01xx    王O明   A101   已繳費   900\nS02xx    林O婷   B203   退費    -900\nS03xx    陳O安   A101   已繳費  1800\nS04xx    張O宇   C305   停修     900\n…（幾千列，每個人看到的數字都不一樣）</div>`)}
+     ${win("改造後・決策報告", `<div style="padding:12px"><div class="kpis"><button aria-expanded="false" data-why="人次＝一位學生修兩門課算 2；資料截止 8/31；退費者不計入。寫在報告頭的小字裡。"><b>2,941</b><span>報名人次</span></button><button aria-expanded="false" data-why="校數＝名單上出現過的合作學校去重；含只有 1 人報名的學校。"><b>59</b><span>合作學校</span></button><button aria-expanded="false" data-why="通過＝成績 ≥ 60；分母排除停修，所以比對外保守口徑略高，報告兩種都列。"><b>%</b><span>通過率</span></button></div><div class="result" data-res></div></div>`)}</div>
+     <p class="note">三份檔案（Excel 資料表、互動報告、歷年資料庫）數字完全一致；每張圖旁邊都有「重點觀察」，報告自己會簡報。</p>`,
+  init: root => {
+    root.addEventListener("click", e => { const b = e.target.closest("[data-why]"); if (!b) return; const on = b.getAttribute("aria-expanded") === "true"; root.querySelectorAll("[data-why]").forEach(x => x.setAttribute("aria-expanded", "false")); if (!on) { b.setAttribute("aria-expanded", "true"); root.querySelector("[data-res]").textContent = b.dataset.why; } else root.querySelector("[data-res]").textContent = ""; });
+  }
+};
+
+/* 09 交接系統：改一處，三處同步 */
+const HO = { "5/4": ["5/4（一）", "6/28（日）", "7/1（三）"], "5/11": ["5/11（一）", "7/5（日）", "7/8（三）"], "5/18": ["5/18（一）", "7/12（日）", "7/15（三）"] };
+PLAY.handover = {
+  html: () => ph("改一個日期，三種版本一起變", "一份原稿，三種輸出") +
+    `<div class="pbar"><span class="note" style="margin:0 6px 0 0">報名開始日：</span>${Object.keys(HO).map((k, i) => `<button class="pb" data-d="${k}" aria-pressed="${i === 0}">${k}</button>`).join("")}</div>
+     <div class="outs">
+      <div class="o" data-o><b>AI 手冊</b>報名期間 <mark data-f="0"></mark> 至 <mark data-f="1"></mark>；截止後兩天內寄成班通知。</div>
+      <div class="o" data-o><b>WORD 手冊</b>第 3 章「報名作業」：<mark data-f="0"></mark> 開放報名，<mark data-f="1"></mark> 23:59 截止。</div>
+      <div class="o" data-o><b>EXCEL 時程</b>報名開始 <mark data-f="0"></mark>｜報名截止 <mark data-f="1"></mark>｜開課 <mark data-f="2"></mark></div>
+     </div>
+     <p class="note">改造前：三份文件各自手改，永遠有一份是舊的。改造後：只改原稿，跑一次腳本三種輸出同步。示範日期為虛構。</p>`,
+  init: root => {
+    const draw = k => {
+      root.querySelectorAll("[data-d]").forEach(b => b.setAttribute("aria-pressed", b.dataset.d === k));
+      root.querySelectorAll("[data-f]").forEach(m => m.textContent = HO[k][+m.dataset.f]);
+      root.querySelectorAll("[data-o]").forEach(o => { o.classList.remove("flash"); void o.offsetWidth; o.classList.add("flash"); setTimeout(() => o.classList.remove("flash"), 700); });
+    };
+    root.addEventListener("click", e => { const b = e.target.closest("[data-d]"); if (b) draw(b.dataset.d); });
+    draw("5/4");
+  }
+};
+
+/* 10 牛寶：權限邊界 ＋ 新對話接手 */
+PLAY.nubao = {
+  html: () => ph("AI 能做什麼、不能做什麼，白紙黑字", "點「開一個新對話」看它怎麼接手") +
+    `<ul class="sw">${[["讀信、寫摘要報告", 1, "只讀"], ["把對外信件建成草稿", 1, "人按寄出"], ["直接寄出信件", 0, "永遠不給"], ["刪信、標已讀", 0, "永遠不給"], ["自動貼信箱標籤", 0, "曾開過，會誤判就收回"], ["推送程式碼到 GitHub", 0, "每次先問"]].map(x => `<li class="${x[1] ? "on" : ""}"><i></i>${x[0]}<span class="w">${x[2]}</span></li>`).join("")}</ul>
+     <div class="pbar" style="margin-top:14px"><button class="pb go" data-act="boot">開一個新對話</button><button class="pb ghost" data-act="reset">重來</button></div>
+     <div class="bar"><i data-bar></i></div><div class="result" data-res></div>
+     <p class="note">改造前：每開一個新對話都要從頭解釋我是誰、規則是什麼。改造後：手冊和記憶都在，新對話幾秒內接手。</p>`,
+  init: root => {
+    let t = [];
+    root.addEventListener("click", e => {
+      const b = e.target.closest("[data-act]"); if (!b) return; t.forEach(clearTimeout); t = [];
+      const bar = root.querySelector("[data-bar]"), res = root.querySelector("[data-res]");
+      if (b.dataset.act === "reset") { bar.style.width = 0; res.textContent = ""; return; }
+      const steps = ["讀取 43 本工作手冊…", "載入長期記憶：踩過的坑 60 多條…", "對照權限邊界…", "接手完成。今天要先處理哪件事？"];
+      steps.forEach((s, i) => t.push(setTimeout(() => { bar.style.width = (100 * (i + 1) / steps.length) + "%"; res.textContent = s; }, RM ? 0 : 500 * (i + 1))));
+    });
+  }
+};
+
+/* 11 行銷：檔期時間軸 */
+const MK = [["預告期", "assets/mkt-banner-9x16.jpg", "先讓學校窗口轉發直式版，同一套視覺。"], ["開始報名", "assets/mkt-banner-16x9.jpg", "主視覺上場：五層資訊一層不缺。"], ["倒數 3 天", "assets/mkt-comic.jpg", "四格漫畫，倒數變成有劇情的提醒。"], ["截止日", "assets/mkt-line-lastday.jpg", "LINE 多頁訊息，照平台比例做。"], ["好評加開", "assets/mkt-ig-extend.jpg", "延長期限也能再觸及一次。"], ["開課指引", "assets/mkt-guide2.jpg", "行政流程畫成圖，客服信少一封。"]];
+PLAY.marketing = {
+  html: () => ph("拉一拉：一個招生季，同一套視覺怎麼走完", "從預告到開課，六個檔期") +
+    `<input type="range" min="0" max="5" value="1" aria-label="檔期"><div class="stage"><img data-img alt=""><div class="st"><b data-t></b><span data-c></span><div class="checks"><span>✓ 日期</span><span>✓ QR 碼</span><span>✓ 平台名稱</span><span>✓ 同一組吉祥物</span></div></div></div>
+     <p class="note">鐵則：形式可以換，行動資訊每張都在。完整系列在行銷作品專區。</p>`,
+  init: root => {
+    const r = root.querySelector("input"); const draw = () => { const m = MK[+r.value]; root.querySelector("[data-img]").src = m[1]; root.querySelector("[data-t]").textContent = `${+r.value + 1}／6・${m[0]}`; root.querySelector("[data-c]").textContent = m[2]; };
+    r.addEventListener("input", draw); draw();
+  }
+};
+function playHTML(p) { const P = PLAY[p.id]; return P ? `<h4>動手玩</h4><div class="play" data-play="${p.id}">${P.html()}</div>` : ""; }
+function playInit(scope) { scope.querySelectorAll(".play[data-play]").forEach(el => { const P = PLAY[el.dataset.play]; if (P && !el.dataset.ready) { el.dataset.ready = "1"; P.init(el); } }); }
+
 /* ---------- 作品彈窗：原生 dialog＋可分享網址 #work/xxx（返回鍵＝關掉彈窗，不會離開網站） ---------- */
 const dlg = document.getElementById("workDlg"), modal = document.getElementById("modal"), crumb = document.getElementById("dlgCrumb");
 let lastFocus = null, pushed = false, curId = null;
@@ -862,6 +1213,7 @@ function modalHTML(p) {
     <p>${p.desc}</p>
     ${p.cast ? `<div class="cast">${p.cast.map(c => `<div><img src="${c.img}" alt="" width="72" height="72" loading="lazy"><div><b>${c.name}</b><span class="en">${c.en}</span><p>${c.line}</p></div></div>`).join("")}</div>` : ""}
     ${p.demo === "mask" ? MASK_DEMO : ""}
+    ${playHTML(p)}
     <div class="role">${p.role}</div>
     <h4>亮點</h4>
     <ul>${p.hi.map(h => `<li>${h}</li>`).join("")}</ul>
@@ -886,6 +1238,7 @@ function openModal(p, { push = true } = {}) {
   crumb.innerHTML = `<b>${p.no}</b>${p.title}`;
   modal.querySelectorAll(".shots img, .annot img").forEach(im => im.addEventListener("click", () => openLight(im.src, im.dataset.cap)));
   modal.querySelectorAll("[data-nav]").forEach(b => b.addEventListener("click", () => navBy(+b.dataset.nav)));
+  playInit(modal);
   const demo = modal.querySelector(".mask-demo");
   if (demo) { setMask(demo, 0); demo.addEventListener("click", e => { const b = e.target.closest("[data-go]"); if (b) setMask(demo, +b.dataset.go); }); }
   if (!wasOpen) { lastFocus = document.activeElement; dlg.showModal(); document.body.style.overflow = "hidden"; }
