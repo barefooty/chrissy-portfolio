@@ -269,7 +269,8 @@ footer .alt-mail{font-size:.9em;opacity:.8}
 /* ---------- 作品彈窗（原生 dialog：焦點鎖定、Esc、可分享網址 #work/xxx） ---------- */
 dialog{color:var(--ink)}
 #workDlg{width:calc(100% - 32px);max-width:800px;max-height:calc(100dvh - 5vh);margin:2.5vh auto;border:0;border-radius:24px;padding:0;background:var(--bg);overflow:auto;overscroll-behavior:contain;box-shadow:0 20px 60px rgba(43,58,69,.3)}
-#workDlg[open]{animation:pop .22s ease}
+#workDlg[open]{animation:dlgIn .22s ease}
+@keyframes dlgIn{from{transform:translateY(10px) scale(.985)}to{transform:none}}
 #workDlg::backdrop{background:rgba(43,58,69,.5)}
 @keyframes pop{from{transform:scale(.96);opacity:0}to{transform:scale(1);opacity:1}}
 .dlg-bar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:6px;padding:10px 14px 10px 22px;background:rgba(251,246,239,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
