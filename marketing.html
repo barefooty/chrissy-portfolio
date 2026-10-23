@@ -159,10 +159,14 @@ footer .sig{margin-top:4px;font-size:.85em}
 .stamp[aria-pressed="true"] b::after{content:" ✓"}
 @keyframes stampIn{0%{transform:scale(1.25) rotate(-6deg)}100%{transform:none}}
 .draw{padding:12px;text-align:center}
-.tube{position:relative;width:86px;height:92px;margin:4px auto 0;background:linear-gradient(180deg,#E9D9C7,#D6C2AA);border-radius:10px 10px 14px 14px;border:2px solid #B49883}
-.tube i{position:absolute;bottom:60px;width:9px;height:50px;background:#F6EBD9;border:1.5px solid #B49883;border-radius:3px 3px 0 0}
-.tube i:nth-child(1){left:14px}.tube i:nth-child(2){left:28px;height:58px}.tube i:nth-child(3){left:42px;height:54px}.tube i:nth-child(4){left:56px;height:60px}.tube i:nth-child(5){left:68px;height:52px}
-.tube.shake{animation:shake .5s ease 2}
+.tubewrap{position:relative;width:130px;height:132px;margin:0 auto;transform-origin:50% 90%}
+.tube{position:absolute;left:25px;bottom:0;width:80px;height:70px;background:linear-gradient(90deg,#D9C3A8,#EADBC6 45%,#D2BA9D);border:2px solid #B49883;border-radius:6px 6px 18px 18px;z-index:2}
+.tube .rim{position:absolute;left:-5px;right:-5px;top:-9px;height:16px;border-radius:50%;background:#F3E7D6;border:2px solid #B49883;z-index:3}
+.tube .label{position:absolute;left:50%;top:22px;transform:translateX(-50%);font-family:var(--head);font-weight:600;font-size:18px;color:#8A715F;line-height:1}
+.stick{position:absolute;bottom:60px;width:9px;background:#F8EFE2;border:1.5px solid #B49883;border-radius:4px 4px 2px 2px;z-index:1}
+.stick::after{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:var(--pink-deep);border-radius:3px 3px 0 0}
+.s1{left:40px;height:52px}.s2{left:53px;height:62px}.s3{left:66px;height:56px}.s4{left:79px;height:64px}.s5{left:92px;height:50px}
+.tubewrap.shake{animation:shake .5s ease 2}
 @keyframes shake{25%{transform:rotate(-5deg)}75%{transform:rotate(5deg)}}
 .slip{display:inline-flex;flex-direction:column;align-items:center;gap:4px;padding:12px 18px;border:2px solid var(--pink-deep);border-radius:10px;background:#FFF8F4;animation:slipIn .4s ease}
 .slip b{font-family:var(--head);font-size:1.3em;color:var(--pink-ink)}
@@ -276,7 +280,7 @@ footer .sig{margin-top:4px;font-size:.85em}
     <div class="two">
       <div class="win"><div class="wt">集點卡・集滿 G D S C 換鑰匙圈</div><div class="stamps" data-stamps><button type="button" class="stamp" data-s="G" aria-pressed="false"><b>G</b><span>答對一題社團問答</span></button><button type="button" class="stamp" data-s="D" aria-pressed="false"><b>D</b><span>找到攤位上的尋寶貼紙</span></button><button type="button" class="stamp" data-s="S" aria-pressed="false"><b>S</b><span>追蹤社團 IG</span></button><button type="button" class="stamp" data-s="C" aria-pressed="false"><b>C</b><span>跟一位社員聊 1 分鐘</span></button></div><div class="result" data-stampres></div></div>
       <div class="win"><div class="wt">運勢抽籤・打卡就能抽</div><div class="draw">
-        <div class="tube" data-tube><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="tubewrap" data-tube aria-hidden="true"><i class="stick s1"></i><i class="stick s2"></i><i class="stick s3"></i><i class="stick s4"></i><i class="stick s5"></i><div class="tube"><span class="rim"></span><span class="label">籤</span></div></div>
         <div class="pbar"><button class="pb go" data-act="draw">打卡完成，抽一支</button></div>
         <div class="slip" data-slip hidden><b data-lv></b><span data-gift></span></div>
       </div></div>
