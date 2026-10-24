@@ -672,8 +672,8 @@ dialog{color:var(--ink)}
 <section class="hero">
   <div class="eyebrow">CHRISSY LIU — PORTFOLIO</div>
   <h1>不會寫程式的我，<br>把重複的工作變成<em>會自己跑的系統</em>。</h1>
-  <p class="sub">我是課程規劃師，獨立營運一個橫跨 59 所大學的全國性線上學習計畫。下面每一件作品，都是我和 AI 一起做出來、現在每天真的在用的系統。</p>
-  <div class="proof" aria-label="營運規模"><span><b>59</b> 所合作大學</span><span><b>2,941</b> 人次報名營運</span><span><b>641</b> 封通知自動處理</span><span><b>-80%</b> 異動處理時間</span></div>
+  <p class="sub">我是課程規劃師，獨立營運一個橫跨近 60 所大學的全國性線上學習計畫。下面每一件作品，都是我和 AI 一起做出來、現在每天真的在用的系統。</p>
+  <div class="proof" aria-label="營運規模"><span><b>近 60</b> 所合作大學</span><span><b>約 2,900</b> 人次報名營運</span><span><b>641</b> 封通知自動處理</span><span><b>-80%</b> 異動處理時間</span></div>
   <div class="cta-row">
     <a class="btn btn-main" href="#featured">看作品</a>
     <a class="tlink mail-btn" href="mailto:happinesswhatever1030@gmail.com" data-addr="happinesswhatever1030@gmail.com">寫信給我 →</a>
@@ -775,8 +775,8 @@ dialog{color:var(--ink)}
   <div class="notes-head"><h3>可以帶走的方法筆記<span class="flower" aria-hidden="true">✿</span></h3><p>從每件作品整理出來的通用做法，換個單位、換個業務也適用。點「來自」可以看它在實際工作裡是怎麼來的。</p></div>
   <div class="notes" id="notes"></div>
   <div class="numbers">
-    <div><b>59 所</b><small>合作大學</small></div>
-    <div><b>2,941</b><small>人次報名營運</small></div>
+    <div><b>近 60 所</b><small>合作大學</small></div>
+    <div><b>約 2,900</b><small>人次報名營運</small></div>
     <div><b>62 支</b><small>自製小工具</small></div>
     <div><b>-80%</b><small>異動申請處理時間</small></div>
     <div><b>641 封</b><small>通知信免再點開</small></div>
@@ -976,7 +976,7 @@ const PROJECTS = [
  {id:"analysis", cat:["doc"], svg:"analysis",
   title:"📊 報名數據分析報告", status:"live", statusTxt:"✅ 完成・關鍵數字經人工驗算",
   one:"把幾千列的系統原始檔，整理成主管在會議上可以直接講的決策報告。",
-  num:"2,941 人次、59 校、37 門課完整對帳",
+  num:"約 2,900 人次、近 60 校、30 多門課完整對帳",
   role:"我的角色：分析口徑的定義者與最後把關的人。退款怎麼互抵、手續費怎麼算，動工前全部列出來確認，關鍵數字親手驗算。",
   learn:"早期版本差點把金額和人次放在同一張圖跨年比較，被自己抓到：學分費調漲過的年度不能直接換算。學到：數字好不好看是其次，口徑錯一次，整份報告就不能再被相信。",
   tip:"報告做三件套：資料表只放資料、圖表另外放、方法寫成一頁。數字被問到時，能指出它從哪一格算出來，才算做完。",
@@ -1423,7 +1423,7 @@ PLAY.analysis = {
       const b = e.target.closest("[data-act]"); if (!b) return;
       if (b.dataset.act === "reset") { rep.hidden = true; res.textContent = ""; return; }
       rep.hidden = false;
-      mini.innerHTML = [["2,941", "報名人次"], ["186", "退選人次"], ["59", "合作學校"], ["37", "課程"], ["2 種", "通過率口徑並列"], ["0 筆", "三份檔案數字差異"]].map((x, i) => `<div style="animation-delay:${RM ? 0 : i * 110}ms"><b>${x[0]}</b><span>${x[1]}</span></div>`).join("");
+      mini.innerHTML = [["約 2,900", "報名人次"], ["約 190", "退選人次"], ["近 60", "合作學校"], ["30 多", "門課程"], ["2 種", "通過率口徑並列"], ["0 筆", "三份檔案數字差異"]].map((x, i) => `<div style="animation-delay:${RM ? 0 : i * 110}ms"><b>${x[0]}</b><span>${x[1]}</span></div>`).join("");
       bars.innerHTML = [["A101", 68], ["B203", 45], ["C305", 90], ["D118", 30], ["E221", 56]].map(x => `<div data-h="${x[1]}"><i>${x[1]}</i><span>${x[0]}</span></div>`).join("");
       setTimeout(() => bars.querySelectorAll("div").forEach(d => d.style.height = d.dataset.h + "%"), 50);
       res.textContent = "每個數字旁邊都寫口徑：人次怎麼算、退費怎麼互抵、低收與手續費放哪一欄。主管在會議上可以直接講，被問到也答得出來。";
