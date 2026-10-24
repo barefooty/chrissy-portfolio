@@ -995,7 +995,7 @@ const PROJECTS = [
   desc:"行政最大的隱形成本是交接：規則存在承辦人腦中，文件永遠落後現況。我把整年度業務寫成「原始碼」：給會用 AI 的人，是 16 章 Claude Skill，新的 AI 會話能直接回答「現在幾月、該做什麼」；給習慣紙本的人，是腳本自動生成的 Word 手冊；給要排時程的人，是填三個錨點日期、整年時程自動展開的 Excel 主檔。內容更新重跑一次，三種輸出同步。",
   hi:["軟體業的 single source of truth，完全適用於行政","文件不用手排、用生成：交接從「祈禱文件是新的」變成「跑一次腳本」","交接包一鍵打包，附給不熟 AI 的同事的兩分鐘安裝說明","第四種介面是 Notion：六個資料庫鏡像（Skill 目錄、流程卡、待辦與進度…），給習慣 Notion 的接手者看，正本仍在本機"],
   tech:["Markdown/JSON 原始碼","Python 產檔腳本","Claude Skill","知識架構設計"],
-  shots:[{s:"assets/handover-notion.png",c:"Notion「牛寶工作台」入口：六個資料庫鏡像的總覽，頁面裡就寫明「規則正本仍在 skill／Obsidian，Notion 只是鏡像」——單一資料來源的原則貫徹到每個出口"},{s:"assets/handover-skills.png",c:"Skill 目錄實拍：40+ 本手冊依「工具與技術／本人與業務」分組，每本標註什麼時候用、管哪條業務線、母版放哪——接手的人用這張表就能找到所有規則"},{s:"assets/handover-flowcards.png",c:"流程卡實拍：一卡一流程的索引——何時做、做完會有什麼、先要有什麼、地雷在哪、對應時程月份；全文在手冊，這裡是給人快速翻的卡片層"},{s:"assets/handover-sop-grade.jpg",c:"對學生端的圖解 SOP：「成績單下載教學」四步驟說明圖——交接不只對同事，對使用者的說明也要圖解到照著走就會（AI 協作製圖）"},{s:"assets/handover-sop-system.jpg",c:"對接手者的系統操作圖解：「已繳款學生統計教學」——後台在哪裡點、每週做一次、統計口徑的提醒都畫進圖裡（畫面為空資料示範）"}]},
+  shots:[{s:"assets/handover-notion.png",c:"Notion「牛寶工作台」入口（示意版）：六個資料庫鏡像的總覽，頁面裡就寫明「規則正本仍在手冊，Notion 只是鏡像」——單一資料來源的原則貫徹到每個出口"},{s:"assets/handover-skills.png",c:"Skill 目錄（示意版，欄位同真實版、內容為示範）：40+ 本手冊依「工具與技術／本人與業務」分組，每本標註什麼時候用、管哪條業務線、管什麼——接手的人用這張表就能找到所有規則"},{s:"assets/handover-flowcards.png",c:"流程卡（示意版，內容為示範）：一卡一流程的索引——何時做、做完會有什麼、先要有什麼、地雷在哪、對應時程月份；全文在手冊，這裡是給人快速翻的卡片層"},{s:"assets/handover-sop-grade.jpg",c:"對學生端的圖解 SOP：「成績單下載教學」四步驟說明圖——交接不只對同事，對使用者的說明也要圖解到照著走就會（AI 協作製圖）"},{s:"assets/handover-sop-system.jpg",c:"對接手者的系統操作圖解：「已繳款學生統計教學」——後台在哪裡點、每週做一次、統計口徑的提醒都畫進圖裡（畫面為空資料示範）"}]},
 
  {id:"nubao", cat:["ai"], svg:"nubao",
   title:"🐮 AI 助理「牛寶」：我怎麼把 AI 當同事管", status:"live", statusTxt:"✅ 每天在用・持續進化中（這個網站也是牛寶蓋的）",
@@ -1011,7 +1011,7 @@ const PROJECTS = [
    "交付品質制度化：完成前須自行生成該領域專家（主管、HR、美編、UX……）檢閱修正，我看到的第一版就是檢查過的版本",
    "可攜性：手冊＋記憶一鍵打包成交接包，換電腦、換 AI 模型都能無痛搬家；Notion 上另有六庫鏡像給人看"],
   tech:["Claude Code","Skill / Memory 架構","雲端排程","AI 治理"],
-  shots:[{s:"assets/handover-skills.png",c:"牛寶的「工作手冊書櫃」：40+ 本 skill 的 Notion 目錄鏡像——業務規則、信件口吻、視覺品味、檔案規範全部成冊，這就是任何新 AI 會話能立刻接手的原因"}]},
+  shots:[{s:"assets/handover-skills.png",c:"牛寶的「工作手冊書櫃」：40+ 本 skill 的 Notion 目錄鏡像（示意版）——業務規則、信件口吻、視覺品味、檔案規範全部成冊，這就是任何新 AI 會話能立刻接手的原因"}]},
 
  {id:"marketing", cat:["mkt"], svg:"mkt",
   title:"🎀 行銷 × 內容作品系列", status:"live", statusTxt:"✅ 已上線：四大系列 13 件作品，持續擴充中",
@@ -1169,10 +1169,10 @@ PLAY.mail = {
 
 /* 02 Catlendar：一起養大它，每解決一個煩惱就長出一個真的小畫面 */
 const CAT_W = {
-  task: `<div class="w w-task"><h6>任務</h6><ul><li class="d">寄成績通知給 21 校</li><li>回輔英名單問題</li><li>訂 10/30 會議室</li></ul></div>`,
+  task: `<div class="w w-task"><h6>任務</h6><ul><li class="d">寄成績通知給 21 校</li><li>回南風名單問題</li><li>訂 10/30 會議室</li></ul></div>`,
   note: `<div class="w w-note"><h6>便利貼</h6><div class="st"><i class="y">開會：10/30 前交企劃</i><i class="p">問窗口：名單格式</i></div></div>`,
   cal: `<div class="w w-cal"><h6>月曆</h6><div class="g">${["一","二","三","四","五","六","日"].map(d => `<s>${d}</s>`).join("")}${Array.from({length: 28}, (_, i) => `<b class="${i === 9 ? "dl" : i === 16 ? "dl2" : ""}">${i + 1}</b>`).join("")}</div><small>10 日退費截止・17 日成績送交</small></div>`,
-  track: `<div class="w w-track"><h6>追蹤項目</h6><ul><li><em>輔英</em>等窗口回名單<span class="wait">等 3 天</span></li><li><em>彰師</em>收執聯已寄<span class="me">輪到我</span></li><li><em>慈濟</em>名單核對完<span class="ok">結案</span></li></ul></div>`,
+  track: `<div class="w w-track"><h6>追蹤項目</h6><ul><li><em>南風</em>等窗口回名單<span class="wait">等 3 天</span></li><li><em>晴光</em>收執聯已寄<span class="me">輪到我</span></li><li><em>山城</em>名單核對完<span class="ok">結案</span></li></ul></div>`,
   money: `<div class="w w-money"><h6>記帳</h6><b>$4,320</b><small>本月・便當 120・影印 80・郵資 35</small></div>`,
   habit: `<div class="w w-habit"><h6>習慣打卡・番茄鐘</h6><div class="dots7">${[1,1,1,0,1,1,0].map(x => `<i class="${x ? "on" : ""}"></i>`).join("")}</div><div class="pomo"><i></i>25:00</div></div>`,
   board: `<div class="w w-board"><h6>追案看板</h6><div class="cols"><div><s>待確認 2</s><i></i><i></i></div><div><s>等對方 3</s><i></i><i></i><i></i></div><div><s>完成 5</s><i></i><i></i><i></i></div></div></div>`,
