@@ -598,6 +598,17 @@ dialog{color:var(--ink)}
 .play .places li.new{border-color:#8FB49A;background:#F2F8F3}
 .play .places li.new::after{content:"✓ 已同步";display:block;font-size:11px;color:#3F6B4C;margin-top:4px}
 .play .places li.auto{cursor:default}
+/* 交接工作站互動（class 一律 dk- 開頭、data 屬性一律 data-dk 開頭，避免跟其他互動撞名） */
+.play .dk-out{padding:12px 14px;min-height:168px;font-size:.88em;line-height:1.7}
+.play .dk-empty{border:1.5px dashed var(--line);border-radius:12px;padding:34px 12px;text-align:center;color:var(--muted)}
+.play .dk-card{border:1px solid var(--line);border-left:4px solid #8FB49A;border-radius:0 12px 12px 0;padding:10px 14px;background:#F2F8F3;animation:pop .3s ease}
+.play .dk-card.dk-stop{border-left-color:var(--pink);background:var(--pink-50)}
+.play .dk-card .dk-h{display:block;color:var(--head-ink);margin-bottom:4px}
+.play .dk-card p{margin:0}
+.play .dk-card dl{margin:4px 0 0;display:grid;grid-template-columns:auto 1fr;gap:4px 10px}
+.play .dk-card dt{font:600 11.5px/1.9 var(--sans);letter-spacing:.08em;color:var(--pink-ink);white-space:nowrap}
+.play .dk-card dd{margin:0}
+.play .dk-out .dk-warn{margin:8px 0 0;padding:8px 12px;border-radius:10px;background:var(--pink-50);color:var(--pink-ink);font-weight:600}
 .play .mini{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
 @media (max-width:640px){.play .mini{grid-template-columns:1fr 1fr}}
 .play .mini div{border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;background:var(--card);opacity:0;animation:pop .35s ease both}
@@ -848,7 +859,9 @@ ewant:`<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"><rect width
 analysis:`<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="240" fill="#F1ECE5"/><rect x="60" y="30" width="200" height="180" rx="14" fill="#fff" stroke="#A99482" stroke-width="2"/><rect x="80" y="50" width="110" height="12" rx="6" fill="#917363" opacity=".75"/><rect x="80" y="150" width="26" height="40" rx="6" fill="#ABC0DB"/><rect x="114" y="120" width="26" height="70" rx="6" fill="#ABC0DB"/><rect x="148" y="95" width="26" height="95" rx="6" fill="#C4848B"/><rect x="182" y="130" width="26" height="60" rx="6" fill="#ABC0DB"/><path d="M80 112 L116 92 L150 76 L208 62" stroke="#C4848B" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="1 7"/><circle cx="286" cy="150" r="38" fill="#E4EAF6" stroke="#A99482" stroke-width="2"/><path d="M312 178 L338 204" stroke="#A99482" stroke-width="8" stroke-linecap="round"/><g transform="translate(283,150) scale(2.50)" opacity=".9"><circle cx="0" cy="-3.6" r="3.1" fill="#E5A8AD"/><circle cx="3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle cx="2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle r="1.8" fill="#FBF6EF"/></g></svg>`,
 handover:`<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="240" fill="#F1ECE5"/><rect x="40" y="80" width="90" height="110" rx="10" fill="#fff" stroke="#A99482" stroke-width="2"/><rect x="52" y="96" width="66" height="9" rx="4.5" fill="#917363" opacity=".7"/><rect x="52" y="112" width="50" height="7" rx="3.5" fill="#C9D3E6"/><rect x="52" y="126" width="58" height="7" rx="3.5" fill="#C9D3E6"/><rect x="52" y="140" width="44" height="7" rx="3.5" fill="#C9D3E6"/><g transform="translate(69,172) scale(1.83)" opacity=".9"><circle cx="0" cy="-3.6" r="3.1" fill="#E5A8AD"/><circle cx="3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle cx="2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle r="1.8" fill="#FBF6EF"/></g><path d="M140 135 H180 M172 127 L182 135 L172 143" stroke="#C4848B" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><g><rect x="196" y="36" width="160" height="50" rx="12" fill="#fff" stroke="#A99482" stroke-width="2"/><g transform="translate(221,61) scale(1.83)" opacity=".9"><circle cx="0" cy="-3.6" r="3.1" fill="#E5A8AD"/><circle cx="3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle cx="2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle r="1.8" fill="#FBF6EF"/></g><rect x="246" y="52" width="88" height="9" rx="4.5" fill="#ABC0DB"/><rect x="246" y="66" width="60" height="7" rx="3.5" fill="#C9D3E6"/></g><g><rect x="196" y="96" width="160" height="50" rx="12" fill="#F6DEDF" stroke="#C4848B" stroke-width="2"/><g transform="translate(221,121) scale(1.83)" opacity=".9"><circle cx="0" cy="-3.6" r="3.1" fill="#E5A8AD"/><circle cx="3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle cx="2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle r="1.8" fill="#FBF6EF"/></g><rect x="246" y="112" width="88" height="9" rx="4.5" fill="#C4848B" opacity=".6"/><rect x="246" y="126" width="70" height="7" rx="3.5" fill="#F2CFD2"/></g><g><rect x="196" y="156" width="160" height="50" rx="12" fill="#fff" stroke="#A99482" stroke-width="2"/><g transform="translate(221,181) scale(1.83)" opacity=".9"><circle cx="0" cy="-3.6" r="3.1" fill="#E5A8AD"/><circle cx="3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle cx="2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle r="1.8" fill="#FBF6EF"/></g><rect x="246" y="172" width="88" height="9" rx="4.5" fill="#ABC0DB"/><rect x="246" y="186" width="50" height="7" rx="3.5" fill="#C9D3E6"/></g></svg>`,
 mkt:`<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="240" fill="#F1ECE5"/><g><rect x="70" y="60" width="130" height="150" rx="12" fill="#fff" stroke="#A99482" stroke-width="2" transform="rotate(-4 135 135)"/><rect x="88" y="80" width="94" height="66" rx="8" fill="#D5DFEF" transform="rotate(-4 135 135)"/><rect x="88" y="156" width="94" height="10" rx="5" fill="#F2CFD2" transform="rotate(-4 135 135)"/><rect x="88" y="172" width="64" height="8" rx="4" fill="#C9D3E6" transform="rotate(-4 135 135)"/></g><g><rect x="190" y="52" width="130" height="150" rx="12" fill="#fff" stroke="#C4848B" stroke-width="2" transform="rotate(5 255 127)"/><rect x="208" y="72" width="94" height="66" rx="8" fill="#F6DEDF" transform="rotate(5 255 127)"/><text x="238" y="118" font-size="30" transform="rotate(5 255 127)">🎨</text><rect x="208" y="148" width="94" height="10" rx="5" fill="#ABC0DB" transform="rotate(5 255 127)"/><rect x="208" y="164" width="60" height="8" rx="4" fill="#F2CFD2" transform="rotate(5 255 127)"/></g><path d="M330 56 c0-8 12-8 12 0 c0 6-12 13-12 13 s-12-7-12-13 c0-8 12-8 12 0 Z" fill="#F2CFD2" stroke="#C4848B" stroke-width="2.4"/><g transform="translate(63,214) scale(1.83)" opacity=".9"><circle cx="0" cy="-3.6" r="3.1" fill="#E5A8AD"/><circle cx="3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle cx="2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle r="1.8" fill="#FBF6EF"/></g><g transform="translate(341,204) scale(1.83)" opacity=".9"><circle cx="0" cy="-3.6" r="3.1" fill="#E5A8AD"/><circle cx="3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle cx="2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle r="1.8" fill="#FBF6EF"/></g></svg>`,
-nubao:`<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="240" fill="#F1ECE5"/><g><path d="M86 72 Q78 52 94 50 Q100 62 96 74 Z" fill="#F6E7C3" stroke="#A99482" stroke-width="2" stroke-linejoin="round"/><path d="M154 72 Q162 52 146 50 Q140 62 144 74 Z" fill="#F6E7C3" stroke="#A99482" stroke-width="2" stroke-linejoin="round"/><ellipse cx="54" cy="112" rx="21" ry="12" fill="#fff" stroke="#A99482" stroke-width="2" transform="rotate(-18 54 112)"/><ellipse cx="54" cy="112" rx="11" ry="6" fill="#F2CFD2" transform="rotate(-18 54 112)"/><ellipse cx="186" cy="112" rx="21" ry="12" fill="#fff" stroke="#A99482" stroke-width="2" transform="rotate(18 186 112)"/><ellipse cx="186" cy="112" rx="11" ry="6" fill="#F2CFD2" transform="rotate(18 186 112)"/><ellipse cx="120" cy="130" rx="62" ry="56" fill="#fff" stroke="#A99482" stroke-width="2"/><path d="M78 84 Q104 76 112 96 Q106 116 84 112 Q68 104 78 84 Z" fill="#917363" opacity=".9"/><path d="M168 150 Q180 142 180 128 Q166 126 160 138 Q158 148 168 150 Z" fill="#917363" opacity=".9"/><circle cx="102" cy="122" r="5" fill="#6E5A4A"/><circle cx="142" cy="122" r="5" fill="#6E5A4A"/><ellipse cx="121" cy="158" rx="32" ry="17" fill="#F6DEDF" stroke="#A99482" stroke-width="2"/><ellipse cx="109" cy="157" rx="4" ry="6" fill="#9E5660"/><ellipse cx="133" cy="157" rx="4" ry="6" fill="#9E5660"/><path d="M110 170 Q121 175 132 170" stroke="#9E5660" stroke-width="2" fill="none" stroke-linecap="round"/></g><g><rect x="212" y="46" width="150" height="40" rx="10" fill="#fff" stroke="#A99482" stroke-width="2"/><rect x="224" y="60" width="90" height="9" rx="4.5" fill="#ABC0DB"/><rect x="212" y="98" width="150" height="40" rx="10" fill="#fff" stroke="#A99482" stroke-width="2" transform="rotate(2 287 118)"/><rect x="226" y="112" width="100" height="9" rx="4.5" fill="#F2CFD2" transform="rotate(2 287 118)"/><rect x="212" y="150" width="150" height="40" rx="10" fill="#fff" stroke="#A99482" stroke-width="2" transform="rotate(-2 287 170)"/><rect x="226" y="164" width="80" height="9" rx="4.5" fill="#ABC0DB" transform="rotate(-2 287 170)"/></g><path d="M196 36 c0-8 12-8 12 0 c0 6-12 13-12 13 s-12-7-12-13 c0-8 12-8 12 0 Z" fill="#F2CFD2" stroke="#C4848B" stroke-width="2.4"/></svg>`
+nubao:`<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="240" fill="#F1ECE5"/><g><path d="M86 72 Q78 52 94 50 Q100 62 96 74 Z" fill="#F6E7C3" stroke="#A99482" stroke-width="2" stroke-linejoin="round"/><path d="M154 72 Q162 52 146 50 Q140 62 144 74 Z" fill="#F6E7C3" stroke="#A99482" stroke-width="2" stroke-linejoin="round"/><ellipse cx="54" cy="112" rx="21" ry="12" fill="#fff" stroke="#A99482" stroke-width="2" transform="rotate(-18 54 112)"/><ellipse cx="54" cy="112" rx="11" ry="6" fill="#F2CFD2" transform="rotate(-18 54 112)"/><ellipse cx="186" cy="112" rx="21" ry="12" fill="#fff" stroke="#A99482" stroke-width="2" transform="rotate(18 186 112)"/><ellipse cx="186" cy="112" rx="11" ry="6" fill="#F2CFD2" transform="rotate(18 186 112)"/><ellipse cx="120" cy="130" rx="62" ry="56" fill="#fff" stroke="#A99482" stroke-width="2"/><path d="M78 84 Q104 76 112 96 Q106 116 84 112 Q68 104 78 84 Z" fill="#917363" opacity=".9"/><path d="M168 150 Q180 142 180 128 Q166 126 160 138 Q158 148 168 150 Z" fill="#917363" opacity=".9"/><circle cx="102" cy="122" r="5" fill="#6E5A4A"/><circle cx="142" cy="122" r="5" fill="#6E5A4A"/><ellipse cx="121" cy="158" rx="32" ry="17" fill="#F6DEDF" stroke="#A99482" stroke-width="2"/><ellipse cx="109" cy="157" rx="4" ry="6" fill="#9E5660"/><ellipse cx="133" cy="157" rx="4" ry="6" fill="#9E5660"/><path d="M110 170 Q121 175 132 170" stroke="#9E5660" stroke-width="2" fill="none" stroke-linecap="round"/></g><g><rect x="212" y="46" width="150" height="40" rx="10" fill="#fff" stroke="#A99482" stroke-width="2"/><rect x="224" y="60" width="90" height="9" rx="4.5" fill="#ABC0DB"/><rect x="212" y="98" width="150" height="40" rx="10" fill="#fff" stroke="#A99482" stroke-width="2" transform="rotate(2 287 118)"/><rect x="226" y="112" width="100" height="9" rx="4.5" fill="#F2CFD2" transform="rotate(2 287 118)"/><rect x="212" y="150" width="150" height="40" rx="10" fill="#fff" stroke="#A99482" stroke-width="2" transform="rotate(-2 287 170)"/><rect x="226" y="164" width="80" height="9" rx="4.5" fill="#ABC0DB" transform="rotate(-2 287 170)"/></g><path d="M196 36 c0-8 12-8 12 0 c0 6-12 13-12 13 s-12-7-12-13 c0-8 12-8 12 0 Z" fill="#F2CFD2" stroke="#C4848B" stroke-width="2.4"/></svg>`,
+desk:`<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="240" fill="#F1ECE5"/><ellipse cx="196" cy="216" rx="150" ry="12" fill="#D5DFEF"/><g><rect x="52" y="44" width="236" height="156" rx="14" fill="#fff" stroke="#A99482" stroke-width="2"/><path d="M52 70 h236 M112 70 v130" stroke="#A99482" stroke-width="2"/><circle cx="70" cy="57" r="4" fill="#C4848B"/><circle cx="84" cy="57" r="4" fill="#F2CFD2"/><circle cx="98" cy="57" r="4" fill="#ABC0DB"/><rect x="62" y="82" width="40" height="9" rx="4.5" fill="#917363" opacity=".75"/><rect x="62" y="99" width="32" height="7" rx="3.5" fill="#C9D3E6"/><rect x="62" y="112" width="38" height="7" rx="3.5" fill="#C9D3E6"/><rect x="62" y="136" width="40" height="9" rx="4.5" fill="#C4848B" opacity=".6"/><rect x="62" y="153" width="30" height="7" rx="3.5" fill="#F2CFD2"/><rect x="62" y="166" width="36" height="7" rx="3.5" fill="#F2CFD2"/><path d="M143 90 H167 M185 90 H209 M227 90 H251" stroke="#A99482" stroke-width="2" stroke-linecap="round"/><g stroke="#A99482" stroke-width="2"><circle cx="134" cy="90" r="9" fill="#ABC0DB"/><circle cx="176" cy="90" r="9" fill="#ABC0DB"/><circle cx="218" cy="90" r="9" fill="#F2CFD2" stroke="#C4848B"/><circle cx="260" cy="90" r="9" fill="#fff"/></g><path d="M130 90 l3 3 l5 -6 M172 90 l3 3 l5 -6" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="124" y="112" width="68" height="76" rx="10" fill="#F8E8E5" stroke="#C4848B" stroke-width="2" stroke-dasharray="5 5"/><path d="M146 128 h18 l8 8 v32 h-26 Z" fill="#fff" stroke="#A99482" stroke-width="2" stroke-linejoin="round"/><path d="M159 142 v14 M153 151 l6 6 l6 -6" stroke="#C4848B" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><g><circle cx="208" cy="124" r="5" fill="#ABC0DB"/><rect x="219" y="120" width="56" height="8" rx="4" fill="#C9D3E6"/><circle cx="208" cy="144" r="5" fill="#ABC0DB"/><rect x="219" y="140" width="44" height="8" rx="4" fill="#C9D3E6"/><circle cx="208" cy="164" r="5" fill="#C4848B"/><rect x="219" y="160" width="50" height="8" rx="4" fill="#F2CFD2"/><rect x="204" y="176" width="46" height="14" rx="7" fill="#ABC0DB"/></g></g><path d="M296 122 H312 M306 115 L314 122 L306 129" stroke="#C4848B" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><g transform="rotate(6 346 124)"><rect x="322" y="86" width="52" height="72" rx="10" fill="#fff" stroke="#A99482" stroke-width="2"/><rect x="331" y="98" width="34" height="8" rx="4" fill="#ABC0DB"/><rect x="331" y="112" width="26" height="7" rx="3.5" fill="#C9D3E6"/><circle cx="348" cy="138" r="10" fill="#F6DEDF" stroke="#C4848B" stroke-width="2"/><path d="M343 138 l4 4 l6 -8" stroke="#C4848B" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><g transform="translate(30,150) scale(1.50)" opacity=".9"><circle cx="0" cy="-3.6" r="3.1" fill="#E5A8AD"/><circle cx="3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle cx="2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle r="1.8" fill="#FBF6EF"/></g><g transform="translate(352,196) scale(1.83)" opacity=".9"><circle cx="0" cy="-3.6" r="3.1" fill="#E5A8AD"/><circle cx="3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle cx="2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle r="1.8" fill="#FBF6EF"/></g></svg>`,
+yahooux:`<svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="240" fill="#F1ECE5"/><ellipse cx="200" cy="216" rx="150" ry="12" fill="#F3DADB"/><path d="M152 150 L144 200 M248 150 L256 200" stroke="#A99482" stroke-width="2" stroke-linecap="round"/><rect x="120" y="46" width="160" height="106" rx="12" fill="#fff" stroke="#A99482" stroke-width="2"/><g stroke="#A99482" stroke-width="1.6"><rect x="134" y="60" width="22" height="20" rx="4" fill="#F2CFD2"/><rect x="160" y="60" width="22" height="20" rx="4" fill="#F2CFD2"/><rect x="134" y="84" width="22" height="20" rx="4" fill="#F2CFD2"/><rect x="200" y="60" width="22" height="20" rx="4" fill="#D5DFEF"/><rect x="226" y="60" width="22" height="20" rx="4" fill="#D5DFEF"/><rect x="200" y="84" width="22" height="20" rx="4" fill="#D5DFEF"/><rect x="160" y="118" width="22" height="20" rx="4" fill="#F6E7C3"/><rect x="186" y="118" width="22" height="20" rx="4" fill="#F6E7C3"/></g><rect x="50" y="92" width="58" height="106" rx="12" fill="#fff" stroke="#A99482" stroke-width="2"/><rect x="61" y="108" width="16" height="16" rx="4" fill="#D5DFEF"/><rect x="81" y="108" width="16" height="16" rx="4" fill="#F6DEDF"/><rect x="61" y="130" width="16" height="16" rx="4" fill="#F6DEDF"/><rect x="81" y="130" width="16" height="16" rx="4" fill="#D5DFEF"/><rect x="61" y="156" width="36" height="8" rx="4" fill="#C9D3E6"/><rect x="61" y="170" width="24" height="12" rx="6" fill="#F2CFD2"/><g transform="rotate(5 328 140)"><rect x="298" y="98" width="60" height="86" rx="10" fill="#fff" stroke="#C4848B" stroke-width="2"/><rect x="316" y="91" width="24" height="13" rx="5" fill="#F2CFD2" stroke="#C4848B" stroke-width="2"/><path d="M308 122 l3 3 l5 -6 M308 142 l3 3 l5 -6 M308 162 l3 3 l5 -6" stroke="#C4848B" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="322" y="118" width="26" height="7" rx="3.5" fill="#C9D3E6"/><rect x="322" y="138" width="20" height="7" rx="3.5" fill="#C9D3E6"/><rect x="322" y="158" width="24" height="7" rx="3.5" fill="#C9D3E6"/></g><g transform="translate(32,70) scale(1.50)" opacity=".9"><circle cx="0" cy="-3.6" r="3.1" fill="#E5A8AD"/><circle cx="3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle cx="2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle r="1.8" fill="#FBF6EF"/></g><g transform="translate(366,62) scale(1.83)" opacity=".9"><circle cx="0" cy="-3.6" r="3.1" fill="#E5A8AD"/><circle cx="3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle cx="2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-2.12" cy="2.91" r="3.1" fill="#E5A8AD"/><circle cx="-3.42" cy="-1.11" r="3.1" fill="#E5A8AD"/><circle r="1.8" fill="#FBF6EF"/></g></svg>`
 };
 
 /* ---------- 作品資料 ---------- */
@@ -997,6 +1010,22 @@ const PROJECTS = [
   tech:["Markdown/JSON 原始碼","Python 產檔腳本","Claude Skill","知識架構設計"],
   shots:[{s:"assets/handover-notion.png",c:"Notion「牛寶工作台」入口（示意版）：六個資料庫鏡像的總覽，頁面裡就寫明「規則正本仍在手冊，Notion 只是鏡像」——單一資料來源的原則貫徹到每個出口"},{s:"assets/handover-skills.png",c:"Skill 目錄（示意版，欄位同真實版、內容為示範）：40+ 本手冊依「工具與技術／本人與業務」分組，每本標註什麼時候用、管哪條業務線、管什麼——接手的人用這張表就能找到所有規則"},{s:"assets/handover-flowcards.png",c:"流程卡（示意版，內容為示範）：一卡一流程的索引——何時做、做完會有什麼、先要有什麼、地雷在哪、對應時程月份；全文在手冊，這裡是給人快速翻的卡片層"},{s:"assets/handover-sop-grade.jpg",c:"對學生端的圖解 SOP：「成績單下載教學」四步驟說明圖——交接不只對同事，對使用者的說明也要圖解到照著走就會（AI 協作製圖）"},{s:"assets/handover-sop-system.jpg",c:"對接手者的系統操作圖解：「已繳款學生統計教學」——後台在哪裡點、每週做一次、統計口徑的提醒都畫進圖裡（畫面為空資料示範）"}]},
 
+ {id:"desk", cat:["ai","web"], svg:"desk",
+  title:"交接工作站：給新同事的一站式工作網站", status:"live", statusTxt:"✅ 已上線・內部使用中（要登入，不對外公開）",
+  one:"把兩個計畫的名單轉檔、進度追蹤和信件範本收進同一個網站，新同事不用再在筆記、試算表和巨集之間跳來跳去。",
+  num:"49 種錯檔情境全部擋下，轉出的檔案逐格對過答案",
+  role:"我的角色：要做什麼、刻意不做什麼由我決定，每一輪都自己看過再回饋，和 AI 結對開發。",
+  learn:"一開始只確認「對的檔案轉得對不對」。後來故意把錯的檔案丟進每一個工具，才發現有幾處會安靜地產出錯的結果：丟錯檔還顯示轉換成功，名單少讀了學生卻照樣能下載。學到：使用者經驗課教的啟發式評估真的很重要。讓使用者知道現在的狀態（十大原則的第一條）、預防出錯、做錯了可以復原，這幾點只從行政需求出發很容易漏掉，還好我上過這門課。",
+  tip:"轉檔工具上線前，先拿錯的檔案丟一輪。每一種錯都要有看得懂的提醒：哪裡不對、這裡要的是哪種檔、怎麼修。",
+  desc:"新同事接手兩個計畫時，每天要在筆記、試算表和一支支巨集之間來回：名單要整理成固定格式，各校進度記在試算表，信件範本散在各處。我把這些收進一個要登入才能用的工作網站。名單工作區用四個步驟帶著做（選學校、拖檔、看檢查報告、下載），另外有學習報表整理、報價與收據追蹤、年度時間線、系統地圖和信件範本庫。學生名單全程只在瀏覽器裡處理，共用的資料只有學校、窗口和進度。",
+  hi:["名單工作區四步驟帶著做：選學校、拖檔、看檢查報告、下載。信箱格式、重複列、課名對不上都先列出來，異常太多就整批停下，不替人亂改",
+      "學生個資不離開電腦：名單和報表都在瀏覽器裡處理，不上傳，也不進共用試算表",
+      "丟錯檔會被擋下來：網站認得 12 種檔案，49 種錯檔情境全部擋下。提醒固定三段：哪裡不對、這一頁要的檔、怎麼修，認得出是別種檔還會說該拖去哪一頁",
+      "用真實檔案逐格對答案：38 份報表轉出的檔案和原本的人工成品比對，12 萬多格連同樣式沒有非預期差異",
+      "新同事自己改得動：14 頁說明文字和 14 封信件範本都能在網站上改、可以還原，改錯了有「復原上一步」，另外附維護手冊",
+      "省下的時間：每個工作區原本至少是四、五個小時的工作量，現在大約十分鐘做完（我自己的估計）"],
+  tech:["HTML／JavaScript 靜態網站","SheetJS／ExcelJS","Google Apps Script＋試算表","Cloudflare Pages","docxtemplater","AI 結對開發"]},
+
  {id:"nubao", cat:["ai"], svg:"nubao",
   title:"🐮 AI 助理「牛寶」：我怎麼把 AI 當同事管", status:"live", statusTxt:"✅ 每天在用・持續進化中（這個網站也是牛寶蓋的）",
   one:"把 AI 當團隊成員管理：43 本工作手冊、長期記憶、自動排程與白紙黑字的權限邊界，任何新的 AI 會話都能立刻接手我的工作。",
@@ -1024,6 +1053,17 @@ const PROJECTS = [
   hi:["創意是主菜：故事型四格、節慶與倒數檔期，讓學生主動靠過來","把遊戲化融入宣傳：集點卡要答題和尋寶才能蓋章、抽籤要先打卡，獎品是我設計的週邊（鑰匙圈、籤卡）","一套視覺語言跑完整個招生檔期：預告→報名→倒數→開課","資訊五層架構＋吉祥物雙角色敘事，資訊多也有秩序","各平台用原生比例：IG 4:5、LINE 1.11:1，不硬裁","所有展出作品皆為實際公開發布過的文宣"],
   tech:["Canva","Adobe Illustrator","AI 生圖","創意敘事","遊戲化宣傳","社群經營"],
   link:"marketing.html", linkTxt:"🎀 進入行銷作品專區", shots:[]},
+
+ {id:"yahoo-ux", cat:["web"], svg:"yahooux",
+  title:"Yahoo 拍賣 App 使用者研究（課堂專案）", status:"soon", statusTxt:"🚧 整理中・完整內容之後補上",
+  one:"和四位同學一起研究年輕使用者怎麼用拍賣 App，從互動地圖、訪談、問卷、類競品分析、啟發式評估做到易用性測試，最後向產品經理報告。",
+  num:"15 場訪談、320 份問卷、9 個類競品、5 人易用性測試",
+  role:"我的角色：五人團隊的組員。每個階段全組一起做、輪一位當 PM，我是最後一個階段「易用性測試」的 PM。",
+  desc:"2023 年在「使用者經驗與易用性評估」課上做的產學專案，題目是 Yahoo 拍賣 App 的優化，研究對象是年輕使用者。研究依序用了六種方法：互動地圖、使用者訪談、問卷、類競品分析、啟發式評估和易用性測試。這一頁還在整理，之後會把每個階段的方法與發現一站一站搬上來。",
+  hi:["六種研究方法完整走過一輪：互動地圖、訪談、問卷、類競品分析、啟發式評估、易用性測試",
+      "我負責規劃易用性測試這個階段：5 位受測者、6 個任務",
+      "這門課學的啟發式評估，後來用在交接工作站的錯檔提醒與復原功能上"],
+  tech:["互動地圖","使用者訪談","問卷調查","類競品分析","啟發式評估","易用性測試"]},
 ];
 
 
@@ -1063,7 +1103,8 @@ const readMin = p => Math.max(1, Math.round(((p.desc || "").replace(/<[^>]+>/g, 
 const shortStatus = p => { const m = p.statusTxt.match(/^(\S+)\s*([^・：（]+)/); return m ? `${m[1]} ${m[2].trim()}` : p.statusTxt; };
 function cardHTML(p) {
   /* 卡片圖＝她生的貓咪咖啡廳封面（assets/cover-<id>.webp，1200×800） */
-  const media = `<img class="cover" src="assets/cover-${p.id}.webp" alt="" width="1200" height="800" loading="lazy" decoding="async">`;
+  const media = p.cover === false ? SVGS[p.svg]   /* 還沒有封面圖的作品先用手繪風示意 SVG */
+    : `<img class="cover" src="assets/cover-${p.id}.webp" alt="" width="1200" height="800" loading="lazy" decoding="async">`;
   return `<div class="media">${media}<span class="door">${p.no}</span>${statusName[p.status] ? `<span class="status">${statusName[p.status]}</span>` : ""}</div>
     <div class="body"><h3><a class="card-link" href="#work/${p.id}">${p.title}</a></h3><p class="txt">${p.one}</p><div class="num">✿ ${p.num}</div>
     <div class="cmeta"><span>⏱ 約 ${readMin(p)} 分鐘讀完</span><span>${shortStatus(p)}</span></div></div>`;
@@ -1462,6 +1503,48 @@ PLAY.handover = {
     draw();
   }
 };
+/* 09b 交接工作站：把檔案丟進名單工作區，看改版前後怎麼回應（檔案、數字與提醒文字皆為示意） */
+const DK = {
+  ok: { name: "格式正確的名單", before: ["ok", "讀取成功", "讀到 3 門課、42 位學生，可以下載。"],
+        after: ["ok", "讀取成功", "讀到 3 門課、42 位學生。檢查報告：信箱格式有疑問 2 筆、重複 1 筆，先列給你看，確認後再下載。"],
+        res: "對的檔案，改版前後都讀得到。差別在錯的檔案，換一個試試。" },
+  other: { name: "拖錯頁的檔案", before: ["ok", "讀取成功", "被當成名單收下，可以下載。", "實際上：這不是名單，產出的檔是錯的，畫面卻沒有任何提醒。"],
+        after: ["stop", "這個檔先不收", ["這看起來是技術人員的回傳檔，不是學校交來的名單。", "學校交來的選課名單，旁邊有範例檔可以下載。", "這份檔請拖到「寄信名單轉換」那一頁。"]],
+        res: "改版前照收照轉。現在認得出這是別種檔，還會說該拖去哪一頁。" },
+  short: { name: "最上面少一列的名單", before: ["ok", "讀取成功", "讀到 3 門課、39 位學生，可以下載。", "實際上：少讀了 3 位學生，畫面卻沒有任何提醒。"],
+        after: ["stop", "這個檔先不收", ["表頭的位置跟範例檔不一樣，最上面少了一列。", "學校交來的選課名單，旁邊有範例檔可以下載。", "對照範例檔把那一列補回去，再拖進來一次。"]],
+        res: "改版前會少讀學生還能下載。現在先擋下來，告訴你哪裡不對、怎麼修。" }
+};
+const DK_LAB = ["哪裡不對", "這一頁要的檔", "怎麼修"];
+PLAY.desk = {
+  html: () => ph("把檔案丟進名單工作區，看網站怎麼回", "選一個檔案丟進去，三個都可以試（檔案是虛構的）") +
+    `<div class="pbar">${Object.keys(DK).map(k => `<button class="pb" data-dkfile="${k}" aria-pressed="false">${DK[k].name}</button>`).join("")}<button class="pb ghost" data-dkact="reset">重來</button></div>
+     <div class="two">
+      ${win("改版前", `<div class="dk-out" data-dkout="before"></div>`)}
+      ${win("現在", `<div class="dk-out" data-dkout="after"></div>`)}
+     </div>
+     <div class="result" data-dkres></div>
+     <p class="note">示意畫面：檔案與數字是虛構的，提醒文字也不是網站原文。實際的網站認得 12 種檔案，每個上傳的地方都附範例檔。</p>`,
+  init: root => {
+    const tried = new Set();
+    const out = k => root.querySelector(`[data-dkout="${k}"]`), res = root.querySelector("[data-dkres]");
+    const card = v => v[0] === "stop"
+      ? `<div class="dk-card dk-stop"><b class="dk-h">${v[1]}</b><dl>${v[2].map((t, i) => `<dt>${DK_LAB[i]}</dt><dd>${t}</dd>`).join("")}</dl></div>`
+      : `<div class="dk-card"><b class="dk-h">✓ ${v[1]}</b><p>${v[2]}</p></div>${v[3] ? `<p class="dk-warn">${v[3]}</p>` : ""}`;
+    const draw = k => {
+      root.querySelectorAll("[data-dkfile]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.dkfile === k)));
+      if (!k) { out("before").innerHTML = out("after").innerHTML = `<div class="dk-empty">選一個檔案丟進來</div>`; res.textContent = ""; return; }
+      out("before").innerHTML = card(DK[k].before); out("after").innerHTML = card(DK[k].after);
+      res.textContent = DK[k].res + (tried.size === 3 ? " 三個都試過了：改版前三個都顯示成功，其中兩個其實是錯的。現在錯的兩個都被擋下。" : "");
+    };
+    root.addEventListener("click", e => {
+      const f = e.target.closest("[data-dkfile]"), a = e.target.closest("[data-dkact]");
+      if (f) { tried.add(f.dataset.dkfile); draw(f.dataset.dkfile); }
+      else if (a) { tried.clear(); draw(null); }
+    });
+    draw(null);
+  }
+};
 /* 10 牛寶：權限邊界 ＋ 新對話接手 */
 PLAY.nubao = {
   html: () => ph("同一句「幫我處理今天的信」，兩隻大牛差在哪", "按「▶ 開一個新對話」，先看改造前、再看改造後") +
@@ -1538,7 +1621,7 @@ function modalHTML(p) {
   const nav = `<div class="m-next"><button type="button" class="btn btn-line" data-nav="-1">← ${prev.title}</button><button type="button" class="btn btn-main" data-nav="1">下一件：${next.title} →</button></div>`;
   const evCount = (p.annotated ? p.annotated.length : 0) + (p.shots ? p.shots.length : 0);
   const staged = evCount >= 3 || !!p.demo;   /* 內容長的才分段：先玩 → 故事 → 證據；短的一頁到底、互動置頂 */
-  if (!staged) return head + `<p class="lede">${p.one}</p>` + linkRow(p) + `<h4>動手玩</h4>` + playPart + story + evidence + nav;
+  if (!staged) return head + `<p class="lede">${p.one}</p>` + linkRow(p) + (playPart ? `<h4>動手玩</h4>` + playPart : "") + story + evidence + nav;
   const hasEv = evCount > 0;
   return head + `
     <nav class="stages" role="tablist" aria-label="這件作品的三個部分">
