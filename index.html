@@ -609,6 +609,31 @@ dialog{color:var(--ink)}
 .play .dk-card dt{font:600 11.5px/1.9 var(--sans);letter-spacing:.08em;color:var(--pink-ink);white-space:nowrap}
 .play .dk-card dd{margin:0}
 .play .dk-out .dk-warn{margin:8px 0 0;padding:8px 12px;border-radius:10px;background:var(--pink-50);color:var(--pink-ink);font-weight:600}
+/* 功能一覽（作品彈窗裡的分組清單） */
+.modal .fmap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0 4px}
+.modal .fmap div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px}
+.modal .fmap b{display:block;font:600 11.5px/1.4 var(--sans);letter-spacing:.12em;color:var(--blue-ink);margin-bottom:6px}
+.modal .fmap p{margin:0;font-size:.9em;line-height:1.75}
+@media (max-width:640px){.modal .fmap{grid-template-columns:1fr}}
+/* Yahoo 六站時間線（class 一律 yx- 開頭、data 屬性一律 data-yx 開頭） */
+.play .yx-rail{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin:6px 0 12px}
+.play .yx-st{min-height:48px;padding:6px 4px 7px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);color:var(--muted);font:600 .8em/1.3 inherit;font-family:inherit;cursor:pointer;transition:background .15s,border-color .15s}
+.play .yx-st i{display:block;font:600 10.5px/1 var(--sans);letter-spacing:.1em;font-style:normal;margin-bottom:4px}
+.play .yx-st.yx-seen{border-color:var(--blue);color:var(--blue-ink)}
+.play .yx-st[aria-selected="true"]{background:var(--blue-ink);border-color:var(--blue-ink);color:#fff}
+@media (max-width:640px){.play .yx-rail{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.play .yx-panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}
+@media (max-width:640px){.play .yx-panel{grid-template-columns:1fr}}
+.play .yx-panel img{display:block;width:100%;height:auto;aspect-ratio:3/2;border-radius:12px;border:1px solid var(--line);background:#FFFDFA}
+.play .yx-txt b{display:block;font-family:var(--serif);font-weight:600;font-size:1.05em;color:var(--head-ink);margin-bottom:6px}
+.play .yx-txt p{margin:0 0 8px;font-size:.9em;line-height:1.75}
+.play .yx-txt .chips{margin-bottom:8px;min-height:0}
+.play .yx-txt .yx-sum{background:var(--pink-50);color:var(--pink-ink);border-radius:10px;padding:8px 12px;font-weight:600}
+.play .yx-txt .yx-lim{color:var(--muted);font-size:.84em;margin:0}
+.play .yx-pos{font-size:.84em;color:var(--muted);align-self:center;margin-left:auto}
+.play .yx-quiz{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+.play .yx-def{font-size:.84em;color:var(--muted);line-height:1.7;margin:0 0 8px}
+.play .yx-q{font-size:.95em;line-height:1.7;margin:0;padding:10px 14px;border-radius:12px;background:#FFFDFA;border:1px solid var(--line)}
 .play .mini{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
 @media (max-width:640px){.play .mini{grid-template-columns:1fr 1fr}}
 .play .mini div{border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;background:var(--card);opacity:0;animation:pop .35s ease both}
@@ -1014,17 +1039,28 @@ const PROJECTS = [
   title:"交接工作站：給新同事的一站式工作網站", status:"live", statusTxt:"✅ 已上線・內部使用中（要登入，不對外公開）",
   one:"把兩個計畫的名單轉檔、進度追蹤和信件範本收進同一個網站，新同事不用再在筆記、試算表和巨集之間跳來跳去。",
   num:"49 種錯檔情境全部擋下，轉出的檔案逐格對過答案",
+  stats:[{n:"16",u:"頁",t:"分共用、跨校通識、SOS 三區"},{n:"13",u:"種",t:"認得出的檔案，丟錯頁會指路"},{n:"10",u:"分鐘",t:"原本四、五小時的工作量（我的估計）"}],
   role:"我的角色：要做什麼、刻意不做什麼由我決定，每一輪都自己看過再回饋，和 AI 結對開發。",
   learn:"一開始只確認「對的檔案轉得對不對」。後來故意把錯的檔案丟進每一個工具，才發現有幾處會安靜地產出錯的結果：丟錯檔還顯示轉換成功，名單少讀了學生卻照樣能下載。學到：使用者經驗課教的啟發式評估真的很重要。讓使用者知道現在的狀態（十大原則的第一條）、預防出錯、做錯了可以復原，這幾點只從行政需求出發很容易漏掉，還好我上過這門課。",
   tip:"轉檔工具上線前，先拿錯的檔案丟一輪。每一種錯都要有看得懂的提醒：哪裡不對、這裡要的是哪種檔、怎麼修。",
   desc:"新同事接手兩個計畫時，每天要在筆記、試算表和一支支巨集之間來回：名單要整理成固定格式，各校進度記在試算表，信件範本散在各處。我把這些收進一個要登入才能用的工作網站。名單工作區用四個步驟帶著做（選學校、拖檔、看檢查報告、下載），另外有學習報表整理、報價與收據追蹤、年度時間線、系統地圖和信件範本庫。學生名單全程只在瀏覽器裡處理，共用的資料只有學校、窗口和進度。",
   hi:["名單工作區四步驟帶著做：選學校、拖檔、看檢查報告、下載。信箱格式、重複列、課名對不上都先列出來，異常太多就整批停下，不替人亂改",
       "學生個資不離開電腦：名單和報表都在瀏覽器裡處理，不上傳，也不進共用試算表",
-      "丟錯檔會被擋下來：網站認得 12 種檔案，49 種錯檔情境全部擋下。提醒固定三段：哪裡不對、這一頁要的檔、怎麼修，認得出是別種檔還會說該拖去哪一頁",
+      "丟錯檔會被擋下來：網站認得 13 種檔案，49 種錯檔情境全部擋下。提醒固定三段：哪裡不對、這一頁要的檔、怎麼修，認得出是別種檔還會說該拖去哪一頁",
       "用真實檔案逐格對答案：38 份報表轉出的檔案和原本的人工成品比對，12 萬多格連同樣式沒有非預期差異",
       "新同事自己改得動：14 頁說明文字和 14 封信件範本都能在網站上改、可以還原，改錯了有「復原上一步」，另外附維護手冊",
       "省下的時間：每個工作區原本至少是四、五個小時的工作量，現在大約十分鐘做完（我自己的估計）"],
-  tech:["HTML／JavaScript 靜態網站","SheetJS／ExcelJS","Google Apps Script＋試算表","Cloudflare Pages","docxtemplater","AI 結對開發"]},
+  tech:["HTML／JavaScript 靜態網站","SheetJS／ExcelJS","Google Apps Script＋試算表","Cloudflare Pages","docxtemplater","AI 結對開發"],
+  feats:[{name:"共用（6 頁）",items:["首頁與建置檢查","學校庫","窗口庫","課程表","信件範本庫","設定"]},
+         {name:"跨校通識（4 頁，另 1 頁規劃中）",items:["名單工作區","寄信名單轉換","學習概況整理","報價與收據"]},
+         {name:"SOS 暑期線上學院（6 頁）",items:["窗口簿","學分認抵表統整","學校科系匯入檔","成績公文檔","年度時間線","系統地圖"]},
+         {name:"每一頁都有的",items:["丟錯檔提醒（認得 13 種檔案）","上傳的地方都附範例檔","建置檢查 12 項","復原上一步（最近 10 步）","資料只封存不刪除","說明文字可以在站上改","操作紀錄","四段字級"]}],
+  shots:[{s:"assets/desk-home.webp",c:"首頁：一進來先看建置檢查，缺什麼資料、缺了會怎樣都列出來，下面是兩個計畫的快速入口與最近操作（示範資料）"},
+         {s:"assets/desk-roster-files.webp",c:"名單工作區第 2 步：一次拖進四個檔，三份名單靠檔名自動對到課程；拖錯頁的那一份被擋下，提醒卡說它是哪種檔、該拖去哪一頁（示範資料）"},
+         {s:"assets/desk-roster-check.webp",c:"第 3 步檢查報告：重複列、全校同名、信箱網域打錯、姓名格式都先列出來，紅色的要先處理才能產檔（學生皆為虛構）"},
+         {s:"assets/desk-roster-download.webp",c:"第 4 步下載：給技術人員的檔案與人數異動紀錄，姓名格的底色代表什麼也寫在旁邊（示範資料）"},
+         {s:"assets/desk-schools-undo.webp",c:"學校庫：狀態直接用下拉改。剛改完，下方跳出「復原」提示，左下角也留著最近一步（校名皆為虛構）"},
+         {s:"assets/desk-timeline.webp",c:"年度時間線：填幾個錨點日期，其他日期自動跟著算，紅線是今天；對外的日期改了會提醒要同步哪些地方（日期為示範）"}]},
 
  {id:"nubao", cat:["ai"], svg:"nubao",
   title:"🐮 AI 助理「牛寶」：我怎麼把 AI 當同事管", status:"live", statusTxt:"✅ 每天在用・持續進化中（這個網站也是牛寶蓋的）",
@@ -1055,15 +1091,20 @@ const PROJECTS = [
   link:"marketing.html", linkTxt:"🎀 進入行銷作品專區", shots:[]},
 
  {id:"yahoo-ux", cat:["web"], svg:"yahooux",
-  title:"Yahoo 拍賣 App 使用者研究（課堂專案）", status:"soon", statusTxt:"🚧 整理中・完整內容之後補上",
+  title:"Yahoo 拍賣 App 使用者研究（課堂專案）", status:"live", statusTxt:"✅ 完成・2023 課堂產學專案",
   one:"和四位同學一起研究年輕使用者怎麼用拍賣 App，從互動地圖、訪談、問卷、類競品分析、啟發式評估做到易用性測試，最後向產品經理報告。",
   num:"15 場訪談、320 份問卷、9 個類競品、5 人易用性測試",
+  stats:[{n:"15",u:"場",t:"使用者訪談"},{n:"320",u:"份",t:"有效問卷"},{n:"6",u:"種",t:"研究方法走完一輪"}],
   role:"我的角色：五人團隊的組員。每個階段全組一起做、輪一位當 PM，我是最後一個階段「易用性測試」的 PM。",
-  desc:"2023 年在「使用者經驗與易用性評估」課上做的產學專案，題目是 Yahoo 拍賣 App 的優化，研究對象是年輕使用者。研究依序用了六種方法：互動地圖、使用者訪談、問卷、類競品分析、啟發式評估和易用性測試。這一頁還在整理，之後會把每個階段的方法與發現一站一站搬上來。",
-  hi:["六種研究方法完整走過一輪：互動地圖、訪談、問卷、類競品分析、啟發式評估、易用性測試",
-      "我負責規劃易用性測試這個階段：5 位受測者、6 個任務",
+  learn:"報告完，產品經理的回饋是：很多建議沒有考慮能不能做。版面亂、廣告影響體驗都是真的，但廣告費、維護成本、主打商品背後都有商業考量，我們只從使用者的角度講，太理想了。我自己回頭看也有遺憾：問卷做完沒有再往下分析，後面兩站也沒有回頭驗證訪談找到的痛點。學到：研究的建議要連同成本與可行性一起講，才排得進別人的工作裡。",
+  tip:"使用者研究先問「這群人為什麼買、在哪裡買、怎麼買」，再評估介面。訪談找到的痛點，要拿到問卷裡看有多少人也這樣。",
+  desc:"2023 年在「使用者經驗與易用性評估」課上做的產學專案，五人跨所團隊，對象是 Yahoo 拍賣 App。平台當時比較缺年輕使用者，我們的目標是找出它在年輕族群的立足點，切入點是二手交易。先弄清楚這群人為什麼買二手、在哪裡買、怎麼買，再回頭評估 App 本身，最後把建議排出先後，向 Yahoo 拍賣的產品經理報告。",
+  hi:["先問人、再看介面：前半段用訪談與問卷找需求與痛點，後半段用類競品分析、啟發式評估與易用性測試檢查 App",
+      "訪談的發現拿去問卷驗證：15 位受訪者有 9 位提到商品資訊不完整，320 份問卷裡有 42.3% 遇過同樣的困擾",
+      "我負責規劃最後一站易用性測試：5 位受測者、6 個任務，線下進行並錄影，做完填 SUS 量表",
+      "建議不只列問題，還排了先後：能馬上改的 7 個排短期，要動流程或架構的 13 個排長期",
       "這門課學的啟發式評估，後來用在交接工作站的錯檔提醒與復原功能上"],
-  tech:["互動地圖","使用者訪談","問卷調查","類競品分析","啟發式評估","易用性測試"]},
+  tech:["互動地圖","半結構式訪談","親和圖","問卷調查","類競品分析","啟發式評估","易用性測試","SUS 量表"]},
 ];
 
 
@@ -1524,7 +1565,7 @@ PLAY.desk = {
       ${win("現在", `<div class="dk-out" data-dkout="after"></div>`)}
      </div>
      <div class="result" data-dkres></div>
-     <p class="note">示意畫面：檔案與數字是虛構的，提醒文字也不是網站原文。實際的網站認得 12 種檔案，每個上傳的地方都附範例檔。</p>`,
+     <p class="note">示意畫面：檔案與數字是虛構的，提醒文字也不是網站原文。實際的網站認得 13 種檔案，每個上傳的地方都附範例檔。</p>`,
   init: root => {
     const tried = new Set();
     const out = k => root.querySelector(`[data-dkout="${k}"]`), res = root.querySelector("[data-dkres]");
@@ -1543,6 +1584,75 @@ PLAY.desk = {
       else if (a) { tried.clear(); draw(null); }
     });
     draw(null);
+  }
+};
+/* 12 Yahoo：六站時間線＋嚴重度小測驗（數字出自專案簡報；受訪者的話一律改寫、不放代號） */
+const YX = [
+  ["互動地圖", "assets/yahoo-1-map.webp", "把整個 App 的畫面與流程畫成一張地圖，分成比價、競標、我的拍賣、直播大廳四區。", ["4 區"],
+   "先看懂整個 App 長什麼樣，後面每一站講到哪個畫面，大家指的是同一個地方。", ""],
+  ["使用者訪談", "assets/yahoo-2-interview.webp", "線上訪談 15 場，其中 5 場先試訪再修訪綱。受訪者 18 到 26 歲、一個月內買過二手。不問「你覺得重不重要」，改問「上次發生什麼事、你當時怎麼做」，再用親和圖把訪談內容收斂成需求與痛點。", ["15 場訪談", "9／15 位提到資訊不完整"],
+   "買家最大的痛點是商品資訊不完整：照片不夠，只好私訊請賣家補拍細節。另外做了買家、賣家各 2 張人物誌。", "受訪者都是同一地區的學生，女性居多。"],
+  ["問卷", "assets/yahoo-3-survey.webp", "把訪談找到的需求與痛點變成題目，看有多少人也這樣。有效問卷 320 份，填答者 18 到 25 歲、一年內買過二手。", ["320 份", "42.3% 遇過資訊不完整", "28.7% 難辨真偽"],
+   "買二手的前三個原因是便宜、剛好逛到、預期不會用太久。大家最在意的服務前三名都跟照片與描述有關：實拍圖、瑕疵圖、完整的物品描述。", "只做了各題的比例，沒有再依族群交叉分析。"],
+  ["類競品分析", "assets/yahoo-4-compare.webp", "挑 9 個 App 逐項評分。除了二手拍賣，也選了一般的商城，因為只要有一部分功能相似、有可以借鏡的地方就能比。每個 App 由兩個人評，1 到 5 分。", ["9 個 App", "14 個評比項目"],
+   "Yahoo 拍賣的總平均是 3.05，九個裡最高的是 3.52。它的下單與結帳算好的，弱在首頁、搜尋與收藏，所以建議集中在這幾塊。", "以高單價二手品為主的 App 沒辦法實際下單，物流與退貨沒有比到。"],
+  ["啟發式評估", "assets/yahoo-5-heuristic.webp", "這一站不找使用者。五位成員各自拿 Nielsen 的十條介面原則在 App 裡找問題，替每個問題打嚴重度與頻率（0 到 4 分），再開會算平均、排先後。", ["20 個問題", "7 個短期・13 個長期"],
+   "最常出現的是「符合使用者的預期」這一條，20 個問題裡佔 12 個。能馬上改的排短期，要動流程或架構的排長期。", "分數是五位評估者的主觀判斷，所以下一站找真人來確認。"],
+  ["易用性測試", "assets/yahoo-6-usability.webp", "我是這一站的 PM。找 5 位 18 到 25 歲、一年內買過二手的人，線下操作 6 個任務並錄影，做完填 SUS 量表。任務照買二手的流程設計：找商品、存起來比較、結帳、競標。", ["5 人・6 個任務", "SUS 55 分"],
+   "5 位裡有 3 位卡在購物車。SUS 平均 55 分，歷來的平均大約是 68。真人最常卡住的是商品頁與購物車，所以我們建議把購物車總覽和結帳頁合併。", "只有 5 人，而且用過 Yahoo 拍賣的人很少、不好找，其中只有 1 位用過，結果只能當第一印象。"]
+];
+const YX_LV = ["Minor", "Major", "Fatal"];
+const YX_Q = [
+  ["想把購物車裡不要的商品刪掉。試了長按、點進商品都找不到刪除的地方，要進到明細才刪得掉。5 位受測者有 3 位遇到。", 1, "流程斷了，但多試幾次找得到路，所以是 Major。"],
+  ["套用優惠券之後，畫面看不出有沒有成功，他又再套了一次。", 0, "少了回饋，但結帳還是走得下去，所以是 Minor。"],
+  ["把商品按了「下次再買」。畫面沒有任何回饋，之後也找不到那件商品被放到哪裡去。", 2, "商品等於不見了，很難自己找回來，所以是 Fatal。這一題是啟發式評估找到的。"]
+];
+PLAY["yahoo-ux"] = {
+  html: () => ph("六站走一遍：這個研究是怎麼做的", "點任何一站，或按「下一站」") +
+    `<div class="yx-rail" role="tablist" aria-label="研究的六站">${YX.map((s, i) => `<button type="button" class="yx-st" role="tab" data-yxst="${i}" aria-selected="${i === 0}"><i>第 ${i + 1} 站</i>${s[0]}</button>`).join("")}</div>
+     <div class="pbar"><button type="button" class="pb ghost" data-yxnav="-1">← 上一站</button><button type="button" class="pb go" data-yxnav="1">下一站 →</button><span class="yx-pos" data-yxpos></span></div>
+     <div class="yx-panel"><img data-yximg alt="" width="1200" height="800"><div class="yx-txt" aria-live="polite"><b data-yxname></b><p data-yxdid></p><div class="chips" data-yxnums></div><p class="yx-sum" data-yxsum></p><p class="yx-lim" data-yxlim></p></div></div>
+     <div class="yx-quiz">
+      ${ph("你來當研究員：這個狀況有多嚴重", "三個狀況都出自我們的報告")}
+      <p class="yx-def"><b>Minor</b>：跟預期不符，但流程沒有中斷。<b>Major</b>：流程中斷，試幾次可以恢復，或很影響效率。<b>Fatal</b>：流程中斷，而且很難自己恢復。</p>
+      <p class="yx-q" data-yxq></p>
+      <div class="pbar">${YX_LV.map((l, i) => `<button type="button" class="pb" data-yxans="${i}">${l}</button>`).join("")}<button type="button" class="pb ghost" data-yxq-next>下一題</button><button type="button" class="pb ghost" data-yxq-reset>重來</button></div>
+      <div class="result" data-yxres></div>
+     </div>
+     <p class="note">數字出自專案簡報。六張圖是我請 AI 依咖啡廳角色畫的示意，小豬演使用者。</p>`,
+  init: root => {
+    let cur = 0, q = 0, hit = 0, answered = false;
+    const seen = new Set([0]), $ = s => root.querySelector(s);
+    const draw = () => {
+      const s = YX[cur];
+      root.querySelectorAll("[data-yxst]").forEach((b, i) => { b.setAttribute("aria-selected", String(i === cur)); b.classList.toggle("yx-seen", seen.has(i)); });
+      $("[data-yximg]").src = s[1]; $("[data-yxname]").textContent = `第 ${cur + 1} 站　${s[0]}`; $("[data-yxdid]").textContent = s[2];
+      $("[data-yxnums]").innerHTML = s[3].map(n => `<span>${n}</span>`).join(""); $("[data-yxsum]").textContent = s[4];
+      $("[data-yxlim]").textContent = s[5] ? `限制：${s[5]}` : "";
+      $("[data-yxpos]").textContent = seen.size === YX.length ? "六站都看過了" : `看過 ${seen.size}／${YX.length} 站`;
+      $('[data-yxnav="-1"]').disabled = cur === 0; $('[data-yxnav="1"]').disabled = cur === YX.length - 1;
+    };
+    const drawQ = () => {
+      answered = false;
+      $("[data-yxq]").textContent = `第 ${q + 1}／${YX_Q.length} 題　${YX_Q[q][0]}`; $("[data-yxres]").textContent = "";
+      root.querySelectorAll("[data-yxans]").forEach(b => { b.disabled = false; b.setAttribute("aria-pressed", "false"); });
+      $("[data-yxq-next]").disabled = true;
+    };
+    root.addEventListener("click", e => {
+      const st = e.target.closest("[data-yxst]"), nav = e.target.closest("[data-yxnav]"), ans = e.target.closest("[data-yxans]");
+      if (st) { cur = +st.dataset.yxst; seen.add(cur); draw(); }
+      else if (nav) { cur = Math.max(0, Math.min(YX.length - 1, cur + +nav.dataset.yxnav)); seen.add(cur); draw(); }
+      else if (ans && !answered) {
+        answered = true; const a = +ans.dataset.yxans, ok = a === YX_Q[q][1]; if (ok) hit++;
+        root.querySelectorAll("[data-yxans]").forEach((b, i) => { b.disabled = true; b.setAttribute("aria-pressed", String(i === YX_Q[q][1])); });
+        const last = q === YX_Q.length - 1;
+        $("[data-yxres]").textContent = `${ok ? "跟我們判的一樣。" : `我們判的是 ${YX_LV[YX_Q[q][1]]}。`}${YX_Q[q][2]}${last ? ` 三題你跟我們一樣的有 ${hit} 題。判準只看三件事：流程有沒有中斷、能不能自己恢復、會不會很影響效率。` : ""}`;
+        $("[data-yxq-next]").disabled = last;
+      }
+      else if (e.target.closest("[data-yxq-next]")) { if (answered && q < YX_Q.length - 1) { q++; drawQ(); } }
+      else if (e.target.closest("[data-yxq-reset]")) { q = 0; hit = 0; drawQ(); }
+    });
+    draw(); drawQ();
   }
 };
 /* 10 牛寶：權限邊界 ＋ 新對話接手 */
@@ -1608,6 +1718,7 @@ function modalHTML(p) {
     ${p.cast ? `${p.castTitle ? `<h4>${p.castTitle}</h4>` : ""}<div class="cast">${p.cast.map(c => `<div><img src="${c.img}" alt="${c.name}" width="256" height="256" loading="lazy"><b>${c.name}<span class="en">${c.en}</span></b>${c.role ? `<i>${c.role}</i>` : ""}<p>${c.line}</p></div>`).join("")}</div>` : ""}
     ${p.scenes?.story ? `<figure class="scene"><img src="${p.scenes.story.img}" alt="" width="${p.scenes.story.w}" height="${p.scenes.story.h}" loading="lazy"><figcaption>${p.scenes.story.cap}</figcaption></figure>` : ""}
     <div class="role">${p.role}</div>
+    ${p.feats ? `<h4>功能一覽</h4><div class="fmap">${p.feats.map(g => `<div><b>${g.name}</b><p>${g.items.join("、")}</p></div>`).join("")}</div>` : ""}
     <h4>亮點</h4>
     <ul>${p.hi.map(h => `<li>${h}</li>`).join("")}</ul>
     ${p.learn ? `<div class="learn"><b>我踩過的坑</b><p>${p.learn}</p></div>` : ""}
