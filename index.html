@@ -570,6 +570,15 @@ dialog{color:var(--ink)}
 .play .did{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
 .play .did li{font-size:.86em;color:var(--ink);opacity:0;animation:pop .3s ease both;display:flex;gap:8px;align-items:center}
 .play .did li::before{content:"✓";width:18px;height:18px;border-radius:50%;background:#8FB49A;color:#fff;font-size:11px;display:inline-flex;align-items:center;justify-content:center;flex:none}
+/* 互動裡用 hidden 屬性收起來的東西一律真的收起來（.note 這類有設 display 的 class 會蓋掉 hidden，2026-11-23） */
+.play [hidden]{display:none !important}
+.play .ew-new{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;font-size:12px;margin:10px 0 0;animation:pop .3s ease}
+.play .ew-top{display:flex;gap:10px;align-items:center;background:#2F5FA8;color:#fff;padding:8px 12px;font-weight:700}
+.play .ew-top .lg{font-weight:800;letter-spacing:.04em;color:#FFD766}
+.play .ew-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:12px}
+.play .ew-cards span{padding:14px 6px;border-radius:10px;border:1px solid var(--line);text-align:center;font-weight:700;color:var(--blue-ink);background:var(--blue-50)}
+.play .ew-cards span.ew-hit{background:var(--pink-50);border-color:var(--pink-deep);color:var(--pink-ink)}
+.play .ew-cards span.ew-hit::after{content:"✓ 就在這裡";display:block;font-size:11px;font-weight:600;margin-top:4px}
 .play .oldnav{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;font-size:12px}
 .play .oldnav .top{display:flex;gap:6px;align-items:center;background:#2F5FA8;color:#fff;padding:8px 10px;flex-wrap:wrap}
 .play .oldnav .top .lg{font-weight:800;letter-spacing:.04em;margin-right:6px;color:#FFD766}
@@ -660,6 +669,7 @@ dialog{color:var(--ink)}
 .play .yx-txt .yx-lim{color:var(--muted);font-size:.84em;margin:0}
 .play .yx-pos{font-size:.84em;color:var(--muted);align-self:center;margin-left:auto}
 .play .yx-game{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+.play .yx-tag{display:inline-block;margin-bottom:8px;padding:3px 10px 4px;border-radius:999px;background:var(--blue-ink);color:#fff;font:600 11.5px/1.4 var(--sans);letter-spacing:.08em}
 .play .yx-q{font-size:.95em;line-height:1.7;margin:0;padding:10px 14px;border-radius:12px;background:#FFFDFA;border:1px solid var(--line)}
 .play .yx-opts{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
 .play .yx-opt{min-height:40px;padding:8px 14px;border-radius:12px;border:1.5px solid var(--blue);background:var(--card);color:var(--blue-ink);font:600 .88em/1.5 inherit;font-family:inherit;cursor:pointer;text-align:left;transition:background .15s,transform .15s}
@@ -1082,7 +1092,7 @@ const PROJECTS = [
  {id:"desk", cat:["ai","web"], svg:"desk",
   title:"交接工作站：給新同事的一站式工作網站", status:"live", statusTxt:"✅ 已上線・內部使用中（要登入，不對外公開）",
   one:"把兩個計畫的名單轉檔、進度追蹤和信件範本收進同一個網站，新同事不用再在筆記、試算表和巨集之間跳來跳去。",
-  num:"49 種錯檔情境全部擋下，轉出的檔案逐格對過答案",
+  num:"49 種錯檔情境全部擋下，整條流程都用假資料測過",
   stats:[{n:"16",u:"頁",t:"分共用、跨校通識、SOS 三區"},{n:"13",u:"種",t:"認得出的檔案，丟錯頁會指路"},{n:"10",u:"分鐘",t:"原本四、五小時的工作量（我的估計）"}],
   role:"我的角色：要做什麼、刻意不做什麼由我決定，每一輪都自己看過再回饋，和 AI 結對開發。",
   why:"我剛接工作時連 XLOOKUP 都不會。前承辦人留下的 RPA 我不懂底層邏輯，後來改請 AI 教我寫 VBA，再後來有了能直接幫忙整理資料的 AI 工具，卻卡在學校的資料有個資。所以我換一個做法：AI 只寫程式，我用假資料確認它的思路，再用易用性測試和啟發式評估反覆檢查。AI 從頭到尾沒有碰過原始資料，交接工作站就是這樣做出來的。",
@@ -1092,7 +1102,7 @@ const PROJECTS = [
   hi:["名單工作區四步驟帶著做：選學校、拖檔、看檢查報告、下載。信箱格式、重複列、課名對不上都先列出來，異常太多就整批停下，不替人亂改",
       "學生個資不離開電腦：名單和報表都在瀏覽器裡處理，不上傳，也不進共用試算表",
       "丟錯檔會被擋下來：網站認得 13 種檔案，49 種錯檔情境全部擋下。提醒固定三段：哪裡不對、這一頁要的檔、怎麼修，認得出是別種檔還會說該拖去哪一頁",
-      "用真實檔案逐格對答案：38 份報表轉出的檔案和原本的人工成品比對，12 萬多格連同樣式沒有非預期差異",
+      "用假資料把整條流程測過：做幾份假名單，故意放進打錯的信箱、重複的列、四個字的名字，確認每一種都被檢查抓到",
       "新同事自己改得動：14 頁說明文字和 14 封信件範本都能在網站上改、可以還原，改錯了有「復原上一步」，另外附維護手冊",
       "省下的時間：每個工作區原本至少是四、五個小時的工作量，現在大約十分鐘做完（我自己的估計）"],
   tech:["HTML／JavaScript 靜態網站","SheetJS／ExcelJS","Google Apps Script＋試算表","Cloudflare Pages","docxtemplater","AI 結對開發"],
@@ -1480,19 +1490,21 @@ PLAY["sos-site"] = {
       </div>`)}
      </div>
      <div class="result" data-res></div>
+     <div class="pbar"><button type="button" class="pb ghost" data-sos-reset>重來</button></div>
      <p class="note">Notion 當網頁的問題：沒有側欄、沒有上方分類，只能一直往下滑；摺疊的小三角很小，看不出哪裡能展開；可以點的連結變成淺色，反而最不明顯；資訊散在各段裡。改版後：上方先分類，每一項裡都有 FAQ，同學先看問題再看答案，不用讀一大段說明。</p>
      <div class="phones small"><figure class="phone"><img src="assets/site-before-notion.jpg" alt="改造前：Notion 長頁" loading="lazy"><figcaption>改造前真實畫面</figcaption></figure><figure class="phone"><img src="assets/site-sos-mobile.jpg" alt="改造後：新網站首頁" loading="lazy"><figcaption>改造後真實畫面</figcaption></figure></div>`,
   init: root => {
     const ca = root.querySelector("[data-cnt-a]"), cb = root.querySelector("[data-cnt-b]"), res = root.querySelector("[data-res]");
     let a = 0, b = 0, doneA = false, doneB = false;
     const finish = () => { if (doneA && doneB) res.textContent = `同一個問題：改造前點了 ${a} 下才找到（還要先猜哪個小三角裡有），改造後 ${b} 下。差別不是版面漂亮，是資訊架構：先分類、再 FAQ，答案永遠在兩層以內。`; };
+    /* 找到答案之後仍然可以繼續展開、收合、換分類，只是不再計數（原本找到就整邊鎖住，她以為當掉，2026-11-23） */
+    const label = () => { ca.textContent = `改造前 ${a} 下${doneA ? "・找到了" : ""}`; cb.textContent = `改造後 ${b} 下${doneB ? "・找到了" : ""}`; };
     root.querySelector("[data-nt]").addEventListener("click", e => {
       const tg = e.target.closest(".tg"), ans = e.target.closest("[data-ans]"), lk = e.target.closest(".lk");
-      if (doneA) return;
-      if (tg) { a++; tg.setAttribute("aria-expanded", tg.getAttribute("aria-expanded") !== "true"); }
-      else if (ans) { a++; ans.classList.add("hit"); doneA = true; res.textContent = doneB ? "" : `改造前：第 ${a} 下才找到。現在換右邊試試。`; }
-      else if (lk) { a++; res.textContent = doneB ? "" : "那是連結，會跳走；答案還在某個小三角裡。"; }
-      ca.textContent = `改造前 ${a} 下`; finish();
+      if (tg) { if (!doneA) a++; tg.setAttribute("aria-expanded", tg.getAttribute("aria-expanded") !== "true"); }
+      else if (ans) { if (!doneA) { a++; ans.classList.add("hit"); doneA = true; res.textContent = doneB ? "" : `改造前：第 ${a} 下才找到。現在換右邊試試。`; } }
+      else if (lk) { if (!doneA) { a++; res.textContent = doneB ? "" : "那是連結，會跳走；答案還在某個小三角裡。"; } }
+      label(); finish();
     });
     const PG = {
       "公告": `<h6>最新公告</h6><p class="hint">報名 5/4 至 6/28，課程 7/1 開始。想找規則請用上方分類。</p>`,
@@ -1502,8 +1514,19 @@ PLAY["sos-site"] = {
       "常見問題": `<h6>常見問題</h6><div class="faq"><button type="button" aria-expanded="false">退費什麼時候入帳？</button><div class="a" data-ans="b">課程結束後約 30 個工作天，依<a>退費說明</a>為準。</div></div><div class="faq"><button type="button" aria-expanded="false">忘記密碼怎麼辦？</button><div class="a">用登入頁的「忘記密碼」重設。</div></div>`
     };
     const pg = root.querySelector("[data-pg]"); pg.innerHTML = PG["公告"];
-    root.querySelector("[data-nsnav]").addEventListener("click", e => { const btn = e.target.closest("[data-sec]"); if (!btn || doneB) return; b++; root.querySelectorAll("[data-sec]").forEach(x => x.setAttribute("aria-pressed", x === btn)); pg.innerHTML = PG[btn.dataset.sec]; cb.textContent = `改造後 ${b} 下`; });
-    pg.addEventListener("click", e => { const q = e.target.closest(".faq > button"); if (!q || doneB) return; b++; q.setAttribute("aria-expanded", q.getAttribute("aria-expanded") !== "true"); cb.textContent = `改造後 ${b} 下`; if (q.nextElementSibling.dataset.ans) { doneB = true; q.nextElementSibling.style.background = "var(--butter)"; res.textContent = doneA ? "" : `改造後：第 ${b} 下就找到。再試試左邊。`; finish(); } });
+    root.querySelector("[data-nsnav]").addEventListener("click", e => { const btn = e.target.closest("[data-sec]"); if (!btn) return; if (!doneB) b++; root.querySelectorAll("[data-sec]").forEach(x => x.setAttribute("aria-pressed", x === btn)); pg.innerHTML = PG[btn.dataset.sec]; label(); });
+    pg.addEventListener("click", e => {
+      const q = e.target.closest(".faq > button"); if (!q) return;
+      if (!doneB) b++;
+      q.setAttribute("aria-expanded", q.getAttribute("aria-expanded") !== "true");
+      if (q.nextElementSibling.dataset.ans) { q.nextElementSibling.style.background = "var(--butter)"; if (!doneB) { doneB = true; res.textContent = doneA ? "" : `改造後：第 ${b} 下就找到。再試試左邊。`; } }
+      label(); finish();
+    });
+    root.querySelector("[data-sos-reset]").addEventListener("click", () => {
+      a = b = 0; doneA = doneB = false; res.textContent = "";
+      root.querySelectorAll("[data-nt] .tg").forEach(t => t.setAttribute("aria-expanded", "false")); root.querySelectorAll("[data-nt] .hit").forEach(x => x.classList.remove("hit"));
+      root.querySelectorAll("[data-sec]").forEach((x, i) => x.setAttribute("aria-pressed", i === 0)); pg.innerHTML = PG["公告"]; label();
+    });
   }
 };
 /* 07 ewant：改版前，請你找到 SOS 的入口 */
@@ -1520,8 +1543,10 @@ PLAY.ewant = {
      </div>
      <div class="result" data-res></div>
      <div class="ph" style="margin-top:16px"><b>改版後：先問你是誰</b><small>同一個目標，點一次就到</small></div>
-     <div class="zones" data-after><span data-who="u">我是大學生</span><span data-who="h">我是高中生</span><span data-who="s">我是社會人士</span></div>
-     <div class="note" data-cap>點「我是大學生」看看。</div>`,
+     <div class="pbar" data-after><button type="button" class="pb" data-who="u" aria-pressed="false">我是大學生</button><button type="button" class="pb" data-who="h" aria-pressed="false">我是高中生</button><button type="button" class="pb" data-who="s" aria-pressed="false">我是社會人士</button></div>
+     <div class="ew-new" data-ewnew hidden><div class="ew-top"><span class="lg">ewant</span><span data-ewwho></span></div><div class="ew-cards" data-ewcards></div></div>
+     <div class="note" data-cap>按一個身分，看新首頁給你哪些入口。</div>
+     <div class="result" data-ewres></div>`,
   init: root => {
     let tries = 0, found = false; const res = root.querySelector("[data-res]");
     root.querySelector("[data-old]").addEventListener("click", e => {
@@ -1537,8 +1562,18 @@ PLAY.ewant = {
       }
       if (nav) { const open = nav.getAttribute("aria-expanded") === "true"; root.querySelectorAll("[data-menu]").forEach(b => b.setAttribute("aria-expanded", "false")); nav.setAttribute("aria-expanded", String(!open)); }
     });
-    const cap = { u: "大學生入口：SOS 暑期線上學院、跨校通識、大學學分，一條路到底。", h: "高中生入口：先修課程、UHCOOL、升學加分。", s: "社會學習者入口：在職進修、微學程、公務員增能。" };
-    root.querySelector("[data-after]").addEventListener("click", e => { const s = e.target.closest("[data-who]"); if (!s) return; root.querySelectorAll("[data-who]").forEach(x => x.className = x === s ? "hot" : "dim"); root.querySelector("[data-cap]").textContent = cap[s.dataset.who]; });
+    /* 改版後：按身分，畫出新首頁給這個身分的三個入口；大學生那一組的第一格就是 SOS（原本只換一行字，她說怪怪的，2026-11-23） */
+    const WHO = { u: ["大學生", ["SOS 暑期線上學院", "跨校通識", "大學學分"]], h: ["高中生", ["先修課程", "UHCOOL", "升學加分"]], s: ["社會學習者", ["在職進修", "微學程", "公務員增能"]] };
+    root.querySelector("[data-after]").addEventListener("click", e => {
+      const s = e.target.closest("[data-who]"); if (!s) return;
+      const k = s.dataset.who, w = WHO[k];
+      root.querySelectorAll("[data-who]").forEach(x => x.setAttribute("aria-pressed", String(x === s)));
+      root.querySelector("[data-ewnew]").hidden = false; root.querySelector("[data-cap]").hidden = true;
+      root.querySelector("[data-ewwho]").textContent = `給${w[0]}的入口`;
+      root.querySelector("[data-ewcards]").innerHTML = w[1].map((t, i) => `<span class="${k === "u" && i === 0 ? "ew-hit" : ""}">${t}</span>`).join("");
+      const before = found ? `改版前你點了 ${tries} 次才找到。` : tries ? `改版前你已經點了 ${tries} 次，還沒找到。` : "回頭試試上面的舊首頁，看要點幾次。";
+      root.querySelector("[data-ewres]").textContent = k === "u" ? `改版後：選「我是大學生」，SOS 暑期線上學院就在第一格，點 1 次就到。${before}` : `${w[0]}看到的是另一組入口。SOS 是給大學生的，換「我是大學生」看看。`;
+    });
   }
 };
 
@@ -1755,7 +1790,7 @@ PLAY["yahoo-ux"] = {
     };
     const drawGame = () => {
       const g = YX_G[cur]; gs = { r: 0, hit: 0, answered: false, picked: [], miss: false };
-      game.innerHTML = ph(g.title, g.sub) + (g.t === "pick" ? `<p class="yx-q" data-yxq></p>` : "") +
+      game.innerHTML = `<span class="yx-tag">第 ${cur + 1} 站的小遊戲</span>` + ph(g.title, g.sub) + (g.t === "pick" ? `<p class="yx-q" data-yxq></p>` : "") +
         `<div class="yx-opts" data-yxopts></div><div class="result" data-yxres aria-live="polite"></div><div class="yx-bars" data-yxbars></div>
          <div class="pbar"><button type="button" class="pb ghost" data-yxg="next">下一題</button><button type="button" class="pb ghost" data-yxg="reset">重來</button></div>`;
       drawRound();
